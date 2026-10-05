@@ -6,7 +6,7 @@
   <img src="https://img.shields.io/badge/tests-17%20passing-22c55e?logo=github-actions&logoColor=white" alt="Tests passing">
   <br>
   <!-- Resources -->
-  <a href="#-benchmarked-vocoders-14-models"><img src="https://img.shields.io/badge/Vocoders-14%20Models%20%2B%20Baseline-blueviolet" alt="14 Vocoder Models"></a>
+  <a href="#-benchmarked-vocoders-14-models"><img src="https://img.shields.io/badge/Vocoders-14%20Neural%20Models-blueviolet" alt="14 Vocoder Models"></a>
   <a href="#-benchmark-datasets-4-corpora"><img src="https://img.shields.io/badge/Datasets-4%20Speech%20Corpora-blueviolet" alt="4 Speech Datasets"></a>
   <a href="https://hub.docker.com/"><img src="https://img.shields.io/badge/Docker-latentcontext%2Fdid--the--word--survive-2496ED?logo=docker&logoColor=white" alt="Docker Hub"></a>
   <!-- ASR -->
@@ -81,11 +81,10 @@ This repository provides a small, runnable demonstration of standard speech-reco
 
 ## 🔊 Benchmarked Vocoders (14 Models)
 
-The table below catalogs all 14 benchmarked neural vocoder systems alongside the algorithmic baseline, providing direct links to their original research papers, open-source code repositories, and public pretrained checkpoints for download:
+The table below catalogs all 14 benchmarked neural vocoder systems, providing direct links to their original research papers, open-source code repositories, and public pretrained checkpoints for download:
 
 | ID | Model | Architecture / Focus | 📄 Paper Link | 💻 Code Repository | 📦 Pretrained Checkpoint |
 |:---|:---|:---|:---:|:---:|:---:|
-| **Baseline** | Griffin–Lim STFT | Algorithmic Phase Retrieval | [IEEE (1984)](https://ieeexplore.ieee.org/document/1172092) | [librosa](https://github.com/librosa/librosa) | *N/A (Algorithmic)* |
 | **M1** | RNDVoC | Residual Noise-Driven Vocoder | [arXiv:2406.01257](https://arxiv.org/abs/2406.01257) | [Andong-Li-speech/RNDVoC](https://github.com/Andong-Li-speech/RNDVoC) | [Hugging Face Checkpoint](https://huggingface.co/AndongLi/RNDVoC/blob/main/best_g_libritts) |
 | **M2** | Flow2GAN (4-step) | Flow Matching + GAN Hybrid | [arXiv:2405.08819](https://arxiv.org/abs/2405.08819) | [k2-fsa/Flow2GAN](https://github.com/k2-fsa/Flow2GAN) | [Hugging Face Checkpoint](https://huggingface.co/k2-fsa/Flow2GAN) |
 | **M3** | Vocos | Fast Fourier-based Neural Vocoder | [arXiv:2306.00814](https://arxiv.org/abs/2306.00814) | [gemelo-ai/vocos](https://github.com/gemelo-ai/vocos) | [Hugging Face Checkpoint](https://huggingface.co/charactr/vocos-mel-24khz) |
