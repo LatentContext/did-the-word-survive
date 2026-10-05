@@ -5,6 +5,7 @@
   <img src="https://img.shields.io/badge/dependencies-zero-22c55e" alt="Zero external dependencies">
   <img src="https://img.shields.io/badge/tests-22%20passing-22c55e?logo=github-actions&logoColor=white" alt="Tests passing">
   <img src="https://img.shields.io/badge/MFA-compatible-0284c7" alt="MFA Compatible">
+  <a href="https://latentcontext.github.io/did-the-word-survive/"><img src="https://img.shields.io/badge/Live%20Demo-GitHub%20Pages-0ea5e9?logo=githubpages&logoColor=white" alt="Live Web Demo"></a>
   <br>
   <!-- Resources -->
   <a href="#-benchmarked-vocoders-14-models"><img src="https://img.shields.io/badge/Vocoders-14%20Neural%20Models-blueviolet" alt="14 Vocoder Models"></a>
@@ -18,10 +19,6 @@
 
 <h1 align="center">Did The Word Survive?</h1>
 
-<p align="center">
-  <strong>A dependency-free Python toolkit for text-level speech evaluation.</strong>
-</p>
-
 <br>
 
 ---
@@ -30,6 +27,7 @@
 
 - [Overview](#-overview)
 - [Quick Links](#-quick-links)
+- [Live Web Demo (GitHub Pages)](#-interactive-web-demo-github-pages)
 - [Benchmarked Vocoders (14 Models)](#-benchmarked-vocoders-14-models)
 - [Benchmark Datasets (4 Corpora)](#-benchmark-datasets-4-corpora)
 - [Montreal Forced Alignment (MFA) & Lexicons](#-montreal-forced-alignment-mfa--lexicons)
@@ -53,7 +51,7 @@
 
 ## 🔍 Overview
 
-This repository provides a self-contained, reproducible toolkit for computing speech-recognition and speech-synthesis evaluation metrics using **edit-distance (Levenshtein) alignments** at both word, character, and phoneme granularities.
+This repository provides a self-contained, reproducible evaluation demo for speech research workflows using **edit-distance (Levenshtein) alignments** at both word, character, and phoneme granularities.
 
 The core implementation operates in **pure Python with zero external runtime dependencies**, while providing optional integrations with **Montreal Forced Aligner (MFA)** pronunciation lexicons and ARPAbet phonetic class diagnostics (Manner of Articulation).
 
@@ -80,6 +78,7 @@ The core implementation operates in **pure Python with zero external runtime dep
 
 | Resource | Scope / Description | Link |
 |:---|:---|:---:|
+| 🌐 **Live Web Demo** | Interactive In-Browser Alignment & PER Calculator | [Open Demo (GitHub Pages) →](https://latentcontext.github.io/did-the-word-survive/) |
 | 📄 **Paper (PDF)** | Methodology & Research Findings | *Coming soon* |
 | 🔊 **Vocoder Models (14)** | Benchmark Vocoder Papers, Code & Checkpoints | [View 14 Vocoders Table ↓](#-benchmarked-vocoders-14-models) |
 | 📊 **Benchmark Datasets (4)** | LJSpeech, LibriTTS, VCTK, Free_ST | [View 4 Datasets Table ↓](#-benchmark-datasets-4-corpora) |
@@ -88,6 +87,41 @@ The core implementation operates in **pure Python with zero external runtime dep
 | 🐳 **Docker Image** | `latentcontext/did-the-word-survive` | [Docker Hub →](https://hub.docker.com/) |
 | 🤖 **ASR Model Reference** | OpenAI Whisper (Evaluation Backend) | [github.com/openai/whisper →](https://github.com/openai/whisper) |
 | 💻 **Source Code (Demo)** | Minimal Dependency-Free Demo | [This repository →](https://github.com/LatentContext/did-the-word-survive) |
+
+---
+
+## 🌐 Interactive Web Demo (GitHub Pages)
+
+A complete, client-side web application demo is available in the [`demo/`](demo/) directory and hosted on GitHub Pages:
+
+🔗 **Live Web Application:** [https://latentcontext.github.io/did-the-word-survive/](https://latentcontext.github.io/did-the-word-survive/)
+
+### Key Capabilities of the Web Demo:
+- **Client-Side Levenshtein Dynamic Programming**: Computes Word Error Rate (WER), Character Error Rate (CER), Match Error Rate (MER), and Phone Error Rate (PER) directly in the browser with **zero server calls, zero telemetry, and zero third-party dependencies**.
+- **Visual Token-Level Diff**: Color-coded token alignment displaying Exact Hits (`H`), Substitutions (`S`), Deletions (`D`), and Insertions (`I`).
+- **Phonetic Diagnostics (Manner of Articulation)**: Converts text into ARPAbet phoneme sequences using an embedded 142-word pronunciation lexicon, computing per-class accuracy across Vowels, Plosives, Fricatives, Nasals, and Approximants.
+- **Preloaded Benchmark Manifest**: Dropdown switcher containing all 20 reference/hypothesis pairs from [`examples/toy_manifest.jsonl`](examples/toy_manifest.jsonl), with full support for custom user inputs.
+- **Interactive Reference Tables**: Searchable catalogs of all 14 benchmarked neural vocoders and 4 speech datasets with active links to papers, code repositories, and model checkpoints.
+
+### Running the Web Demo Locally:
+You can run the web demo immediately without any web server or build tool:
+
+```bash
+# Option A: Open directly in your browser
+xdg-open demo/index.html   # On Linux
+open demo/index.html       # On macOS
+
+# Option B: Run via Python HTTP server
+python3 -m http.server 8000 --directory demo
+# Then visit: http://localhost:8000
+```
+
+### GitHub Pages Deployment:
+To deploy the demo automatically on your own fork:
+1. Go to repository **Settings** → **Pages** (under Code and automation).
+2. Under **Build and deployment** → **Source**, select **Deploy from a branch**.
+3. Under **Branch**, select `main` and choose `/demo` from the folder dropdown.
+4. Click **Save**. GitHub Pages will publish the app at `https://<user>.github.io/<repo>/`.
 
 ---
 
@@ -276,6 +310,9 @@ did-the-word-survive/
 │
 ├── 📂  configs/
 │   └── 📄  demo.json                    ← Normalization & evaluation configurations
+│
+├── 📂  demo/
+│   └── 📄  index.html                   ← Standalone interactive browser demo (GitHub Pages)
 │
 ├── 📂  examples/
 │   ├── 📄  toy_manifest.jsonl           ← 20 synthetic reference/hypothesis pairs
@@ -498,7 +535,7 @@ To independently verify all functionality in this repository, execute the follow
 
 ## 🤖 ASR Model Reference
 
-This toolkit evaluates speech transcription fidelity. Research benchmarks evaluate transcriptions from **[OpenAI Whisper](https://github.com/openai/whisper)**:
+This evaluation demo measures speech transcription fidelity. Research benchmarks evaluate transcriptions from **[OpenAI Whisper](https://github.com/openai/whisper)**:
 
 | Resource | Link |
 |:---|:---|
@@ -524,7 +561,7 @@ This project is licensed under the [MIT License](LICENSE).
 
 ```bibtex
 @misc{did-the-word-survive,
-  title        = {Did The Word Survive? — Text and Phonetic Speech Evaluation Toolkit},
+  title        = {Did The Word Survive? — Text and Phonetic Speech Evaluation Demo},
   author       = {LatentContext},
   year         = {2024},
   howpublished = {\url{https://github.com/LatentContext/did-the-word-survive}},

@@ -1,0 +1,2217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Did The Word Survive? — Interactive Speech Evaluation Demo</title>
+  <meta name="description" content="Interactive text and phonetic evaluation demo for speech synthesis and recognition workflows. Computes WER, CER, MER, and PER in real time.">
+  <style>
+    :root {
+      --bg: #0f172a;
+      --card-bg: #1e293b;
+      --card-border: #334155;
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+      --primary: #38bdf8;
+      --primary-hover: #0ea5e9;
+      --accent: #a855f7;
+      --success: #22c55e;
+      --warning: #f59e0b;
+      --danger: #ef4444;
+      --info: #3b82f6;
+      --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      --font-sans: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: var(--font-sans);
+      line-height: 1.6;
+      padding: 0;
+      margin: 0;
+      min-height: 100vh;
+    }
+
+    /* Header */
+    header {
+      background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%);
+      border-bottom: 1px solid var(--card-border);
+      padding: 2.5rem 1.5rem 2rem;
+      text-align: center;
+    }
+    .badge-bar {
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin-bottom: 1rem;
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.25rem 0.65rem;
+      border-radius: 9999px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      background: #334155;
+      color: #e2e8f0;
+    }
+    .badge-green { background: #065f46; color: #6ee7b7; border: 1px solid #059669; }
+    .badge-blue { background: #1e3a8a; color: #93c5fd; border: 1px solid #2563eb; }
+    .badge-purple { background: #581c87; color: #d8b4fe; border: 1px solid #7e22ce; }
+
+    h1 {
+      font-size: 2.4rem;
+      font-weight: 800;
+      letter-spacing: -0.025em;
+      margin-bottom: 0.5rem;
+      background: linear-gradient(135deg, #f8fafc 0%, #38bdf8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .subtitle {
+      color: var(--text-muted);
+      font-size: 1.1rem;
+      max-width: 700px;
+      margin: 0 auto 1.5rem;
+    }
+
+    /* Main Container */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+    }
+
+    /* Navigation Tabs */
+    .nav-tabs {
+      display: flex;
+      gap: 0.5rem;
+      border-bottom: 1px solid var(--card-border);
+      margin-bottom: 2rem;
+      overflow-x: auto;
+      padding-bottom: 0.25rem;
+    }
+    .nav-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      padding: 0.75rem 1.25rem;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      border-radius: 8px 8px 0 0;
+      transition: all 0.15s ease;
+      white-space: nowrap;
+    }
+    .nav-btn:hover {
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.05);
+    }
+    .nav-btn.active {
+      color: var(--primary);
+      border-bottom: 2px solid var(--primary);
+      background: rgba(56, 189, 248, 0.08);
+    }
+
+    /* Tab Content */
+    .tab-pane {
+      display: none;
+    }
+    .tab-pane.active {
+      display: block;
+      animation: fadeIn 0.2s ease;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Cards */
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
+    }
+    .card-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    /* Controls Grid */
+    .controls-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+    @media (max-width: 768px) {
+      .controls-grid { grid-template-columns: 1fr; }
+    }
+
+    label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+      margin-bottom: 0.5rem;
+    }
+    select, textarea, input {
+      width: 100%;
+      background: #0f172a;
+      border: 1px solid var(--card-border);
+      color: var(--text);
+      border-radius: 8px;
+      padding: 0.75rem 1rem;
+      font-family: inherit;
+      font-size: 0.95rem;
+      outline: none;
+      transition: border-color 0.15s ease;
+    }
+    select:focus, textarea:focus, input:focus {
+      border-color: var(--primary);
+    }
+    textarea {
+      resize: vertical;
+      min-height: 80px;
+      font-family: var(--font-mono);
+      font-size: 0.9rem;
+    }
+
+    /* Metric Scoreboard */
+    .scoreboard {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    @media (max-width: 640px) {
+      .scoreboard { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    .metric-card {
+      background: #0f172a;
+      border: 1px solid var(--card-border);
+      border-radius: 10px;
+      padding: 1.25rem 1rem;
+      text-align: center;
+      transition: transform 0.15s ease;
+    }
+    .metric-card:hover {
+      transform: translateY(-2px);
+    }
+    .metric-label {
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+      margin-bottom: 0.25rem;
+    }
+    .metric-value {
+      font-size: 2.2rem;
+      font-weight: 800;
+      font-family: var(--font-mono);
+      color: var(--primary);
+    }
+    .metric-desc {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-top: 0.25rem;
+    }
+
+    /* Counts Summary */
+    .counts-bar {
+      display: flex;
+      justify-content: space-around;
+      background: #0f172a;
+      border: 1px solid var(--card-border);
+      border-radius: 8px;
+      padding: 0.75rem 1rem;
+      margin-bottom: 1.5rem;
+      font-family: var(--font-mono);
+      font-size: 0.9rem;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .count-item span { font-weight: 700; }
+    .c-hits { color: var(--success); }
+    .c-subs { color: var(--warning); }
+    .c-dels { color: var(--danger); }
+    .c-ins { color: var(--info); }
+
+    /* Visual Alignment Diff */
+    .alignment-diff {
+      background: #0f172a;
+      border: 1px solid var(--card-border);
+      border-radius: 8px;
+      padding: 1rem;
+      font-family: var(--font-mono);
+      font-size: 0.95rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      align-items: center;
+      min-height: 50px;
+      margin-bottom: 1rem;
+    }
+    .token {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.25rem 0.6rem;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+    .token-hit {
+      background: rgba(34, 197, 94, 0.15);
+      color: #86efac;
+      border: 1px solid rgba(34, 197, 94, 0.4);
+    }
+    .token-sub {
+      background: rgba(245, 158, 11, 0.15);
+      color: #fde047;
+      border: 1px solid rgba(245, 158, 11, 0.4);
+    }
+    .token-del {
+      background: rgba(239, 68, 68, 0.15);
+      color: #fca5a5;
+      text-decoration: line-through;
+      border: 1px solid rgba(239, 68, 68, 0.4);
+    }
+    .token-ins {
+      background: rgba(59, 130, 246, 0.15);
+      color: #93c5fd;
+      border: 1px dashed rgba(59, 130, 246, 0.5);
+    }
+
+    /* Class Breakdown Bars */
+    .class-bar {
+      margin-bottom: 0.75rem;
+    }
+    .class-label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+    }
+    .progress-track {
+      background: #0f172a;
+      height: 8px;
+      border-radius: 9999px;
+      overflow: hidden;
+      border: 1px solid var(--card-border);
+    }
+    .progress-fill {
+      height: 100%;
+      background: var(--primary);
+      transition: width 0.3s ease;
+    }
+
+    /* Tables */
+    .table-container {
+      overflow-x: auto;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.9rem;
+    }
+    th {
+      background: #0f172a;
+      color: var(--text-muted);
+      font-weight: 700;
+      text-transform: uppercase;
+      font-size: 0.75rem;
+      letter-spacing: 0.05em;
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid var(--card-border);
+    }
+    td {
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid var(--card-border);
+      vertical-align: middle;
+    }
+    tr:hover td {
+      background: rgba(255, 255, 255, 0.02);
+    }
+    a {
+      color: var(--primary);
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    code {
+      font-family: var(--font-mono);
+      background: #0f172a;
+      padding: 0.2rem 0.4rem;
+      border-radius: 4px;
+      font-size: 0.85rem;
+      color: #38bdf8;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    pre {
+      background: #0f172a;
+      padding: 1rem;
+      border-radius: 8px;
+      border: 1px solid var(--card-border);
+      overflow-x: auto;
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      line-height: 1.5;
+      color: #e2e8f0;
+      margin-top: 0.5rem;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      border-top: 1px solid var(--card-border);
+      margin-top: 3rem;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="badge-bar">
+      <span class="badge badge-green">MIT License</span>
+      <span class="badge badge-blue">Zero Dependencies</span>
+      <span class="badge badge-purple">MFA Compatible</span>
+      <span class="badge">14 Neural Vocoders</span>
+      <span class="badge">4 Speech Corpora</span>
+    </div>
+    <h1>Did The Word Survive?</h1>
+    <p class="subtitle">Interactive speech evaluation demo. Compute Word Error Rate (WER), Character Error Rate (CER), Match Error Rate (MER), and Phone Error Rate (PER) in real time.</p>
+  </header>
+
+  <div class="container">
+    <!-- Navigation Tabs -->
+    <nav class="nav-tabs" role="tablist">
+      <button class="nav-btn active" onclick="switchTab('eval')">🧪 Interactive Evaluator</button>
+      <button class="nav-btn" onclick="switchTab('vocoders')">🔊 14 Vocoder Systems</button>
+      <button class="nav-btn" onclick="switchTab('corpora')">📊 4 Benchmark Datasets</button>
+      <button class="nav-btn" onclick="switchTab('mfa')">🗣️ Montreal Forced Alignment</button>
+      <button class="nav-btn" onclick="switchTab('cli')">💻 CLI & Docker Quickstart</button>
+    </nav>
+
+    <!-- Tab 1: Interactive Evaluator -->
+    <div id="tab-eval" class="tab-pane active">
+      <div class="card">
+        <h2 class="card-title">Select Preset Synthetic Sample</h2>
+        <select id="presetSelect" onchange="loadPreset()">
+          <!-- Populated by JS -->
+        </select>
+      </div>
+
+      <div class="controls-grid">
+        <div class="card">
+          <label for="refInput">Reference Sentence (Ground Truth)</label>
+          <textarea id="refInput" oninput="runEvaluation()"></textarea>
+        </div>
+        <div class="card">
+          <label for="hypInput">Hypothesis Sentence (Model Output)</label>
+          <textarea id="hypInput" oninput="runEvaluation()"></textarea>
+        </div>
+      </div>
+
+      <!-- Live Scoreboard -->
+      <div class="scoreboard">
+        <div class="metric-card">
+          <div class="metric-label">WER</div>
+          <div class="metric-value" id="werVal">0.0%</div>
+          <div class="metric-desc">Word Error Rate</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">CER</div>
+          <div class="metric-value" id="cerVal">0.0%</div>
+          <div class="metric-desc">Character Error Rate</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">MER</div>
+          <div class="metric-value" id="merVal">0.0%</div>
+          <div class="metric-desc">Match Error Rate</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">PER</div>
+          <div class="metric-value" id="perVal">0.0%</div>
+          <div class="metric-desc">Phone Error Rate (ARPAbet)</div>
+        </div>
+      </div>
+
+      <!-- Alignment Counts -->
+      <div class="counts-bar">
+        <div class="count-item">Hits (H): <span class="c-hits" id="hitsCount">0</span></div>
+        <div class="count-item">Substitutions (S): <span class="c-subs" id="subsCount">0</span></div>
+        <div class="count-item">Deletions (D): <span class="c-dels" id="delsCount">0</span></div>
+        <div class="count-item">Insertions (I): <span class="c-ins" id="insCount">0</span></div>
+        <div class="count-item">Reference Words: <span id="refWordsCount">0</span></div>
+        <div class="count-item">Reference Phones: <span id="refPhonesCount">0</span></div>
+      </div>
+
+      <!-- Visual Word Alignment Diff -->
+      <div class="card">
+        <h3 class="card-title">Token-Level Alignment Diff</h3>
+        <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:0.75rem;">
+          Color legend: <span class="token token-hit">Hit</span>
+          <span class="token token-sub">Substitution</span>
+          <span class="token token-del">Deletion</span>
+          <span class="token token-ins">Insertion</span>
+        </p>
+        <div class="alignment-diff" id="wordDiffView"></div>
+      </div>
+
+      <!-- Phonetic Breakdown -->
+      <div class="card">
+        <h3 class="card-title">ARPAbet Phonetic Alignment & Class Diagnostics</h3>
+        <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:0.75rem;">
+          Pronunciation mapping derived from <code>lexicons/sample_lexicon.txt</code>:
+        </p>
+        <div class="alignment-diff" id="phoneDiffView"></div>
+
+        <h4 style="margin-top:1.25rem; margin-bottom:0.75rem; font-size:0.95rem; color:var(--text-muted);">
+          Manner of Articulation Accuracy
+        </h4>
+        <div id="classBreakdownView"></div>
+      </div>
+    </div>
+
+    <!-- Tab 2: Vocoders Showcase -->
+    <div id="tab-vocoders" class="tab-pane">
+      <div class="card">
+        <h2 class="card-title">Benchmarked Neural Vocoders (14 Systems)</h2>
+        <p style="color:var(--text-muted); margin-bottom:1.5rem; font-size:0.95rem;">
+          Complete inventory of evaluated neural vocoder architectures, including links to original papers, official open-source code repositories, and public pretrained checkpoints:
+        </p>
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Model</th>
+                <th>Architecture Focus</th>
+                <th>Paper</th>
+                <th>Code Repository</th>
+                <th>Pretrained Checkpoint</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td><strong>M1</strong></td><td>RNDVoC</td><td>Residual Noise-Driven</td><td><a href="https://arxiv.org/abs/2406.01257" target="_blank">arXiv:2406.01257</a></td><td><a href="https://github.com/Andong-Li-speech/RNDVoC" target="_blank">GitHub</a></td><td><a href="https://huggingface.co/AndongLi/RNDVoC/blob/main/best_g_libritts" target="_blank">Hugging Face</a></td></tr>
+              <tr><td><strong>M2</strong></td><td>Flow2GAN</td><td>Flow Matching + GAN</td><td><a href="https://arxiv.org/abs/2405.08819" target="_blank">arXiv:2405.08819</a></td><td><a href="https://github.com/k2-fsa/Flow2GAN" target="_blank">GitHub</a></td><td><a href="https://huggingface.co/k2-fsa/Flow2GAN" target="_blank">Hugging Face</a></td></tr>
+              <tr><td><strong>M3</strong></td><td>Vocos</td><td>Fast Fourier-based</td><td><a href="https://arxiv.org/abs/2306.00814" target="_blank">arXiv:2306.00814</a></td><td><a href="https://github.com/gemelo-ai/vocos" target="_blank">GitHub</a></td><td><a href="https://huggingface.co/charactr/vocos-mel-24khz" target="_blank">Hugging Face</a></td></tr>
+              <tr><td><strong>M4</strong></td><td>BridgeVoC</td><td>Diffusion Bridge</td><td><a href="https://arxiv.org/abs/2406.01258" target="_blank">arXiv:2406.01258</a></td><td><a href="https://github.com/Andong-Li-speech/BridgeVoC" target="_blank">GitHub</a></td><td><a href="https://huggingface.co/AndongLi/BridgeVoC/blob/main/ckpt/Libritts/pretrained/bridgevoc_bcd_libritts_24k_fmax12k_nmel100.pt" target="_blank">Hugging Face</a></td></tr>
+              <tr><td><strong>M5</strong></td><td>PeriodWave-Turbo</td><td>Fast Periodic Waveform</td><td><a href="https://arxiv.org/abs/2408.06945" target="_blank">arXiv:2408.06945</a></td><td><a href="https://github.com/sh-lee-prml/PeriodWave" target="_blank">GitHub</a></td><td><a href="https://drive.google.com/drive/folders/1uUlfiSHFL9xNAZKp6-a584cW9nG7wDK7" target="_blank">Google Drive</a></td></tr>
+              <tr><td><strong>M6</strong></td><td>ComVo-Base</td><td>Compact Neural Vocoder</td><td><a href="https://arxiv.org/abs/2406.19794" target="_blank">arXiv:2406.19794</a></td><td><a href="https://github.com/hs-oh-prml/ComVo" target="_blank">GitHub</a></td><td><a href="https://huggingface.co/hsoh/ComVo-base" target="_blank">Hugging Face</a></td></tr>
+              <tr><td><strong>M7</strong></td><td>BigVGAN-v2 (112M)</td><td>Universal GAN (Large)</td><td><a href="https://arxiv.org/abs/2206.04658" target="_blank">arXiv:2206.04658</a></td><td><a href="https://github.com/NVIDIA/BigVGAN" target="_blank">GitHub</a></td><td><a href="https://huggingface.co/nvidia/bigvgan_v2_24khz_100band_256x" target="_blank">Hugging Face</a></td></tr>
+              <tr><td><strong>M8</strong></td><td>BigVGAN-Base (14M)</td><td>Universal GAN (Base)</td><td><a href="https://arxiv.org/abs/2206.04658" target="_blank">arXiv:2206.04658</a></td><td><a href="https://github.com/NVIDIA/BigVGAN" target="_blank">GitHub</a></td><td><a href="https://huggingface.co/nvidia/bigvgan_base_24khz_100band" target="_blank">Hugging Face</a></td></tr>
+              <tr><td><strong>M9</strong></td><td>ComVo-Large</td><td>Compact Neural (115M)</td><td><a href="https://arxiv.org/abs/2406.19794" target="_blank">arXiv:2406.19794</a></td><td><a href="https://github.com/hs-oh-prml/ComVo" target="_blank">GitHub</a></td><td><a href="https://huggingface.co/hsoh/ComVo-large" target="_blank">Hugging Face</a></td></tr>
+              <tr><td><strong>M10</strong></td><td>WaveFM</td><td>One-Step Flow Matching</td><td><a href="https://arxiv.org/abs/2406.00287" target="_blank">arXiv:2406.00287</a></td><td><a href="https://github.com/luotianze666/WaveFM" target="_blank">GitHub</a></td><td><a href="https://github.com/luotianze666/WaveFM/blob/main/checkpoints/Distilled_WaveFM_25000" target="_blank">GitHub Checkpoint</a></td></tr>
+              <tr><td><strong>M11</strong></td><td>HiFi-GAN (Universal)</td><td>Generative Adversarial</td><td><a href="https://arxiv.org/abs/2010.05646" target="_blank">arXiv:2010.05646</a></td><td><a href="https://github.com/jik876/hifi-gan" target="_blank">GitHub</a></td><td><a href="https://drive.google.com/drive/folders/1-eEYTB5Av9jNql0WGBlRoi-WH2J7bp5Y" target="_blank">Google Drive</a></td></tr>
+              <tr><td><strong>M12</strong></td><td>FreeV</td><td>Free-U Neural Vocoder</td><td><a href="https://arxiv.org/abs/2405.15842" target="_blank">arXiv:2405.15842</a></td><td><a href="https://github.com/BakerBunker/FreeV" target="_blank">GitHub</a></td><td><a href="https://huggingface.co/Bakerbunker/FreeV_Model_Logs" target="_blank">Hugging Face</a></td></tr>
+              <tr><td><strong>M13</strong></td><td>RFWave</td><td>Rectified Flow Generator</td><td><a href="https://arxiv.org/abs/2406.18567" target="_blank">arXiv:2406.18567</a></td><td><a href="https://github.com/bfs18/rfwave" target="_blank">GitHub</a></td><td><a href="https://drive.google.com/file/d/1IQNXAAVRTtr9P8Gc-CoPeRIJ_l_O4y38/view" target="_blank">Google Drive</a></td></tr>
+              <tr><td><strong>M14</strong></td><td>PeriodWave (16-step)</td><td>Periodic Multi-Diffusion</td><td><a href="https://arxiv.org/abs/2408.06945" target="_blank">arXiv:2408.06945</a></td><td><a href="https://github.com/sh-lee-prml/PeriodWave" target="_blank">GitHub</a></td><td><a href="https://drive.google.com/drive/folders/1uUlfiSHFL9xNAZKp6-a584cW9nG7wDK7" target="_blank">Google Drive</a></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tab 3: Corpora Showcase -->
+    <div id="tab-corpora" class="tab-pane">
+      <div class="card">
+        <h2 class="card-title">Benchmark Speech Corpora (4 Datasets)</h2>
+        <p style="color:var(--text-muted); margin-bottom:1.5rem; font-size:0.95rem;">
+          Overview of standard public speech corpora used to evaluate acoustic generalization across conditions:
+        </p>
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Corpus</th>
+                <th>Condition</th>
+                <th>Description</th>
+                <th>Reference</th>
+                <th>Download Link</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>LibriTTS</strong></td>
+                <td>Audiobook</td>
+                <td>Multi-speaker English corpus derived from LibriSpeech (585 hours @ 24kHz)</td>
+                <td><a href="https://arxiv.org/abs/1904.02882" target="_blank">Zen et al. (Interspeech 2019)</a></td>
+                <td><a href="https://www.openslr.org/60/" target="_blank">OpenSLR 60</a> · <a href="https://huggingface.co/datasets/libritts" target="_blank">Hugging Face</a></td>
+              </tr>
+              <tr>
+                <td><strong>LJSpeech</strong></td>
+                <td>Clean Studio</td>
+                <td>Single female speaker reading non-fiction English texts (13,100 clips, ~24 hrs @ 22.05kHz)</td>
+                <td><a href="https://keithito.com/LJ-Speech-Dataset/" target="_blank">Ito & Johnson (2017)</a></td>
+                <td><a href="https://keithito.com/LJ-Speech-Dataset/" target="_blank">Official Website</a> · <a href="https://huggingface.co/datasets/lj_speech" target="_blank">Hugging Face</a></td>
+              </tr>
+              <tr>
+                <td><strong>VCTK</strong></td>
+                <td>Accented Speech</td>
+                <td>109 native English speakers with varied regional accents (British, Scottish, Irish, etc.)</td>
+                <td><a href="https://datashare.ed.ac.uk/handle/10283/3443" target="_blank">Yamagishi et al. (CSTR 2019)</a></td>
+                <td><a href="https://datashare.ed.ac.uk/handle/10283/3443" target="_blank">Edinburgh DataShare</a> · <a href="https://huggingface.co/datasets/vctk" target="_blank">Hugging Face</a></td>
+              </tr>
+              <tr>
+                <td><strong>Free_ST</strong></td>
+                <td>Noisy Ambient</td>
+                <td>Real-world American English recorded in varied ambient acoustic conditions</td>
+                <td><a href="https://www.openslr.org/45/" target="_blank">Surfingtech (OpenSLR 45)</a></td>
+                <td><a href="https://www.openslr.org/45/" target="_blank">OpenSLR 45</a></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tab 4: MFA Guide -->
+    <div id="tab-mfa" class="tab-pane">
+      <div class="card">
+        <h2 class="card-title">Montreal Forced Alignment (MFA) Workflow</h2>
+        <p style="color:var(--text-muted); margin-bottom:1rem; font-size:0.95rem;">
+          Step-by-step instructions to set up Montreal Forced Aligner with the standard <code>english_us_arpa</code> acoustic model and pronunciation dictionary:
+        </p>
+
+        <h3 style="font-size:1.05rem; margin-top:1.5rem; margin-bottom:0.5rem; color:var(--primary);">1. Conda Environment Setup</h3>
+        <pre><code># Create isolated environment for MFA
+conda create -n mfa -c conda-forge montreal-forced-aligner kaldi -y
+conda activate mfa</code></pre>
+
+        <h3 style="font-size:1.05rem; margin-top:1.5rem; margin-bottom:0.5rem; color:var(--primary);">2. Model & Dictionary Provisioning</h3>
+        <pre><code># Download pre-trained acoustic model and dictionary
+mfa model download acoustic english_us_arpa
+mfa model download dictionary english_us_arpa</code></pre>
+
+        <h3 style="font-size:1.05rem; margin-top:1.5rem; margin-bottom:0.5rem; color:var(--primary);">3. Corpus Alignment</h3>
+        <pre><code># Align corpus to produce Praat TextGrid interval tiers
+mfa align data/raw lexicons/sample_lexicon.txt english_us_arpa outputs/textgrids --clean --num_jobs 4</code></pre>
+
+        <h3 style="font-size:1.05rem; margin-top:1.5rem; margin-bottom:0.5rem; color:var(--primary);">4. Or Use Our Bundled Script</h3>
+        <pre><code># Automated wrapper script in this repository
+bash scripts/setup_mfa.sh check
+bash scripts/setup_mfa.sh install
+bash scripts/setup_mfa.sh download
+bash scripts/setup_mfa.sh align data/raw lexicons/sample_lexicon.txt outputs/textgrids</code></pre>
+      </div>
+    </div>
+
+    <!-- Tab 5: CLI & Docker -->
+    <div id="tab-cli" class="tab-pane">
+      <div class="card">
+        <h2 class="card-title">Command-Line Interface & Docker Execution</h2>
+        <p style="color:var(--text-muted); margin-bottom:1rem; font-size:0.95rem;">
+          Run the evaluation tool directly via standard Python CLI or containerized Docker:
+        </p>
+
+        <h3 style="font-size:1.05rem; margin-top:1rem; margin-bottom:0.5rem; color:var(--primary);">Standard Python CLI</h3>
+        <pre><code># Table output with word, char, and match error rates
+context-demo --manifest examples/toy_manifest.jsonl --format table
+
+# Full evaluation with ARPAbet lexicon and Phone Error Rate (PER)
+context-demo --manifest examples/toy_manifest.jsonl --lexicon lexicons/sample_lexicon.txt --format table
+
+# Machine-readable structured JSON output
+context-demo --manifest examples/toy_manifest.jsonl --lexicon lexicons/sample_lexicon.txt --format json</code></pre>
+
+        <h3 style="font-size:1.05rem; margin-top:1.5rem; margin-bottom:0.5rem; color:var(--primary);">Docker Container Run</h3>
+        <pre><code># Build locally
+docker build -t did-the-word-survive:latest .
+
+# Run default table evaluation
+docker run --rm did-the-word-survive:latest
+
+# Run with lexicon in Docker
+docker run --rm did-the-word-survive:latest --lexicon lexicons/sample_lexicon.txt --format table</code></pre>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    Did The Word Survive? · <a href="https://github.com/LatentContext/did-the-word-survive">LatentContext / did-the-word-survive</a> · MIT Open Source
+  </footer>
+
+  <script>
+    // Embedded Manifest and Lexicon
+    const PRESETS = [
+  {
+    "id": "demo_sample_001",
+    "reference": "the quick brown fox jumps over the lazy dog",
+    "hypothesis": "the quick brown fox jumps over the lazy dog"
+  },
+  {
+    "id": "demo_sample_002",
+    "reference": "speech synthesis evaluation requires clear objective metrics",
+    "hypothesis": "speech synthesis evaluation requires clear subjective metrics"
+  },
+  {
+    "id": "demo_sample_003",
+    "reference": "surrounding acoustic context improves lexical identification",
+    "hypothesis": "surrounding acoustic text improves lexical identification"
+  },
+  {
+    "id": "demo_sample_004",
+    "reference": "background noise complicates automatic speech transcription",
+    "hypothesis": "background noise complicates automatic speech transcription"
+  },
+  {
+    "id": "demo_sample_005",
+    "reference": "isolated words lack surrounding carrier phrases",
+    "hypothesis": "isolated words lack carrier phrases"
+  },
+  {
+    "id": "demo_sample_006",
+    "reference": "careful normalization ensures consistent scoring across runs",
+    "hypothesis": "careful normalization ensures consistent fast scoring across runs"
+  },
+  {
+    "id": "demo_sample_007",
+    "reference": "neural vocoders generate high fidelity speech waveforms",
+    "hypothesis": "neural vocoders generate high fidelity speech waveforms"
+  },
+  {
+    "id": "demo_sample_008",
+    "reference": "spectral envelope features preserve vowel formant frequencies",
+    "hypothesis": "spectral envelope features preserve vowel format frequencies"
+  },
+  {
+    "id": "demo_sample_009",
+    "reference": "plosive consonants produce rapid transient acoustic bursts",
+    "hypothesis": "plosive consonants produce rapid transit acoustic bursts"
+  },
+  {
+    "id": "demo_sample_010",
+    "reference": "fricative noises show energy concentrations in high frequencies",
+    "hypothesis": "fricative noises show energy in high frequencies"
+  },
+  {
+    "id": "demo_sample_011",
+    "reference": "nasal murmurs exhibit low frequency spectral resonances",
+    "hypothesis": "nasal murmurs exhibit distinct low frequency spectral resonances"
+  },
+  {
+    "id": "demo_sample_012",
+    "reference": "approximants and glides exhibit continuous formant transitions",
+    "hypothesis": "approximants and guides exhibit continuous formant transitions"
+  },
+  {
+    "id": "demo_sample_013",
+    "reference": "prosodic variations influence perceived voice naturalness and emotion",
+    "hypothesis": "prosodic variations influence perceived naturalness and emotion"
+  },
+  {
+    "id": "demo_sample_014",
+    "reference": "forced alignment matches acoustic signals with phonetic transcriptions",
+    "hypothesis": "forced alignment matches acoustic signal with phonetic transcription"
+  },
+  {
+    "id": "demo_sample_015",
+    "reference": "articulatory boundaries define phoneme segmentation intervals",
+    "hypothesis": "articulatory boundaries define phoneme segmentation intervals"
+  },
+  {
+    "id": "demo_sample_016",
+    "reference": "speech recognition accuracy depends on surrounding lexical context",
+    "hypothesis": "speech recognition depends on surrounding context"
+  },
+  {
+    "id": "demo_sample_017",
+    "reference": "pitch contours provide essential clues for semantic disambiguation",
+    "hypothesis": "pitch contours provide essential clues for syntactic disambiguation"
+  },
+  {
+    "id": "demo_sample_018",
+    "reference": "temporal resolution affects the precision of phonetic boundaries",
+    "hypothesis": "temporal resolution affects the precision of phonetic boundaries"
+  },
+  {
+    "id": "demo_sample_019",
+    "reference": "unvoiced stops produce silent closure gaps before burst release",
+    "hypothesis": "unvoiced stops produce silent gaps before release"
+  },
+  {
+    "id": "demo_sample_020",
+    "reference": "objective metrics correlate strongly with subjective human listening trials",
+    "hypothesis": "objective metrics correlate strongly with subjective listening trials"
+  }
+];
+    const LEXICON = {
+  "ACCURACY": [
+    "AE1",
+    "K",
+    "Y",
+    "ER0",
+    "AH0",
+    "S",
+    "IY0"
+  ],
+  "ACOUSTIC": [
+    "AH0",
+    "K",
+    "UW1",
+    "S",
+    "T",
+    "IH0",
+    "K"
+  ],
+  "ACROSS": [
+    "AH0",
+    "K",
+    "R",
+    "AO1",
+    "S"
+  ],
+  "AFFECTS": [
+    "AH0",
+    "F",
+    "EH1",
+    "K",
+    "T",
+    "S"
+  ],
+  "ALIGNMENT": [
+    "AH0",
+    "L",
+    "AY1",
+    "N",
+    "M",
+    "AH0",
+    "N",
+    "T"
+  ],
+  "AND": [
+    "AH0",
+    "N",
+    "D"
+  ],
+  "APPROXIMANT": [
+    "AH0",
+    "P",
+    "R",
+    "AA1",
+    "K",
+    "S",
+    "AH0",
+    "M",
+    "AH0",
+    "N",
+    "T"
+  ],
+  "APPROXIMANTS": [
+    "AH0",
+    "P",
+    "R",
+    "AA1",
+    "K",
+    "S",
+    "AH0",
+    "M",
+    "AH0",
+    "N",
+    "T",
+    "S"
+  ],
+  "ARTICULATORY": [
+    "AA0",
+    "R",
+    "T",
+    "IH1",
+    "K",
+    "Y",
+    "AH0",
+    "L",
+    "AH0",
+    "T",
+    "AO2",
+    "R",
+    "IY0"
+  ],
+  "AUTOMATIC": [
+    "AO2",
+    "T",
+    "AH0",
+    "M",
+    "AE1",
+    "T",
+    "IH0",
+    "K"
+  ],
+  "BACKGROUND": [
+    "B",
+    "AE1",
+    "K",
+    "G",
+    "R",
+    "AW2",
+    "N",
+    "D"
+  ],
+  "BEFORE": [
+    "B",
+    "IH0",
+    "F",
+    "AO1",
+    "R"
+  ],
+  "BOUNDARIES": [
+    "B",
+    "AW1",
+    "N",
+    "D",
+    "ER0",
+    "IY0",
+    "Z"
+  ],
+  "BROWN": [
+    "B",
+    "R",
+    "AW1",
+    "N"
+  ],
+  "BURST": [
+    "B",
+    "ER1",
+    "S",
+    "T"
+  ],
+  "BURSTS": [
+    "B",
+    "ER1",
+    "S",
+    "T",
+    "S"
+  ],
+  "CAREFUL": [
+    "K",
+    "EH1",
+    "R",
+    "F",
+    "AH0",
+    "L"
+  ],
+  "CARRIER": [
+    "K",
+    "AE1",
+    "R",
+    "IY0",
+    "ER0"
+  ],
+  "CLEAR": [
+    "K",
+    "L",
+    "IH1",
+    "R"
+  ],
+  "CLOSURE": [
+    "K",
+    "L",
+    "OW1",
+    "ZH",
+    "ER0"
+  ],
+  "CLUES": [
+    "K",
+    "L",
+    "UW1",
+    "Z"
+  ],
+  "COMPLICATES": [
+    "K",
+    "AA1",
+    "M",
+    "P",
+    "L",
+    "IH0",
+    "K",
+    "EY2",
+    "T",
+    "S"
+  ],
+  "CONCENTRATIONS": [
+    "K",
+    "AA2",
+    "N",
+    "S",
+    "AH0",
+    "N",
+    "T",
+    "R",
+    "EY1",
+    "SH",
+    "AH0",
+    "N",
+    "Z"
+  ],
+  "CONSISTENT": [
+    "K",
+    "AH0",
+    "N",
+    "S",
+    "IH1",
+    "S",
+    "T",
+    "AH0",
+    "N",
+    "T"
+  ],
+  "CONSONANT": [
+    "K",
+    "AA1",
+    "N",
+    "S",
+    "AH0",
+    "N",
+    "AH0",
+    "N",
+    "T"
+  ],
+  "CONSONANTS": [
+    "K",
+    "AA1",
+    "N",
+    "S",
+    "AH0",
+    "N",
+    "AH0",
+    "N",
+    "T",
+    "S"
+  ],
+  "CONTEXT": [
+    "K",
+    "AA1",
+    "N",
+    "T",
+    "EH0",
+    "K",
+    "S",
+    "T"
+  ],
+  "CONTINUOUS": [
+    "K",
+    "AH0",
+    "N",
+    "T",
+    "IH1",
+    "N",
+    "Y",
+    "UW0",
+    "AH0",
+    "S"
+  ],
+  "CONTOURS": [
+    "K",
+    "AA1",
+    "N",
+    "T",
+    "UH2",
+    "R",
+    "Z"
+  ],
+  "CORRELATE": [
+    "K",
+    "AO1",
+    "R",
+    "AH0",
+    "L",
+    "EY2",
+    "T"
+  ],
+  "DEFINE": [
+    "D",
+    "IH0",
+    "F",
+    "AY1",
+    "N"
+  ],
+  "DEPENDS": [
+    "D",
+    "IH0",
+    "P",
+    "EH1",
+    "N",
+    "D",
+    "Z"
+  ],
+  "DISAMBIGUATION": [
+    "D",
+    "IH0",
+    "S",
+    "AE0",
+    "M",
+    "B",
+    "IH0",
+    "G",
+    "Y",
+    "UW0",
+    "EY1",
+    "SH",
+    "AH0",
+    "N"
+  ],
+  "DISTINCT": [
+    "D",
+    "IH0",
+    "S",
+    "T",
+    "IH1",
+    "NG",
+    "K",
+    "T"
+  ],
+  "DOG": [
+    "D",
+    "AO1",
+    "G"
+  ],
+  "EMOTION": [
+    "IH0",
+    "M",
+    "OW1",
+    "SH",
+    "AH0",
+    "N"
+  ],
+  "ENERGY": [
+    "EH1",
+    "N",
+    "ER0",
+    "JH",
+    "IY0"
+  ],
+  "ENSURES": [
+    "EH0",
+    "N",
+    "SH",
+    "UH1",
+    "R",
+    "Z"
+  ],
+  "ENVELOPE": [
+    "EH1",
+    "N",
+    "V",
+    "AH0",
+    "L",
+    "OW2",
+    "P"
+  ],
+  "ESSENTIAL": [
+    "IH0",
+    "S",
+    "EH1",
+    "N",
+    "SH",
+    "AH0",
+    "L"
+  ],
+  "EVALUATION": [
+    "IH0",
+    "V",
+    "AE2",
+    "L",
+    "Y",
+    "UW0",
+    "EY1",
+    "SH",
+    "AH0",
+    "N"
+  ],
+  "EXHIBIT": [
+    "IH0",
+    "G",
+    "Z",
+    "IH1",
+    "B",
+    "IH0",
+    "T"
+  ],
+  "FAST": [
+    "F",
+    "AE1",
+    "S",
+    "T"
+  ],
+  "FEATURES": [
+    "F",
+    "IY1",
+    "CH",
+    "ER0",
+    "Z"
+  ],
+  "FIDELITY": [
+    "F",
+    "AH0",
+    "D",
+    "EH1",
+    "L",
+    "AH0",
+    "T",
+    "IY0"
+  ],
+  "FOR": [
+    "F",
+    "AO1",
+    "R"
+  ],
+  "FORCED": [
+    "F",
+    "AO1",
+    "R",
+    "S",
+    "T"
+  ],
+  "FORMANT": [
+    "F",
+    "AO1",
+    "R",
+    "M",
+    "AH0",
+    "N",
+    "T"
+  ],
+  "FORMAT": [
+    "F",
+    "AO1",
+    "R",
+    "M",
+    "AE2",
+    "T"
+  ],
+  "FOX": [
+    "F",
+    "AA1",
+    "K",
+    "S"
+  ],
+  "FREQUENCIES": [
+    "F",
+    "R",
+    "IY1",
+    "K",
+    "W",
+    "AH0",
+    "N",
+    "S",
+    "IY0",
+    "Z"
+  ],
+  "FREQUENCY": [
+    "F",
+    "R",
+    "IY1",
+    "K",
+    "W",
+    "AH0",
+    "N",
+    "S",
+    "IY0"
+  ],
+  "FRICATIVE": [
+    "F",
+    "R",
+    "IH1",
+    "K",
+    "AH0",
+    "T",
+    "IH0",
+    "V"
+  ],
+  "GAPS": [
+    "G",
+    "AE1",
+    "P",
+    "S"
+  ],
+  "GENERATE": [
+    "JH",
+    "EH1",
+    "N",
+    "ER0",
+    "EY2",
+    "T"
+  ],
+  "GLIDE": [
+    "G",
+    "L",
+    "AY1",
+    "D"
+  ],
+  "GLIDES": [
+    "G",
+    "L",
+    "AY1",
+    "D",
+    "Z"
+  ],
+  "GUIDES": [
+    "G",
+    "AY1",
+    "D",
+    "Z"
+  ],
+  "HIGH": [
+    "HH",
+    "AY1"
+  ],
+  "HUMAN": [
+    "HH",
+    "Y",
+    "UW1",
+    "M",
+    "AH0",
+    "N"
+  ],
+  "IDENTIFICATION": [
+    "AY0",
+    "D",
+    "EH2",
+    "N",
+    "T",
+    "AH0",
+    "F",
+    "AH0",
+    "K",
+    "EY1",
+    "SH",
+    "AH0",
+    "N"
+  ],
+  "IMPROVES": [
+    "IH0",
+    "M",
+    "P",
+    "R",
+    "UW1",
+    "V",
+    "Z"
+  ],
+  "IN": [
+    "IH0",
+    "N"
+  ],
+  "INFLUENCE": [
+    "IH1",
+    "N",
+    "F",
+    "L",
+    "UW0",
+    "AH0",
+    "N",
+    "S"
+  ],
+  "INTERVALS": [
+    "IH1",
+    "N",
+    "T",
+    "ER0",
+    "V",
+    "AH0",
+    "L",
+    "Z"
+  ],
+  "ISOLATED": [
+    "AY1",
+    "S",
+    "AH0",
+    "L",
+    "EY2",
+    "T",
+    "AH0",
+    "D"
+  ],
+  "JUMPS": [
+    "JH",
+    "AH1",
+    "M",
+    "P",
+    "S"
+  ],
+  "LACK": [
+    "L",
+    "AE1",
+    "K"
+  ],
+  "LAZY": [
+    "L",
+    "EY1",
+    "Z",
+    "IY0"
+  ],
+  "LEXICAL": [
+    "L",
+    "EH1",
+    "K",
+    "S",
+    "IH0",
+    "K",
+    "AH0",
+    "L"
+  ],
+  "LIQUID": [
+    "L",
+    "IH1",
+    "K",
+    "W",
+    "AH0",
+    "D"
+  ],
+  "LISTENING": [
+    "L",
+    "IH1",
+    "S",
+    "AH0",
+    "N",
+    "IH0",
+    "NG"
+  ],
+  "LOW": [
+    "L",
+    "OW1"
+  ],
+  "MATCHES": [
+    "M",
+    "AE1",
+    "CH",
+    "AH0",
+    "Z"
+  ],
+  "METRICS": [
+    "M",
+    "EH1",
+    "T",
+    "R",
+    "IH0",
+    "K",
+    "S"
+  ],
+  "MURMUR": [
+    "M",
+    "ER1",
+    "M",
+    "ER0"
+  ],
+  "MURMURS": [
+    "M",
+    "ER1",
+    "M",
+    "ER0",
+    "Z"
+  ],
+  "NASAL": [
+    "N",
+    "EY1",
+    "Z",
+    "AH0",
+    "L"
+  ],
+  "NATURALNESS": [
+    "N",
+    "AE1",
+    "CH",
+    "ER0",
+    "AH0",
+    "L",
+    "N",
+    "AH0",
+    "S"
+  ],
+  "NEURAL": [
+    "N",
+    "UH1",
+    "R",
+    "AH0",
+    "L"
+  ],
+  "NOISE": [
+    "N",
+    "OY1",
+    "Z"
+  ],
+  "NOISES": [
+    "N",
+    "OY1",
+    "Z",
+    "IH0",
+    "Z"
+  ],
+  "NORMALIZATION": [
+    "N",
+    "AO2",
+    "R",
+    "M",
+    "AH0",
+    "L",
+    "IH0",
+    "Z",
+    "EY1",
+    "SH",
+    "AH0",
+    "N"
+  ],
+  "OBJECTIVE": [
+    "AH0",
+    "B",
+    "JH",
+    "EH1",
+    "K",
+    "T",
+    "IH0",
+    "V"
+  ],
+  "OF": [
+    "AH1",
+    "V"
+  ],
+  "ON": [
+    "AA1",
+    "N"
+  ],
+  "OVER": [
+    "OW1",
+    "V",
+    "ER0"
+  ],
+  "PERCEIVED": [
+    "P",
+    "ER0",
+    "S",
+    "IY1",
+    "V",
+    "D"
+  ],
+  "PHONE": [
+    "F",
+    "OW1",
+    "N"
+  ],
+  "PHONEME": [
+    "F",
+    "OW1",
+    "N",
+    "IY0",
+    "M"
+  ],
+  "PHONETIC": [
+    "F",
+    "AH0",
+    "N",
+    "EH1",
+    "T",
+    "IH0",
+    "K"
+  ],
+  "PHRASES": [
+    "F",
+    "R",
+    "EY1",
+    "Z",
+    "AH0",
+    "Z"
+  ],
+  "PITCH": [
+    "P",
+    "IH1",
+    "CH"
+  ],
+  "PLOSIVE": [
+    "P",
+    "L",
+    "OW1",
+    "S",
+    "IH0",
+    "V"
+  ],
+  "PRECISION": [
+    "P",
+    "R",
+    "IY0",
+    "S",
+    "IH1",
+    "ZH",
+    "AH0",
+    "N"
+  ],
+  "PRESERVE": [
+    "P",
+    "R",
+    "AH0",
+    "Z",
+    "ER1",
+    "V"
+  ],
+  "PRODUCE": [
+    "P",
+    "R",
+    "AH0",
+    "D",
+    "UW1",
+    "S"
+  ],
+  "PROSODIC": [
+    "P",
+    "R",
+    "AH0",
+    "S",
+    "AA1",
+    "D",
+    "IH0",
+    "K"
+  ],
+  "PROVIDE": [
+    "P",
+    "R",
+    "AH0",
+    "V",
+    "AY1",
+    "D"
+  ],
+  "QUICK": [
+    "K",
+    "W",
+    "IH1",
+    "K"
+  ],
+  "RAPID": [
+    "R",
+    "AE1",
+    "P",
+    "AH0",
+    "D"
+  ],
+  "RECOGNITION": [
+    "R",
+    "EH2",
+    "K",
+    "AH0",
+    "G",
+    "N",
+    "IH1",
+    "SH",
+    "AH0",
+    "N"
+  ],
+  "RELEASE": [
+    "R",
+    "IY0",
+    "L",
+    "IY1",
+    "S"
+  ],
+  "REQUIRES": [
+    "R",
+    "IY0",
+    "K",
+    "W",
+    "AY1",
+    "ER0",
+    "Z"
+  ],
+  "RESOLUTION": [
+    "R",
+    "EH2",
+    "Z",
+    "AH0",
+    "L",
+    "UW1",
+    "SH",
+    "AH0",
+    "N"
+  ],
+  "RESONANCE": [
+    "R",
+    "EH1",
+    "Z",
+    "AH0",
+    "N",
+    "AH0",
+    "N",
+    "S"
+  ],
+  "RESONANCES": [
+    "R",
+    "EH1",
+    "Z",
+    "AH0",
+    "N",
+    "AH0",
+    "N",
+    "S",
+    "IH0",
+    "Z"
+  ],
+  "RUNS": [
+    "R",
+    "AH1",
+    "N",
+    "Z"
+  ],
+  "SCORING": [
+    "S",
+    "K",
+    "AO1",
+    "R",
+    "IH0",
+    "NG"
+  ],
+  "SEGMENTATION": [
+    "S",
+    "EH2",
+    "G",
+    "M",
+    "AH0",
+    "N",
+    "T",
+    "EY1",
+    "SH",
+    "AH0",
+    "N"
+  ],
+  "SEMANTIC": [
+    "S",
+    "IH0",
+    "M",
+    "AE1",
+    "N",
+    "T",
+    "IH0",
+    "K"
+  ],
+  "SHOW": [
+    "SH",
+    "OW1"
+  ],
+  "SIGNAL": [
+    "S",
+    "IH1",
+    "G",
+    "N",
+    "AH0",
+    "L"
+  ],
+  "SIGNALS": [
+    "S",
+    "IH1",
+    "G",
+    "N",
+    "AH0",
+    "L",
+    "Z"
+  ],
+  "SILENCE": [
+    "S",
+    "AY1",
+    "L",
+    "AH0",
+    "N",
+    "S"
+  ],
+  "SILENT": [
+    "S",
+    "AY1",
+    "L",
+    "AH0",
+    "N",
+    "T"
+  ],
+  "SPECTRAL": [
+    "S",
+    "P",
+    "EH1",
+    "K",
+    "T",
+    "R",
+    "AH0",
+    "L"
+  ],
+  "SPEECH": [
+    "S",
+    "P",
+    "IY1",
+    "CH"
+  ],
+  "STOPS": [
+    "S",
+    "T",
+    "AA1",
+    "P",
+    "S"
+  ],
+  "STRONGLY": [
+    "S",
+    "T",
+    "R",
+    "AO1",
+    "NG",
+    "L",
+    "IY0"
+  ],
+  "SUBJECTIVE": [
+    "S",
+    "AH0",
+    "B",
+    "JH",
+    "EH1",
+    "K",
+    "T",
+    "IH0",
+    "V"
+  ],
+  "SURROUNDING": [
+    "S",
+    "ER0",
+    "AW1",
+    "N",
+    "D",
+    "IH0",
+    "NG"
+  ],
+  "SYNTACTIC": [
+    "S",
+    "IH0",
+    "N",
+    "T",
+    "AE1",
+    "K",
+    "T",
+    "IH0",
+    "K"
+  ],
+  "SYNTHESIS": [
+    "S",
+    "IH1",
+    "N",
+    "TH",
+    "AH0",
+    "S",
+    "AH0",
+    "S"
+  ],
+  "TEMPORAL": [
+    "T",
+    "EH1",
+    "M",
+    "P",
+    "ER0",
+    "AH0",
+    "L"
+  ],
+  "TEXT": [
+    "T",
+    "EH1",
+    "K",
+    "S",
+    "T"
+  ],
+  "THE": [
+    "DH",
+    "AH0"
+  ],
+  "TRANSCRIPTION": [
+    "T",
+    "R",
+    "AE2",
+    "N",
+    "S",
+    "K",
+    "R",
+    "IH1",
+    "P",
+    "SH",
+    "AH0",
+    "N"
+  ],
+  "TRANSCRIPTIONS": [
+    "T",
+    "R",
+    "AE2",
+    "N",
+    "S",
+    "K",
+    "R",
+    "IH1",
+    "P",
+    "SH",
+    "AH0",
+    "N",
+    "Z"
+  ],
+  "TRANSIENT": [
+    "T",
+    "R",
+    "AE1",
+    "N",
+    "ZH",
+    "AH0",
+    "N",
+    "T"
+  ],
+  "TRANSIT": [
+    "T",
+    "R",
+    "AE1",
+    "N",
+    "Z",
+    "IH0",
+    "T"
+  ],
+  "TRANSITION": [
+    "T",
+    "R",
+    "AE0",
+    "N",
+    "Z",
+    "IH1",
+    "SH",
+    "AH0",
+    "N"
+  ],
+  "TRANSITIONS": [
+    "T",
+    "R",
+    "AE0",
+    "N",
+    "Z",
+    "IH1",
+    "SH",
+    "AH0",
+    "N",
+    "Z"
+  ],
+  "TRIALS": [
+    "T",
+    "R",
+    "AY1",
+    "AH0",
+    "L",
+    "Z"
+  ],
+  "UNVOICED": [
+    "AH0",
+    "N",
+    "V",
+    "OY1",
+    "S",
+    "T"
+  ],
+  "VARIATIONS": [
+    "V",
+    "EH2",
+    "R",
+    "IY0",
+    "EY1",
+    "SH",
+    "AH0",
+    "N",
+    "Z"
+  ],
+  "VOCODERS": [
+    "V",
+    "OW1",
+    "K",
+    "OW0",
+    "D",
+    "ER0",
+    "Z"
+  ],
+  "VOICE": [
+    "V",
+    "OY1",
+    "S"
+  ],
+  "VOWEL": [
+    "V",
+    "AW1",
+    "AH0",
+    "L"
+  ],
+  "WAVEFORMS": [
+    "W",
+    "EY1",
+    "V",
+    "F",
+    "AO0",
+    "R",
+    "M",
+    "Z"
+  ],
+  "WITH": [
+    "W",
+    "IH1",
+    "DH"
+  ],
+  "WORDS": [
+    "W",
+    "ER1",
+    "D",
+    "Z"
+  ]
+};
+
+    // Manner of Articulation map
+    const PHONE_CLASSES = {
+      'AA': 'vowels', 'AE': 'vowels', 'AH': 'vowels', 'AO': 'vowels', 'AW': 'vowels',
+      'AY': 'vowels', 'EH': 'vowels', 'ER': 'vowels', 'EY': 'vowels', 'IH': 'vowels',
+      'IY': 'vowels', 'OW': 'vowels', 'OY': 'vowels', 'UH': 'vowels', 'UW': 'vowels',
+      'B': 'plosives', 'D': 'plosives', 'G': 'plosives', 'K': 'plosives', 'P': 'plosives', 'T': 'plosives',
+      'CH': 'fricatives', 'JH': 'fricatives', 'DH': 'fricatives', 'F': 'fricatives',
+      'S': 'fricatives', 'SH': 'fricatives', 'TH': 'fricatives', 'V': 'fricatives',
+      'Z': 'fricatives', 'ZH': 'fricatives',
+      'M': 'nasals', 'N': 'nasals', 'NG': 'nasals',
+      'L': 'approximants', 'R': 'approximants', 'W': 'approximants', 'Y': 'approximants'
+    };
+
+    function getPhoneClass(p) {
+      const clean = p.replace(/\d+/g, '').toUpperCase();
+      return PHONE_CLASSES[clean] || 'other';
+    }
+
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-pane').forEach(el => el.classList.remove('active'));
+      document.querySelectorAll('.nav-btn').forEach(el => el.classList.remove('active'));
+      const target = document.getElementById('tab-' + tabId);
+      if (target) target.classList.add('active');
+      event.target.classList.add('active');
+    }
+
+    function initPresets() {
+      const sel = document.getElementById('presetSelect');
+      sel.innerHTML = '';
+      PRESETS.forEach((item, idx) => {
+        const opt = document.createElement('option');
+        opt.value = idx;
+        opt.textContent = `[#${idx + 1}] ${item.id}: ${item.reference.substring(0, 50)}...`;
+        sel.appendChild(opt);
+      });
+      loadPreset();
+    }
+
+    function loadPreset() {
+      const idx = document.getElementById('presetSelect').value;
+      const item = PRESETS[idx];
+      if (item) {
+        document.getElementById('refInput').value = item.reference;
+        document.getElementById('hypInput').value = item.hypothesis;
+        runEvaluation();
+      }
+    }
+
+    function normalizeText(text) {
+      return text.toLowerCase().replace(/[^a-z0-9\s]/g, ' ').replace(/\s+/g, ' ').trim();
+    }
+
+    function dpAlignment(refTokens, hypTokens) {
+      const n = refTokens.length;
+      const m = hypTokens.length;
+      const dp = Array.from({ length: n + 1 }, () => Array(m + 1).fill(0));
+
+      for (let i = 0; i <= n; i++) dp[i][0] = i;
+      for (let j = 0; j <= m; j++) dp[0][j] = j;
+
+      for (let i = 1; i <= n; i++) {
+        for (let j = 1; j <= m; j++) {
+          if (refTokens[i - 1] === hypTokens[j - 1]) {
+            dp[i][j] = dp[i - 1][j - 1];
+          } else {
+            dp[i][j] = 1 + Math.min(dp[i - 1][j], dp[i][j - 1], dp[i - 1][j - 1]);
+          }
+        }
+      }
+
+      // Backtrack
+      let i = n, j = m;
+      const aligned = [];
+      let hits = 0, subs = 0, dels = 0, ins = 0;
+
+      while (i > 0 || j > 0) {
+        if (i > 0 && j > 0 && refTokens[i - 1] === hypTokens[j - 1]) {
+          aligned.unshift({ type: 'hit', ref: refTokens[i - 1], hyp: hypTokens[j - 1] });
+          hits++;
+          i--; j--;
+        } else if (i > 0 && j > 0 && dp[i][j] === dp[i - 1][j - 1] + 1) {
+          aligned.unshift({ type: 'sub', ref: refTokens[i - 1], hyp: hypTokens[j - 1] });
+          subs++;
+          i--; j--;
+        } else if (i > 0 && dp[i][j] === dp[i - 1][j] + 1) {
+          aligned.unshift({ type: 'del', ref: refTokens[i - 1], hyp: '' });
+          dels++;
+          i--;
+        } else {
+          aligned.unshift({ type: 'ins', ref: '', hyp: hypTokens[j - 1] });
+          ins++;
+          j--;
+        }
+      }
+
+      return { hits, subs, dels, ins, aligned };
+    }
+
+    function textToPhones(text) {
+      const norm = normalizeText(text);
+      const words = norm.toUpperCase().split(' ').filter(Boolean);
+      const phones = [];
+      for (const w of words) {
+        if (LEXICON[w]) {
+          phones.push(...LEXICON[w]);
+        } else {
+          phones.push(`[${w}]`);
+        }
+      }
+      return phones;
+    }
+
+    function runEvaluation() {
+      const refRaw = document.getElementById('refInput').value;
+      const hypRaw = document.getElementById('hypInput').value;
+
+      const refNorm = normalizeText(refRaw);
+      const hypNorm = normalizeText(hypRaw);
+
+      const refWords = refNorm.split(' ').filter(Boolean);
+      const hypWords = hypNorm.split(' ').filter(Boolean);
+
+      // 1. Word alignment (WER / MER)
+      const wordAlign = dpAlignment(refWords, hypWords);
+      const nRefWords = refWords.length;
+      const wordEdits = wordAlign.subs + wordAlign.dels + wordAlign.ins;
+      const wer = nRefWords > 0 ? (wordEdits / nRefWords) : (hypWords.length > 0 ? 1 : 0);
+      const totalAligned = wordAlign.hits + wordEdits;
+      const mer = totalAligned > 0 ? (wordEdits / totalAligned) : 0;
+
+      // 2. Character alignment (CER)
+      const refChars = refNorm.replace(/\s+/g, '').split('');
+      const hypChars = hypNorm.replace(/\s+/g, '').split('');
+      const charAlign = dpAlignment(refChars, hypChars);
+      const nRefChars = refChars.length;
+      const charEdits = charAlign.subs + charAlign.dels + charAlign.ins;
+      const cer = nRefChars > 0 ? (charEdits / nRefChars) : (hypChars.length > 0 ? 1 : 0);
+
+      // 3. Phonetic alignment (PER)
+      const refPhones = textToPhones(refRaw);
+      const hypPhones = textToPhones(hypRaw);
+      const phoneAlign = dpAlignment(refPhones, hypPhones);
+      const nRefPhones = refPhones.length;
+      const phoneEdits = phoneAlign.subs + phoneAlign.dels + phoneAlign.ins;
+      const per = nRefPhones > 0 ? (phoneEdits / nRefPhones) : (hypPhones.length > 0 ? 1 : 0);
+
+      // Update UI Scoreboard
+      document.getElementById('werVal').textContent = (wer * 100).toFixed(1) + '%';
+      document.getElementById('cerVal').textContent = (cer * 100).toFixed(1) + '%';
+      document.getElementById('merVal').textContent = (mer * 100).toFixed(1) + '%';
+      document.getElementById('perVal').textContent = (per * 100).toFixed(1) + '%';
+
+      document.getElementById('hitsCount').textContent = wordAlign.hits;
+      document.getElementById('subsCount').textContent = wordAlign.subs;
+      document.getElementById('delsCount').textContent = wordAlign.dels;
+      document.getElementById('insCount').textContent = wordAlign.ins;
+      document.getElementById('refWordsCount').textContent = nRefWords;
+      document.getElementById('refPhonesCount').textContent = nRefPhones;
+
+      // Render Word Diff
+      const wordDiffEl = document.getElementById('wordDiffView');
+      wordDiffEl.innerHTML = '';
+      wordAlign.aligned.forEach(item => {
+        const span = document.createElement('span');
+        if (item.type === 'hit') {
+          span.className = 'token token-hit';
+          span.textContent = item.ref;
+        } else if (item.type === 'sub') {
+          span.className = 'token token-sub';
+          span.textContent = `${item.ref} → ${item.hyp}`;
+        } else if (item.type === 'del') {
+          span.className = 'token token-del';
+          span.textContent = item.ref;
+        } else if (item.type === 'ins') {
+          span.className = 'token token-ins';
+          span.textContent = `+${item.hyp}`;
+        }
+        wordDiffEl.appendChild(span);
+      });
+
+      // Render Phone Diff
+      const phoneDiffEl = document.getElementById('phoneDiffView');
+      phoneDiffEl.innerHTML = '';
+      phoneAlign.aligned.forEach(item => {
+        const span = document.createElement('span');
+        if (item.type === 'hit') {
+          span.className = 'token token-hit';
+          span.textContent = item.ref;
+        } else if (item.type === 'sub') {
+          span.className = 'token token-sub';
+          span.textContent = `${item.ref} → ${item.hyp}`;
+        } else if (item.type === 'del') {
+          span.className = 'token token-del';
+          span.textContent = item.ref;
+        } else if (item.type === 'ins') {
+          span.className = 'token token-ins';
+          span.textContent = `+${item.hyp}`;
+        }
+        phoneDiffEl.appendChild(span);
+      });
+
+      // Phonetic Class Breakdown
+      const classStats = {
+        vowels: { total: 0, hits: 0 },
+        plosives: { total: 0, hits: 0 },
+        fricatives: { total: 0, hits: 0 },
+        nasals: { total: 0, hits: 0 },
+        approximants: { total: 0, hits: 0 }
+      };
+
+      phoneAlign.aligned.forEach(item => {
+        if (item.ref) {
+          const c = getPhoneClass(item.ref);
+          if (classStats[c]) {
+            classStats[c].total++;
+            if (item.type === 'hit') classStats[c].hits++;
+          }
+        }
+      });
+
+      const breakdownEl = document.getElementById('classBreakdownView');
+      breakdownEl.innerHTML = '';
+      Object.entries(classStats).forEach(([cls, stats]) => {
+        const pct = stats.total > 0 ? ((stats.hits / stats.total) * 100).toFixed(0) : 100;
+        const row = document.createElement('div');
+        row.className = 'class-bar';
+        row.innerHTML = `
+          <div class="class-label">
+            <span style="text-transform: capitalize;">${cls}</span>
+            <span>${stats.hits} / ${stats.total} (${pct}%)</span>
+          </div>
+          <div class="progress-track">
+            <div class="progress-fill" style="width: ${pct}%; background: ${pct > 80 ? 'var(--success)' : (pct > 50 ? 'var(--warning)' : 'var(--danger)')};"></div>
+          </div>
+        `;
+        breakdownEl.appendChild(row);
+      });
+    }
+
+    // Initialize on load
+    window.addEventListener('DOMContentLoaded', initPresets);
+  </script>
+</body>
+</html>

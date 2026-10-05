@@ -12,6 +12,7 @@
 !/tests/
 !/lexicons/
 !/scripts/
+!/demo/
 
 # Whitelist allowed publication files
 !/README.md
@@ -30,3 +31,4 @@
 !/src/context_demo/phonetics.py
 !/lexicons/sample_lexicon.txt
 !/scripts/setup_mfa.sh
+!/demo/index.html
