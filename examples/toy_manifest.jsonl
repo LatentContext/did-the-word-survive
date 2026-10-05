@@ -1,0 +1,6 @@
+{"id": "demo_sample_001", "reference": "the quick brown fox jumps over the lazy dog", "hypothesis": "the quick brown fox jumps over the lazy dog"}
+{"id": "demo_sample_002", "reference": "speech synthesis evaluation requires clear objective metrics", "hypothesis": "speech synthesis evaluation requires clear subjective metrics"}
+{"id": "demo_sample_003", "reference": "surrounding acoustic context improves lexical identification", "hypothesis": "surrounding acoustic text improves lexical identification"}
+{"id": "demo_sample_004", "reference": "background noise complicates automatic speech transcription", "hypothesis": "background noise complicates automatic speech transcription"}
+{"id": "demo_sample_005", "reference": "isolated words lack surrounding carrier phrases", "hypothesis": "isolated words lack carrier phrases"}
+{"id": "demo_sample_006", "reference": "careful normalization ensures consistent scoring across runs", "hypothesis": "careful normalization ensures consistent fast scoring across runs"}

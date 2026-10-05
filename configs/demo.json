@@ -1,0 +1,12 @@
+{
+  "pipeline_name": "text_evaluation_demo",
+  "normalize_text": true,
+  "lowercase": true,
+  "strip_punctuation": true,
+  "metrics": [
+    "wer",
+    "cer",
+    "mer"
+  ],
+  "display_percentages": true
+}

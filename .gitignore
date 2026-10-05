@@ -1,0 +1,24 @@
+# Deny all files by default
+*
+.*
+/*
+
+# Whitelist directories
+!/configs/
+!/examples/
+!/schemas/
+!/src/
+!/src/context_demo/
+!/tests/
+
+# Whitelist allowed publication files
+!/README.md
+!/.gitignore
+!/pyproject.toml
+!/configs/demo.json
+!/src/context_demo/__init__.py
+!/src/context_demo/cli.py
+!/src/context_demo/metrics.py
+!/examples/toy_manifest.jsonl
+!/schemas/demo_manifest.schema.json
+!/tests/test_demo.py

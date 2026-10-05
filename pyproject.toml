@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "did-the-word-survive"
+version = "0.1.0"
+description = "Minimal text-based demonstration of configuration and evaluation utilities for speech-research workflows."
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+authors = [
+    { name = "LatentContext" }
+]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Topic :: Scientific/Engineering",
+]
+dependencies = []
+
+[project.scripts]
+did-the-word-survive = "context_demo.cli:main"
+context-demo = "context_demo.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
