@@ -13,12 +13,17 @@
 !/lexicons/
 !/scripts/
 !/demo/
+!/docs/
+!/.github/
+!/.github/workflows/
 
 # Whitelist allowed publication files
 !/README.md
 !/LICENSE
 !/Dockerfile
 !/.gitignore
+!/.nojekyll
+!/index.html
 !/pyproject.toml
 !/configs/demo.json
 !/src/context_demo/__init__.py
@@ -32,3 +37,5 @@
 !/lexicons/sample_lexicon.txt
 !/scripts/setup_mfa.sh
 !/demo/index.html
+!/docs/index.html
+!/.github/workflows/pages.yml

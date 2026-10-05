@@ -117,11 +117,18 @@ python3 -m http.server 8000 --directory demo
 ```
 
 ### GitHub Pages Deployment:
-To deploy the demo automatically on your own fork:
-1. Go to repository **Settings** → **Pages** (under Code and automation).
-2. Under **Build and deployment** → **Source**, select **Deploy from a branch**.
-3. Under **Branch**, select `main` and choose `/demo` from the folder dropdown.
-4. Click **Save**. GitHub Pages will publish the app at `https://<user>.github.io/<repo>/`.
+To deploy the live demo on GitHub Pages:
+1. Go to repository **Settings** → **Pages** (under *Code and automation* in the left sidebar).
+2. Under **Build and deployment** → **Source**:
+   - **Option 1 — Deploy from a branch (Quickest)**:
+     - **Branch**: Select **`main`**
+     - **Folder**: Select **`/ (root)`** (or **`/docs`**)
+     - Click **Save**.
+   - **Option 2 — GitHub Actions**:
+     - Select **GitHub Actions** from the Source dropdown.
+     - The automated workflow [`.github/workflows/pages.yml`](.github/workflows/pages.yml) will deploy the static site on every push.
+3. The interactive web application is published at:
+   👉 **`https://latentcontext.github.io/did-the-word-survive/`**
 
 ---
 
@@ -306,13 +313,18 @@ did-the-word-survive/
 ├── 📄  LICENSE                          ← MIT Open-Source License
 ├── 🐳  Dockerfile                       ← Containerized execution definition
 ├── ⚙️  pyproject.toml                   ← Package metadata & entry points
+├── 📄  index.html                       ← Standalone interactive browser demo (GitHub Pages root)
+├── 📄  .nojekyll                        ← GitHub Pages static bypass indicator
 ├── 🚫  .gitignore                       ← Deny-by-default publication allowlist
 │
 ├── 📂  configs/
 │   └── 📄  demo.json                    ← Normalization & evaluation configurations
 │
 ├── 📂  demo/
-│   └── 📄  index.html                   ← Standalone interactive browser demo (GitHub Pages)
+│   └── 📄  index.html                   ← Standalone interactive browser demo
+│
+├── 📂  docs/
+│   └── 📄  index.html                   ← GitHub Pages /docs distribution entrypoint
 │
 ├── 📂  examples/
 │   ├── 📄  toy_manifest.jsonl           ← 20 synthetic reference/hypothesis pairs
