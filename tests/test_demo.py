@@ -161,6 +161,58 @@ class TestManifestAndCLI(unittest.TestCase):
         ])
         self.assertEqual(exit_code, 1)
 
+    def test_cli_with_lexicon(self):
+        exit_code = main([
+            "--manifest", "examples/toy_manifest.jsonl",
+            "--lexicon", "lexicons/sample_lexicon.txt",
+            "--format", "table"
+        ])
+        self.assertEqual(exit_code, 0)
+
+
+class TestPhonetics(unittest.TestCase):
+    """Unit tests for Montreal Forced Aligner phonetics and lexicon utilities."""
+
+    def test_load_lexicon(self):
+        from context_demo.phonetics import load_lexicon
+        lex = load_lexicon("lexicons/sample_lexicon.txt")
+        self.assertIn("SPEECH", lex)
+        self.assertIn("SYNTHESIS", lex)
+        self.assertGreater(len(lex), 100)
+
+    def test_clean_and_class(self):
+        from context_demo.phonetics import clean_phone, get_phone_class
+        self.assertEqual(clean_phone("AA1"), "AA")
+        self.assertEqual(clean_phone("ER0"), "ER")
+        self.assertEqual(get_phone_class("AA1"), "vowels")
+        self.assertEqual(get_phone_class("T"), "plosives")
+        self.assertEqual(get_phone_class("S"), "fricatives")
+        self.assertEqual(get_phone_class("M"), "nasals")
+        self.assertEqual(get_phone_class("L"), "approximants")
+
+    def test_text_to_phonemes_and_per(self):
+        from context_demo.phonetics import compute_per, load_lexicon, text_to_phonemes
+        lex = load_lexicon("lexicons/sample_lexicon.txt")
+        ref_p = text_to_phonemes("speech synthesis", lex)
+        hyp_p = text_to_phonemes("speech synthesis", lex)
+        per, counts = compute_per(ref_p, hyp_p)
+        self.assertEqual(per, 0.0)
+        self.assertEqual(counts["substitutions"], 0)
+
+        # Test with one edit
+        hyp_sub = text_to_phonemes("speech analysis", lex)
+        per_sub, counts_sub = compute_per(ref_p, hyp_sub)
+        self.assertGreater(per_sub, 0.0)
+
+    def test_phonetic_class_breakdown(self):
+        from context_demo.phonetics import phonetic_class_breakdown
+        ref = ["S", "P", "IY1", "CH"]
+        hyp = ["S", "T", "IY1", "CH"]  # P -> T (plosive sub)
+        stats = phonetic_class_breakdown(ref, hyp)
+        self.assertEqual(stats["fricatives"]["hits"], 2)  # S, CH
+        self.assertEqual(stats["vowels"]["hits"], 1)       # IY1
+        self.assertEqual(stats["plosives"]["subs"], 1)     # P -> T
+
 
 if __name__ == "__main__":
     unittest.main()

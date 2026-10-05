@@ -4,3 +4,17 @@
 {"id": "demo_sample_004", "reference": "background noise complicates automatic speech transcription", "hypothesis": "background noise complicates automatic speech transcription"}
 {"id": "demo_sample_005", "reference": "isolated words lack surrounding carrier phrases", "hypothesis": "isolated words lack carrier phrases"}
 {"id": "demo_sample_006", "reference": "careful normalization ensures consistent scoring across runs", "hypothesis": "careful normalization ensures consistent fast scoring across runs"}
+{"id": "demo_sample_007", "reference": "neural vocoders generate high fidelity speech waveforms", "hypothesis": "neural vocoders generate high fidelity speech waveforms"}
+{"id": "demo_sample_008", "reference": "spectral envelope features preserve vowel formant frequencies", "hypothesis": "spectral envelope features preserve vowel format frequencies"}
+{"id": "demo_sample_009", "reference": "plosive consonants produce rapid transient acoustic bursts", "hypothesis": "plosive consonants produce rapid transit acoustic bursts"}
+{"id": "demo_sample_010", "reference": "fricative noises show energy concentrations in high frequencies", "hypothesis": "fricative noises show energy in high frequencies"}
+{"id": "demo_sample_011", "reference": "nasal murmurs exhibit low frequency spectral resonances", "hypothesis": "nasal murmurs exhibit distinct low frequency spectral resonances"}
+{"id": "demo_sample_012", "reference": "approximants and glides exhibit continuous formant transitions", "hypothesis": "approximants and guides exhibit continuous formant transitions"}
+{"id": "demo_sample_013", "reference": "prosodic variations influence perceived voice naturalness and emotion", "hypothesis": "prosodic variations influence perceived naturalness and emotion"}
+{"id": "demo_sample_014", "reference": "forced alignment matches acoustic signals with phonetic transcriptions", "hypothesis": "forced alignment matches acoustic signal with phonetic transcription"}
+{"id": "demo_sample_015", "reference": "articulatory boundaries define phoneme segmentation intervals", "hypothesis": "articulatory boundaries define phoneme segmentation intervals"}
+{"id": "demo_sample_016", "reference": "speech recognition accuracy depends on surrounding lexical context", "hypothesis": "speech recognition depends on surrounding context"}
+{"id": "demo_sample_017", "reference": "pitch contours provide essential clues for semantic disambiguation", "hypothesis": "pitch contours provide essential clues for syntactic disambiguation"}
+{"id": "demo_sample_018", "reference": "temporal resolution affects the precision of phonetic boundaries", "hypothesis": "temporal resolution affects the precision of phonetic boundaries"}
+{"id": "demo_sample_019", "reference": "unvoiced stops produce silent closure gaps before burst release", "hypothesis": "unvoiced stops produce silent gaps before release"}
+{"id": "demo_sample_020", "reference": "objective metrics correlate strongly with subjective human listening trials", "hypothesis": "objective metrics correlate strongly with subjective listening trials"}

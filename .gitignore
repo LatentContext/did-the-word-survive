@@ -10,6 +10,8 @@
 !/src/
 !/src/context_demo/
 !/tests/
+!/lexicons/
+!/scripts/
 
 # Whitelist allowed publication files
 !/README.md
@@ -22,5 +24,9 @@
 !/src/context_demo/cli.py
 !/src/context_demo/metrics.py
 !/examples/toy_manifest.jsonl
+!/examples/phonetic_manifest.jsonl
 !/schemas/demo_manifest.schema.json
 !/tests/test_demo.py
+!/src/context_demo/phonetics.py
+!/lexicons/sample_lexicon.txt
+!/scripts/setup_mfa.sh

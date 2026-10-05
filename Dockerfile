@@ -14,6 +14,8 @@ COPY src/ ./src/
 COPY configs/ ./configs/
 COPY examples/ ./examples/
 COPY schemas/ ./schemas/
+COPY lexicons/ ./lexicons/
+COPY scripts/ ./scripts/
 
 # Install the package (no external network dependencies beyond pip)
 RUN pip install --no-cache-dir -e .

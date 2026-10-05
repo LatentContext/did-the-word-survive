@@ -12,6 +12,12 @@ from pathlib import Path
 from typing import Any, Dict, List, Optional
 
 from context_demo.metrics import aggregate_metrics, evaluate_pair, normalize_text
+from context_demo.phonetics import (
+    compute_per,
+    load_lexicon,
+    phonetic_class_breakdown,
+    text_to_phonemes,
+)
 
 
 def load_config(config_path: Optional[Path]) -> Dict[str, Any]:
@@ -107,7 +113,8 @@ def format_rate(rate: float, as_percentage: bool = True) -> str:
 def run_demo(
     manifest_path: Path,
     config_path: Optional[Path] = None,
-    output_format: str = "text"
+    output_format: str = "text",
+    lexicon_path: Optional[Path] = None
 ) -> Dict[str, Any]:
     """Execute evaluation on a synthetic manifest and return structured results.
 
@@ -115,6 +122,7 @@ def run_demo(
         manifest_path: Path to synthetic demo manifest.
         config_path: Path to demo configuration.
         output_format: Output format ('text', 'json', or 'table').
+        lexicon_path: Optional path to ARPAbet pronunciation lexicon.
 
     Returns:
         Dictionary containing summary and item-level evaluation results.
@@ -125,19 +133,48 @@ def run_demo(
     normalize = bool(config.get("normalize_text", True))
     as_pct = bool(config.get("display_percentages", True))
 
+    lexicon = load_lexicon(lexicon_path) if lexicon_path and lexicon_path.is_file() else None
+
     evaluated_items = []
     for rec in records:
         ev = evaluate_pair(rec["reference"], rec["hypothesis"], normalize=normalize)
         ev["id"] = rec["id"]
+
+        if lexicon:
+            ref_phones = text_to_phonemes(rec["reference"], lexicon)
+            hyp_phones = text_to_phonemes(rec["hypothesis"], lexicon)
+            per, p_counts = compute_per(ref_phones, hyp_phones)
+            ev["per"] = per
+            ev["ref_phone_count"] = p_counts["ref_phone_count"]
+            ev["hyp_phone_count"] = p_counts["hyp_phone_count"]
+            ev["phone_hits"] = p_counts["hits"]
+            ev["phone_subs"] = p_counts["substitutions"]
+            ev["phone_dels"] = p_counts["deletions"]
+            ev["phone_ins"] = p_counts["insertions"]
+            ev["class_breakdown"] = phonetic_class_breakdown(ref_phones, hyp_phones)
+
         evaluated_items.append(ev)
 
     summary = aggregate_metrics(evaluated_items)
+
+    if lexicon:
+        total_p_ref = sum(it.get("ref_phone_count", 0) for it in evaluated_items)
+        total_p_edits = sum(
+            it.get("phone_subs", 0) + it.get("phone_dels", 0) + it.get("phone_ins", 0)
+            for it in evaluated_items
+        )
+        summary["total_ref_phones"] = total_p_ref
+        summary["micro_per"] = (float(total_p_edits) / float(total_p_ref)) if total_p_ref > 0 else 0.0
+        summary["macro_per"] = (
+            sum(it.get("per", 0.0) for it in evaluated_items) / float(len(evaluated_items))
+        ) if evaluated_items else 0.0
 
     result = {
         "title": "Synthetic Text Evaluation Demo",
         "scope": "Generic demonstration utilities operating on synthetic text pairs only",
         "manifest": str(manifest_path),
         "config": str(config_path) if config_path else "default",
+        "lexicon": str(lexicon_path) if lexicon_path else None,
         "summary": summary,
         "items": evaluated_items,
     }
@@ -145,45 +182,68 @@ def run_demo(
     if output_format == "json":
         print(json.dumps(result, indent=2))
     elif output_format == "table":
-        print("=" * 78)
+        sep_len = 90 if lexicon else 78
+        print("=" * sep_len)
         print("  SYNTHETIC TEXT EVALUATION DEMO (TOY DATA ONLY)")
-        print("=" * 78)
+        print("=" * sep_len)
         print(f"Manifest: {manifest_path} ({len(records)} records)")
-        print("-" * 78)
-        print(f"{'Sample ID':<18} | {'Ref Words':>9} | {'WER':>8} | {'CER':>8} | {'MER':>8} | {'H/S/D/I':>9}")
-        print("-" * 78)
+        if lexicon:
+            print(f"Lexicon : {lexicon_path} ({len(lexicon)} words)")
+        print("-" * sep_len)
+        if lexicon:
+            print(f"{'Sample ID':<18} | {'Ref W':>5} | {'WER':>7} | {'CER':>7} | {'MER':>7} | {'PER':>7} | {'Ref P':>5} | {'H/S/D/I':>9}")
+        else:
+            print(f"{'Sample ID':<18} | {'Ref Words':>9} | {'WER':>8} | {'CER':>8} | {'MER':>8} | {'H/S/D/I':>9}")
+        print("-" * sep_len)
         for it in evaluated_items:
             counts = f"{it['hits']}/{it['substitutions']}/{it['deletions']}/{it['insertions']}"
             wer_str = format_rate(it["wer"], as_pct)
             cer_str = format_rate(it["cer"], as_pct)
             mer_str = format_rate(it["mer"], as_pct)
-            print(f"{it['id']:<18} | {it['ref_word_count']:>9} | {wer_str:>8} | {cer_str:>8} | {mer_str:>8} | {counts:>9}")
-        print("-" * 78)
+            if lexicon:
+                per_str = format_rate(it.get("per", 0.0), as_pct)
+                print(f"{it['id']:<18} | {it['ref_word_count']:>5} | {wer_str:>7} | {cer_str:>7} | {mer_str:>7} | {per_str:>7} | {it.get('ref_phone_count', 0):>5} | {counts:>9}")
+            else:
+                print(f"{it['id']:<18} | {it['ref_word_count']:>9} | {wer_str:>8} | {cer_str:>8} | {mer_str:>8} | {counts:>9}")
+        print("-" * sep_len)
         print("Summary Averages:")
         print(f"  Micro WER: {format_rate(summary['micro_wer'], as_pct)}  |  Macro WER: {format_rate(summary['macro_wer'], as_pct)}")
         print(f"  Micro CER: {format_rate(summary['micro_cer'], as_pct)}  |  Macro CER: {format_rate(summary['macro_cer'], as_pct)}")
         print(f"  Micro MER: {format_rate(summary['micro_mer'], as_pct)}  |  Macro MER: {format_rate(summary['macro_mer'], as_pct)}")
-        print("=" * 78)
+        if lexicon:
+            print(f"  Micro PER: {format_rate(summary['micro_per'], as_pct)}  |  Macro PER: {format_rate(summary['macro_per'], as_pct)}")
+        print("=" * sep_len)
     else:  # 'text'
         print("=" * 72)
         print("  SYNTHETIC TEXT EVALUATION DEMO (TOY DATA ONLY)")
         print("=" * 72)
         print(f"Evaluated {len(records)} synthetic sample records from {manifest_path}")
+        if lexicon:
+            print(f"Loaded ARPAbet pronunciation lexicon: {lexicon_path} ({len(lexicon)} words)")
         print("-" * 72)
         for it in evaluated_items:
             print(f"[{it['id']}]")
             print(f"  Reference : \"{it['reference']}\"")
             print(f"  Hypothesis: \"{it['hypothesis']}\"")
-            print(f"  Scores    : WER={format_rate(it['wer'], as_pct)} | CER={format_rate(it['cer'], as_pct)} | MER={format_rate(it['mer'], as_pct)}")
+            score_line = f"WER={format_rate(it['wer'], as_pct)} | CER={format_rate(it['cer'], as_pct)} | MER={format_rate(it['mer'], as_pct)}"
+            if lexicon:
+                score_line += f" | PER={format_rate(it.get('per', 0.0), as_pct)}"
+            print(f"  Scores    : {score_line}")
             print(f"  Edits     : Hits={it['hits']}, Subs={it['substitutions']}, Dels={it['deletions']}, Ins={it['insertions']}")
             print()
         print("-" * 72)
         print("AGGREGATE METRICS (SYNTHETIC SAMPLE MEDIAN/AVERAGES):")
         print(f"  Total Reference Words : {summary['total_ref_words']}")
+        if lexicon:
+            print(f"  Total Reference Phones: {summary.get('total_ref_phones', 0)}")
         print(f"  Overall Micro WER     : {format_rate(summary['micro_wer'], as_pct)}")
         print(f"  Overall Micro CER     : {format_rate(summary['micro_cer'], as_pct)}")
         print(f"  Overall Micro MER     : {format_rate(summary['micro_mer'], as_pct)}")
+        if lexicon:
+            print(f"  Overall Micro PER     : {format_rate(summary['micro_per'], as_pct)}")
         print(f"  Overall Macro WER     : {format_rate(summary['macro_wer'], as_pct)}")
+        if lexicon:
+            print(f"  Overall Macro PER     : {format_rate(summary['macro_per'], as_pct)}")
         print("=" * 72)
 
     return result
@@ -208,6 +268,12 @@ def main(argv: Optional[List[str]] = None) -> int:
         help="Path to demo configuration JSON file."
     )
     parser.add_argument(
+        "--lexicon",
+        type=Path,
+        default=None,
+        help="Optional path to ARPAbet pronunciation lexicon file."
+    )
+    parser.add_argument(
         "--format",
         choices=["text", "table", "json"],
         default="text",
@@ -220,7 +286,8 @@ def main(argv: Optional[List[str]] = None) -> int:
         run_demo(
             manifest_path=args.manifest,
             config_path=args.config,
-            output_format=args.format
+            output_format=args.format,
+            lexicon_path=args.lexicon
         )
         return 0
     except Exception as err:
