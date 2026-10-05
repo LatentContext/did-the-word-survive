@@ -10,9 +10,11 @@
 !/src/
 !/src/context_demo/
 !/tests/
+!/assets/
 
 # Whitelist allowed publication files
 !/README.md
+!/LICENSE
 !/.gitignore
 !/pyproject.toml
 !/configs/demo.json
@@ -22,3 +24,6 @@
 !/examples/toy_manifest.jsonl
 !/schemas/demo_manifest.schema.json
 !/tests/test_demo.py
+!/assets/banner.jpg
+!/assets/demo_terminal.png
+!/assets/pipeline.png
