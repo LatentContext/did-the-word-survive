@@ -119,15 +119,12 @@ python3 -m http.server 8000 --directory demo
 ### GitHub Pages Deployment:
 To deploy the live demo on GitHub Pages:
 1. Go to repository **Settings** → **Pages** (under *Code and automation* in the left sidebar).
-2. Under **Build and deployment** → **Source**:
-   - **Option 1 — Deploy from a branch (Quickest)**:
-     - **Branch**: Select **`main`**
-     - **Folder**: Select **`/ (root)`** (or **`/docs`**)
-     - Click **Save**.
-   - **Option 2 — GitHub Actions**:
-     - Select **GitHub Actions** from the Source dropdown.
-     - The automated workflow [`.github/workflows/pages.yml`](.github/workflows/pages.yml) will deploy the static site on every push.
-3. The interactive web application is published at:
+2. Under **Build and deployment** → **Source**, keep **Deploy from a branch**.
+3. Under **Branch**:
+   - **Branch dropdown**: Select **`main`**
+   - **Folder dropdown**: Select **`/ (root)`** *(or `/docs`)*
+4. Click **Save**.
+5. The interactive web application is published at:
    👉 **`https://latentcontext.github.io/did-the-word-survive/`**
 
 ---

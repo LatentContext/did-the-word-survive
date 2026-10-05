@@ -14,8 +14,6 @@
 !/scripts/
 !/demo/
 !/docs/
-!/.github/
-!/.github/workflows/
 
 # Whitelist allowed publication files
 !/README.md
@@ -38,4 +36,3 @@
 !/scripts/setup_mfa.sh
 !/demo/index.html
 !/docs/index.html
-!/.github/workflows/pages.yml
