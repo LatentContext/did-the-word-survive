@@ -1,10 +1,4 @@
 <p align="center">
-  <img src="assets/banner.jpg" alt="Did The Word Survive? — Banner" width="100%">
-</p>
-
-<br>
-
-<p align="center">
   <!-- Core -->
   <a href="https://www.python.org/downloads/"><img src="https://img.shields.io/badge/python-3.9%20|%203.10%20|%203.11%20|%203.12-blue?logo=python&logoColor=white" alt="Python 3.9+"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-22c55e?logo=open-source-initiative&logoColor=white" alt="MIT License"></a>
@@ -91,10 +85,6 @@ This repository provides a small, runnable demonstration of standard speech-reco
 
 ## 🔄 Evaluation Pipeline
 
-<p align="center">
-  <img src="assets/pipeline.png" alt="Evaluation Pipeline Diagram" width="92%">
-</p>
-
 The pipeline reads a `.jsonl` manifest of reference / hypothesis text pairs, applies configurable normalization (lowercase, punctuation removal), runs Levenshtein alignment, and reports per-sample and aggregate statistics.
 
 **Stages:**
@@ -125,9 +115,29 @@ Input Manifest (.jsonl)
 
 ## 🖥️ Demo Output
 
-<p align="center">
-  <img src="assets/demo_terminal.png" alt="CLI Demo Output Screenshot" width="92%">
-</p>
+```text
+$ context-demo --manifest examples/toy_manifest.jsonl --format table
+
+==============================================================================
+  SYNTHETIC TEXT EVALUATION DEMO (TOY DATA ONLY)
+==============================================================================
+Manifest: examples/toy_manifest.jsonl (6 records)
+------------------------------------------------------------------------------
+Sample ID          | Ref Words |      WER |      CER |      MER |   H/S/D/I
+------------------------------------------------------------------------------
+demo_sample_001    |         9 |     0.0% |     0.0% |     0.0% |   9/0/0/0
+demo_sample_002    |         7 |    14.3% |     3.3% |    14.3% |   6/1/0/0
+demo_sample_003    |         6 |    16.7% |     5.0% |    16.7% |   5/1/0/0
+demo_sample_004    |         6 |     0.0% |     0.0% |     0.0% |   6/0/0/0
+demo_sample_005    |         6 |    16.7% |    25.5% |    16.7% |   5/0/1/0
+demo_sample_006    |         7 |    14.3% |     8.3% |    12.5% |   7/0/0/1
+------------------------------------------------------------------------------
+Summary Averages:
+  Micro WER:  9.8%  |  Macro WER: 10.3%
+  Micro CER:  6.7%  |  Macro CER:  7.0%
+  Micro MER:  9.5%  |  Macro MER: 10.0%
+==============================================================================
+```
 
 The table above shows per-sample WER, CER, MER, and alignment counts (H/S/D/I) for the 6 included synthetic text pairs, followed by micro and macro averages.
 
@@ -143,12 +153,6 @@ did-the-word-survive/
 ├── 🐳  Dockerfile                       ← Container build for zero-setup runs
 ├── ⚙️  pyproject.toml                   ← Package metadata & entry points
 ├── 🚫  .gitignore                       ← Deny-by-default allowlist
-│
-├── 📂  assets/                          ← Visual assets for README
-│   ├── 🖼️  banner.jpg                   ← Repository hero banner
-│   ├── 🖼️  pipeline.png                 ← Evaluation pipeline diagram
-│   └── 🖼️  demo_terminal.png            ← CLI output screenshot
-│
 ├── 📂  configs/
 │   └── 📄  demo.json                    ← Generic normalization & eval options
 │
