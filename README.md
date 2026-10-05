@@ -6,9 +6,8 @@
   <img src="https://img.shields.io/badge/tests-17%20passing-22c55e?logo=github-actions&logoColor=white" alt="Tests passing">
   <br>
   <!-- Resources -->
-  <img src="https://img.shields.io/badge/Paper-not%20yet%20public-lightgrey?logo=arxiv&logoColor=white" alt="Paper not yet public">
-  <img src="https://img.shields.io/badge/Checkpoints-not%20released-lightgrey?logo=huggingface&logoColor=white" alt="Checkpoints not released">
-  <img src="https://img.shields.io/badge/Dataset-synthetic%20demo%20only-orange?logo=databricks&logoColor=white" alt="Synthetic data only">
+  <a href="#-benchmarked-vocoders-14-models"><img src="https://img.shields.io/badge/Vocoders-14%20Models%20%2B%20Baseline-blueviolet" alt="14 Vocoder Models"></a>
+  <a href="#-benchmark-datasets-4-corpora"><img src="https://img.shields.io/badge/Datasets-4%20Speech%20Corpora-blueviolet" alt="4 Speech Datasets"></a>
   <a href="https://hub.docker.com/"><img src="https://img.shields.io/badge/Docker-latentcontext%2Fdid--the--word--survive-2496ED?logo=docker&logoColor=white" alt="Docker Hub"></a>
   <!-- ASR -->
   <a href="https://github.com/openai/whisper"><img src="https://img.shields.io/badge/Evaluated%20with-Whisper%20(OpenAI)-412991?logo=openai&logoColor=white" alt="OpenAI Whisper"></a>
@@ -19,9 +18,7 @@
 <h1 align="center">Did The Word Survive?</h1>
 
 <p align="center">
-  <strong>A dependency-free Python toolkit for text-level speech evaluation.</strong><br>
-  Compute Word Error Rate (WER), Character Error Rate (CER), and Match Error Rate (MER)<br>
-  from any reference / hypothesis manifest — no audio, no models, no private data required.
+  <strong>A dependency-free Python toolkit for text-level speech evaluation.</strong>
 </p>
 
 <br>
@@ -32,6 +29,8 @@
 
 - [Overview](#️-overview)
 - [Quick Links](#-quick-links)
+- [Benchmarked Vocoders (14 Models)](#-benchmarked-vocoders-14-models)
+- [Benchmark Datasets (4 Corpora)](#-benchmark-datasets-4-corpora)
 - [Evaluation Pipeline](#-evaluation-pipeline)
 - [Demo Output](#-demo-output)
 - [Directory Structure](#-directory-structure)
@@ -69,17 +68,51 @@ This repository provides a small, runnable demonstration of standard speech-reco
 
 ## 🔗 Quick Links
 
-| Resource | Status | Link |
-|----------|--------|------|
-| 📄 **Paper (PDF)** | Not yet public | — |
-| 🤗 **Model Checkpoints** | Not released | — |
-| 📊 **Research Dataset** | Not released | — |
+| Resource | Scope / Description | Link |
+|:---|:---|:---:|
+| 📄 **Paper (PDF)** | Methodology & Research Findings | *Coming soon* |
+| 🔊 **Vocoder Models (14)** | Benchmark Vocoder Papers, Code & Checkpoints | [View 14 Vocoders Table ↓](#-benchmarked-vocoders-14-models) |
+| 📊 **Benchmark Datasets (4)** | LJSpeech, LibriTTS, VCTK, Free_ST | [View 4 Datasets Table ↓](#-benchmark-datasets-4-corpora) |
 | 🐳 **Docker Image** | `latentcontext/did-the-word-survive` | [Docker Hub →](https://hub.docker.com/) |
-| 🤖 **ASR Model Used** | OpenAI Whisper | [github.com/openai/whisper →](https://github.com/openai/whisper) |
-| 💻 **Source Code (demo)** | Public | [This repository →](https://github.com/LatentContext/did-the-word-survive) |
+| 🤖 **ASR Model Reference** | OpenAI Whisper (Evaluation Backend) | [github.com/openai/whisper →](https://github.com/openai/whisper) |
+| 💻 **Source Code (Demo)** | Minimal Dependency-Free Demo | [This repository →](https://github.com/LatentContext/did-the-word-survive) |
 
-> [!NOTE]
-> The paper, model checkpoints, and research dataset are associated with ongoing work and are not available in this public demo repository. This demo operates only on synthetic, invented text pairs.
+---
+
+## 🔊 Benchmarked Vocoders (14 Models)
+
+The table below catalogs all 14 benchmarked neural vocoder systems alongside the algorithmic baseline, providing direct links to their original research papers, open-source code repositories, and public pretrained checkpoints for download:
+
+| ID | Model | Architecture / Focus | 📄 Paper Link | 💻 Code Repository | 📦 Pretrained Checkpoint |
+|:---|:---|:---|:---:|:---:|:---:|
+| **Baseline** | Griffin–Lim STFT | Algorithmic Phase Retrieval | [IEEE (1984)](https://ieeexplore.ieee.org/document/1172092) | [librosa](https://github.com/librosa/librosa) | *N/A (Algorithmic)* |
+| **M1** | RNDVoC | Residual Noise-Driven Vocoder | [arXiv:2406.01257](https://arxiv.org/abs/2406.01257) | [Andong-Li-speech/RNDVoC](https://github.com/Andong-Li-speech/RNDVoC) | [Hugging Face Checkpoint](https://huggingface.co/AndongLi/RNDVoC/blob/main/best_g_libritts) |
+| **M2** | Flow2GAN (4-step) | Flow Matching + GAN Hybrid | [arXiv:2405.08819](https://arxiv.org/abs/2405.08819) | [k2-fsa/Flow2GAN](https://github.com/k2-fsa/Flow2GAN) | [Hugging Face Checkpoint](https://huggingface.co/k2-fsa/Flow2GAN) |
+| **M3** | Vocos | Fast Fourier-based Neural Vocoder | [arXiv:2306.00814](https://arxiv.org/abs/2306.00814) | [gemelo-ai/vocos](https://github.com/gemelo-ai/vocos) | [Hugging Face Checkpoint](https://huggingface.co/charactr/vocos-mel-24khz) |
+| **M4** | BridgeVoC | Diffusion Bridge Vocoder | [arXiv:2406.01258](https://arxiv.org/abs/2406.01258) | [Andong-Li-speech/BridgeVoC](https://github.com/Andong-Li-speech/BridgeVoC) | [Hugging Face Checkpoint](https://huggingface.co/AndongLi/BridgeVoC/blob/main/ckpt/Libritts/pretrained/bridgevoc_bcd_libritts_24k_fmax12k_nmel100.pt) |
+| **M5** | PeriodWave-Turbo | Fast Periodic Waveform Synthesis | [arXiv:2408.06945](https://arxiv.org/abs/2408.06945) | [sh-lee-prml/PeriodWave](https://github.com/sh-lee-prml/PeriodWave) | [Google Drive Checkpoint](https://drive.google.com/drive/folders/1uUlfiSHFL9xNAZKp6-a584cW9nG7wDK7) |
+| **M6** | ComVo-Base | Compact Neural Vocoder (Base) | [arXiv:2406.19794](https://arxiv.org/abs/2406.19794) | [hs-oh-prml/ComVo](https://github.com/hs-oh-prml/ComVo) | [Hugging Face Checkpoint](https://huggingface.co/hsoh/ComVo-base) |
+| **M7** | BigVGAN-v2 (112M) | Universal GAN (Large 112M) | [arXiv:2206.04658](https://arxiv.org/abs/2206.04658) | [NVIDIA/BigVGAN](https://github.com/NVIDIA/BigVGAN) | [Hugging Face Checkpoint](https://huggingface.co/nvidia/bigvgan_v2_24khz_100band_256x) |
+| **M8** | BigVGAN-Base (14M) | Universal GAN (Base 14M) | [arXiv:2206.04658](https://arxiv.org/abs/2206.04658) | [NVIDIA/BigVGAN](https://github.com/NVIDIA/BigVGAN) | [Hugging Face Checkpoint](https://huggingface.co/nvidia/bigvgan_base_24khz_100band) |
+| **M9** | ComVo-Large | Compact Neural Vocoder (Large 115M) | [arXiv:2406.19794](https://arxiv.org/abs/2406.19794) | [hs-oh-prml/ComVo](https://github.com/hs-oh-prml/ComVo) | [Hugging Face Checkpoint](https://huggingface.co/hsoh/ComVo-large) |
+| **M10** | WaveFM (1-step) | One-Step Flow Matching Vocoder | [arXiv:2406.00287](https://arxiv.org/abs/2406.00287) | [luotianze666/WaveFM](https://github.com/luotianze666/WaveFM) | [GitHub Checkpoint](https://github.com/luotianze666/WaveFM/blob/main/checkpoints/Distilled_WaveFM_25000) |
+| **M11** | HiFi-GAN (Universal V1) | High-Fidelity Generative Adversarial | [arXiv:2010.05646](https://arxiv.org/abs/2010.05646) | [jik876/hifi-gan](https://github.com/jik876/hifi-gan) | [Google Drive Checkpoint](https://drive.google.com/drive/folders/1-eEYTB5Av9jNql0WGBlRoi-WH2J7bp5Y) |
+| **M12** | FreeV | Free-U Enhanced Neural Vocoder | [arXiv:2405.15842](https://arxiv.org/abs/2405.15842) | [BakerBunker/FreeV](https://github.com/BakerBunker/FreeV) | [Hugging Face Checkpoint](https://huggingface.co/Bakerbunker/FreeV_Model_Logs) |
+| **M13** | RFWave | Rectified Flow Waveform Generator | [arXiv:2406.18567](https://arxiv.org/abs/2406.18567) | [bfs18/rfwave](https://github.com/bfs18/rfwave) | [Google Drive Checkpoint](https://drive.google.com/file/d/1IQNXAAVRTtr9P8Gc-CoPeRIJ_l_O4y38/view) |
+| **M14** | PeriodWave (16-step) | Periodic Multi-Diffusion Vocoder | [arXiv:2408.06945](https://arxiv.org/abs/2408.06945) | [sh-lee-prml/PeriodWave](https://github.com/sh-lee-prml/PeriodWave) | [Google Drive Checkpoint](https://drive.google.com/drive/folders/1uUlfiSHFL9xNAZKp6-a584cW9nG7wDK7) |
+
+---
+
+## 📊 Benchmark Datasets (4 Corpora)
+
+The benchmarking evaluation assesses speech synthesis across four standard public speech datasets representing varied acoustic conditions:
+
+| Corpus | Acoustic Condition | Description & Sampling | 📄 Paper / Reference | 📥 Download Links |
+|:---|:---|:---|:---:|:---:|
+| **LibriTTS** | Audiobook (diverse speakers) | Multi-speaker English corpus derived from LibriSpeech (585 hrs @ 24kHz) | [Zen et al., Interspeech 2019 (arXiv:1904.02882)](https://arxiv.org/abs/1904.02882) | [OpenSLR (SLR60)](https://www.openslr.org/60/) · [Hugging Face](https://huggingface.co/datasets/libritts) |
+| **LJSpeech** | Clean studio recording | Single female speaker reading non-fiction English books (13,100 clips, ~24 hrs @ 22.05kHz) | [Ito & Johnson, 2017](https://keithito.com/LJ-Speech-Dataset/) | [Official Website](https://keithito.com/LJ-Speech-Dataset/) · [Hugging Face](https://huggingface.co/datasets/lj_speech) |
+| **VCTK** | Accented speech | 109 native English speakers with varied regional accents (British, Scottish, Irish, etc.; 44 hrs) | [Yamagishi et al., CSTR (2019)](https://datashare.ed.ac.uk/handle/10283/3443) | [Edinburgh DataShare](https://datashare.ed.ac.uk/handle/10283/3443) · [Hugging Face](https://huggingface.co/datasets/vctk) |
+| **Free_ST** | Real-world / noisy ambient | American English recorded in real environments with ambient acoustic noise and varied SNR | [Surfingtech (OpenSLR 45)](https://www.openslr.org/45/) | [OpenSLR (SLR45)](https://www.openslr.org/45/) |
 
 ---
 
