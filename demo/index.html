@@ -795,68 +795,75 @@
     .flow-map-container {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.85rem;
-      padding: 1rem;
+      gap: 0.45rem;
+      padding: 0.55rem 0.75rem;
       background: var(--diff-bg);
       border: 1px solid var(--card-border);
-      border-radius: 10px;
-      margin-bottom: 1.5rem;
+      border-radius: 8px;
+      margin-bottom: 0.75rem;
+      align-items: center;
     }
     .word-cluster {
       display: inline-flex;
-      flex-direction: column;
+      flex-direction: row;
       align-items: center;
+      gap: 0.35rem;
       background: var(--surface);
       border: 1px solid var(--card-border);
-      border-radius: 8px;
-      padding: 0.5rem 0.65rem;
-      box-shadow: var(--shadow-sm);
+      border-radius: 6px;
+      padding: 0.25rem 0.48rem;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.03);
       transition: all 0.18s ease;
+      cursor: pointer;
     }
     .word-cluster:hover {
-      transform: translateY(-2px);
+      transform: translateY(-1px);
       border-color: var(--hp-pink);
     }
     .word-cluster.active-word {
       border-color: var(--hp-coral) !important;
-      box-shadow: 0 0 0 2.5px rgba(246, 89, 54, 0.4), var(--shadow-md) !important;
+      box-shadow: 0 0 0 2px rgba(246, 89, 54, 0.4), 0 2px 6px rgba(0,0,0,0.06) !important;
       background: var(--nav-active-bg) !important;
-      transform: translateY(-2px) scale(1.03);
+      transform: translateY(-1px) scale(1.02);
     }
     .word-cluster-header {
       font-weight: 800;
-      font-size: 0.85rem;
+      font-size: 0.8rem;
       color: var(--text);
-      margin-bottom: 0.4rem;
-      border-bottom: 1px dashed var(--card-border);
-      padding-bottom: 0.25rem;
-      width: 100%;
+      margin-bottom: 0;
+      border-bottom: none;
+      border-right: 1px solid var(--card-border);
+      padding-right: 0.35rem;
+      padding-bottom: 0;
       text-align: center;
       cursor: pointer;
       transition: color 0.15s ease;
+      white-space: nowrap;
     }
     .word-cluster-header:hover {
       color: var(--hp-coral);
     }
     .word-cluster-phones {
-      display: flex;
-      gap: 0.28rem;
-      flex-wrap: wrap;
-      justify-content: center;
+      display: inline-flex;
+      gap: 0.22rem;
+      align-items: center;
+      flex-wrap: nowrap;
     }
     .phone-chip {
-      padding: 0.22rem 0.48rem;
-      border-radius: 6px;
-      font-size: 0.75rem;
+      padding: 0.14rem 0.36rem;
+      border-radius: 4px;
+      font-size: 0.72rem;
       font-family: var(--font-mono);
       font-weight: 700;
       cursor: pointer;
       transition: transform 0.15s ease, filter 0.15s ease, box-shadow 0.15s ease;
       display: inline-flex;
-      flex-direction: column;
+      flex-direction: row;
       align-items: center;
-      line-height: 1.1;
+      gap: 0.15rem;
+      line-height: 1.15;
       position: relative;
+      white-space: nowrap;
     }
     .phone-chip:hover {
       transform: scale(1.15);
@@ -2009,25 +2016,19 @@
           </div>
         </div>
 
-        <!-- 1. Word-to-Phoneme Hierarchy Flow Map -->
-        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem; flex-wrap:wrap; gap:0.5rem;">
-          <h4 style="font-size:0.95rem; font-weight:700; color:var(--text); margin:0;">
-            1. Word-to-Phoneme Hierarchy Flow Map
-          </h4>
-          <span style="font-size:0.78rem; color:var(--text-muted);">
-            💡 Click any phoneme to highlight its trajectory node, or click any word to select its phone span
-          </span>
-        </div>
-        <div class="flow-map-container" id="phoneFlowMapView"></div>
-
-        <!-- Side-by-Side: 2. Trajectory Curve (Left) + 4. Manner Diagnostics (Right Panel) -->
+        <!-- Side-by-Side: Speech Articulation Trajectory & Word-Phoneme Hierarchy (Left) + Manner Diagnostics (Right Panel) -->
         <div class="trajectory-diagnostic-layout">
-          <!-- Left: 2. Speech Articulation Trajectory Curve -->
+          <!-- Left: Speech Articulation Trajectory & Integrated Word-to-Phoneme Flow -->
           <div class="trajectory-main-pane">
             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem; flex-wrap:wrap; gap:0.5rem;">
-              <h4 style="font-size:0.95rem; font-weight:700; color:var(--text); margin:0;">
-                2. Speech Articulation Trajectory Curve (Sentence Progression)
-              </h4>
+              <div style="display:flex; align-items:center; gap:0.5rem; flex-wrap:wrap;">
+                <h4 style="font-size:0.95rem; font-weight:800; color:var(--text); margin:0;">
+                  Speech Articulation Trajectory Curve & Phonetic Hierarchy
+                </h4>
+                <span style="font-size:0.75rem; color:var(--text-muted);">
+                  💡 Click word to highlight span • Click phone to view trajectory node
+                </span>
+              </div>
               <div style="display:flex; align-items:center; gap:0.5rem;">
                 <span id="activeSelectionHint" style="font-size:0.78rem; font-weight:800; color:var(--hp-coral);"></span>
                 <button id="clearSelectionBtn" onclick="clearSelection()" style="display:none; font-size:0.75rem; font-weight:700; padding:0.2rem 0.55rem; border-radius:6px; border:1px solid var(--card-border); background:var(--surface); color:var(--text); cursor:pointer;">
@@ -2035,16 +2036,21 @@
                 </button>
               </div>
             </div>
+
+            <!-- Sleek Integrated Word-to-Phoneme Flow Ribbon (Compact, non-intrusive) -->
+            <div class="flow-map-container" id="phoneFlowMapView"></div>
+
+            <!-- SVG Trajectory Curve Chart -->
             <div class="trajectory-chart-wrap" id="trajectoryWrap">
               <svg class="trajectory-svg" id="trajectorySvg" viewBox="0 0 900 240" preserveAspectRatio="none"></svg>
               <div class="chart-tooltip" id="chartTooltip"></div>
             </div>
           </div>
 
-          <!-- Right: 4. Manner of Articulation Accuracy Breakdown (Compact Side Panel) -->
+          <!-- Right: Manner of Articulation Accuracy Breakdown (Compact Side Panel) -->
           <div class="manner-side-panel">
             <div class="manner-panel-header">
-              <h4>4. Manner Diagnostics</h4>
+              <h4>Manner Diagnostics</h4>
               <span class="badge-mini" id="mannerTotalBadge">0 phones</span>
             </div>
             <p style="font-size:0.75rem; color:var(--text-muted); margin-top:0.4rem; margin-bottom:0.25rem;">
