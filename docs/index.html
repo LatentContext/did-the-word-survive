@@ -1770,6 +1770,220 @@
     body.dark-mode .cond-accented  { color: #ff9ecf; }
     body.dark-mode .cond-ambient   { color: #ff7d61; }
 
+    
+    /* ── Top Bar Active View Chip ── */
+    .active-tab-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.35rem 0.85rem;
+      border-radius: 9999px;
+      background: var(--surface);
+      border: 1px solid var(--card-border);
+      font-size: 0.82rem;
+      font-weight: 800;
+      color: var(--text);
+      cursor: pointer;
+      transition: all 0.18s ease;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+    }
+    .active-tab-chip:hover {
+      border-color: var(--hp-pink);
+      transform: translateY(-1px);
+    }
+    .active-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 9999px;
+      background: var(--hp-green);
+      box-shadow: 0 0 6px var(--hp-green);
+    }
+
+    /* ── Audio Stage Card & Focused Phonetic Inspector ── */
+    .audio-stage-card {
+      background: var(--diff-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-top: 1.5rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+    }
+    .audio-stage-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-bottom: 1.25rem;
+      padding-bottom: 0.85rem;
+      border-bottom: 1px solid var(--card-border);
+    }
+    .pulse-beacon-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 9999px;
+      background: var(--hp-coral);
+      box-shadow: 0 0 8px var(--hp-coral);
+      animation: beaconPulse 1.8s ease-in-out infinite;
+    }
+    .sync-word-timeline {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+    }
+    .sync-word-card {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.15rem;
+      padding: 0.55rem 0.95rem;
+      border-radius: 8px;
+      background: var(--surface);
+      border: 1.5px solid var(--card-border);
+      cursor: pointer;
+      transition: all 0.18s ease;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+    }
+    .sync-word-card:hover {
+      border-color: var(--hp-pink);
+      transform: translateY(-2px);
+    }
+    .sync-word-card.active {
+      border-color: var(--hp-coral) !important;
+      background: var(--nav-active-bg) !important;
+      box-shadow: 0 0 0 2.5px rgba(246, 89, 54, 0.4), var(--shadow-sm) !important;
+      transform: translateY(-2px) scale(1.05);
+    }
+    .sync-word-text {
+      font-size: 0.92rem;
+      font-weight: 800;
+      color: var(--text);
+    }
+    .sync-word-time {
+      font-size: 0.72rem;
+      font-weight: 700;
+      font-family: var(--font-mono);
+      color: var(--text-muted);
+    }
+
+    /* Focused Active Phonetic Stage */
+    .active-phonetic-stage {
+      background: var(--surface);
+      border: 1.5px solid var(--card-border);
+      border-radius: 10px;
+      padding: 1.25rem;
+      box-shadow: var(--shadow-sm);
+    }
+    .stage-prompt-box {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      color: var(--text-muted);
+      font-size: 0.88rem;
+    }
+    .stage-active-container {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .stage-word-banner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      padding-bottom: 0.65rem;
+      border-bottom: 1px dashed var(--card-border);
+    }
+    .stage-phones-ribbon {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+    }
+    .stage-phone-item {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 0.45rem 0.75rem;
+      border-radius: 8px;
+      border: 1.5px solid var(--card-border);
+      background: var(--diff-bg);
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+    .stage-phone-item.voicing-now {
+      border-color: var(--hp-coral) !important;
+      background: var(--hp-coral) !important;
+      color: #fff !important;
+      transform: scale(1.12);
+      box-shadow: 0 4px 12px rgba(246, 89, 54, 0.4);
+    }
+    .stage-phone-item.voicing-now * {
+      color: #fff !important;
+    }
+    .stage-phone-sym {
+      font-family: var(--font-mono);
+      font-size: 0.88rem;
+      font-weight: 900;
+    }
+    .stage-phone-ipa {
+      font-size: 0.75rem;
+      font-weight: 700;
+      opacity: 0.9;
+    }
+    .stage-phone-manner {
+      font-size: 0.65rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      margin-top: 0.2rem;
+      letter-spacing: 0.04em;
+    }
+
+    /* ── Spacious UI Adjustments ── */
+    .card {
+      padding: 2.25rem 2.5rem !important;
+      margin-bottom: 2.5rem !important;
+      border-radius: 14px !important;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.03) !important;
+    }
+    @media (max-width: 768px) {
+      .card {
+        padding: 1.5rem !important;
+        margin-bottom: 2rem !important;
+      }
+    }
+    .container {
+      max-width: 1260px !important;
+      padding: 2rem 1.5rem !important;
+    }
+    .controls-grid {
+      gap: 1.75rem !important;
+      margin-bottom: 2rem !important;
+    }
+    .metric-grid {
+      gap: 1.25rem !important;
+      margin-bottom: 2rem !important;
+    }
+    .trajectory-diagnostic-layout {
+      gap: 1.5rem !important;
+    }
+    .audio-player-deck {
+      padding: 2.25rem !important;
+      border-radius: 14px !important;
+      margin-bottom: 2.5rem !important;
+    }
+    .spec-vis-container {
+      padding: 2.25rem !important;
+      border-radius: 14px !important;
+      margin-bottom: 2.5rem !important;
+    }
+    .spss-workflow-diagram {
+      gap: 1rem !important;
+      padding: 1.75rem 1.25rem !important;
+      margin-bottom: 2rem !important;
+    }
+
     code {
       font-family: var(--font-mono);
       background: var(--code-bg);
@@ -1825,6 +2039,12 @@
         </svg>
         <span>Menu</span>
       </button>
+
+      <div class="active-tab-chip" onclick="toggleMenu(true)" title="Click to open menu and switch views">
+        <span class="active-dot"></span>
+        <span id="topActiveTabTitle">🧪 Interactive Evaluator</span>
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
+      </div>
 
       <a href="https://github.com/LatentContext/did-the-word-survive" target="_blank" rel="noopener noreferrer" class="github-link-btn" title="View Source Code on GitHub">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
@@ -1893,15 +2113,7 @@
   </header>
 
   <div class="container">
-    <!-- ── Quick Tabs Bar ── -->
-    <nav class="quick-tabs" role="tablist">
-      <button class="tab-btn active" data-tab="eval" onclick="selectTab('eval')">🧪 Interactive Evaluator</button>
-      <button class="tab-btn" data-tab="analysis" onclick="selectTab('analysis')">🔬 SPSS & Waveform Analysis</button>
-      <button class="tab-btn" data-tab="vocoders" onclick="selectTab('vocoders')">🔊 14 Vocoder Systems</button>
-      <button class="tab-btn" data-tab="corpora" onclick="selectTab('corpora')">📊 Benchmark Datasets</button>
-      <button class="tab-btn" data-tab="asr" onclick="selectTab('asr')">🤖 ASR Models</button>
-      <button class="tab-btn" data-tab="cli" onclick="selectTab('cli')">💻 CLI & Docker Quickstart</button>
-    </nav>
+    
 
     <!-- ════════════════ TAB 1: INTERACTIVE EVALUATOR ════════════════ -->
     <div id="tab-eval" class="tab-pane active">
@@ -2143,19 +2355,33 @@
             <input type="range" class="audio-scrub-slider" id="audioScrubber" min="0" max="4.1867" step="0.001" value="0" oninput="onScrubInput(this.value)">
           </div>
 
-          <!-- Real-time Synchronized Word & Phoneme Stream for LJ016-0169 -->
-          <div class="audio-sync-card">
-            <div class="audio-sync-title">
-              <span>Real-Time Forced Alignment Synchronization (MFA TextGrid)</span>
-              <span id="syncCurrentInfo" style="color:var(--hp-coral); font-weight:800;">Waiting for playback...</span>
+          <!-- Real-time Synchronized Word Timeline & Focused Phonetic Inspector -->
+          <div class="audio-stage-card">
+            <div class="audio-stage-header">
+              <div style="display:flex; align-items:center; gap:0.6rem;">
+                <span class="pulse-beacon-dot"></span>
+                <span style="font-size:0.85rem; font-weight:800; text-transform:uppercase; letter-spacing:0.04em; color:var(--text);">
+                  Forced-Alignment Acoustic Timeline (MFA TextGrid)
+                </span>
+              </div>
+              <span id="syncCurrentInfo" style="font-size:0.82rem; color:var(--hp-coral); font-weight:800; font-family:var(--font-mono);">
+                Click any word below or press Play
+              </span>
             </div>
-            <!-- Word stream -->
-            <div class="sync-word-stream" id="syncWordStream">
-              <!-- Populated dynamically -->
+
+            <!-- Sentence Word Timeline: 9 words with timestamps -->
+            <div style="margin-bottom:1.25rem;">
+              <div style="font-size:0.75rem; font-weight:800; text-transform:uppercase; color:var(--text-muted); margin-bottom:0.5rem; letter-spacing:0.03em;">
+                Sentence Words (Click to jump):
+              </div>
+              <div class="sync-word-timeline" id="syncWordStream">
+                <!-- Populated dynamically by JS -->
+              </div>
             </div>
-            <!-- Phone stream -->
-            <div class="sync-phone-stream" id="syncPhoneStream">
-              <!-- Populated dynamically -->
+
+            <!-- Focused Active Phonetic Inspection Window -->
+            <div class="active-phonetic-stage" id="activePhoneticStage">
+              <!-- Dynamically populated with active word and phones -->
             </div>
           </div>
 
@@ -6277,10 +6503,6 @@ docker run --rm did-the-word-survive:latest --lexicon lexicons/sample_lexicon.tx
     }
 
     function selectTab(tabId) {
-      // Update quick tabs
-      document.querySelectorAll('.tab-btn').forEach(btn => {
-        btn.classList.toggle('active', btn.dataset.tab === tabId);
-      });
       // Update drawer nav
       document.querySelectorAll('.drawer-nav-btn').forEach(btn => {
         btn.classList.toggle('active', btn.dataset.tab === tabId);
@@ -6291,7 +6513,23 @@ docker run --rm did-the-word-survive:latest --lexicon lexicons/sample_lexicon.tx
       });
       const target = document.getElementById('tab-' + tabId);
       if (target) target.classList.add('active');
+
+      // Update top active view chip title
+      const tabTitles = {
+        'eval': '🧪 Interactive Evaluator',
+        'analysis': '🔬 SPSS & Waveform Analysis',
+        'vocoders': '🔊 14 Vocoder Systems',
+        'corpora': '📊 Benchmark Datasets',
+        'asr': '🤖 ASR Models',
+        'cli': '💻 CLI & Docker Quickstart'
+      };
+      const topTitle = document.getElementById('topActiveTabTitle');
+      if (topTitle && tabTitles[tabId]) {
+        topTitle.textContent = tabTitles[tabId];
+      }
+
       toggleMenu(false);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
     // ── Filter Presets System ──
@@ -7216,20 +7454,29 @@ docker run --rm did-the-word-survive:latest --lexicon lexicons/sample_lexicon.tx
 
     function renderSyncTokens() {
       const wordContainer = document.getElementById('syncWordStream');
-      const phoneContainer = document.getElementById('syncPhoneStream');
-      if (!wordContainer || !phoneContainer) return;
+      const stageContainer = document.getElementById('activePhoneticStage');
+      if (!wordContainer) return;
 
       wordContainer.innerHTML = LJ_WORDS.map((w, idx) => `
-        <span class="sync-word-chip" id="syncWord_${idx}" onclick="seekToTimestamp(${w.start})">
-          ${w.word} <span style="font-size:0.7rem; color:var(--text-muted);">(${w.start.toFixed(2)}s)</span>
-        </span>
+        <div class="sync-word-card" id="syncWord_${idx}" onclick="seekToTimestamp(${w.start})">
+          <span class="sync-word-text">${w.word}</span>
+          <span class="sync-word-time">${w.start.toFixed(2)}s – ${w.end.toFixed(2)}s</span>
+        </div>
       `).join('');
 
-      phoneContainer.innerHTML = LJ_PHONES.map((p, idx) => `
-        <span class="sync-phone-chip" id="syncPhone_${idx}" onclick="seekToTimestamp(${p.start})">
-          ${p.p}[${p.ipa}]
-        </span>
-      `).join('');
+      if (stageContainer) {
+        stageContainer.innerHTML = `
+          <div class="stage-prompt-box">
+            <span style="font-size:1.4rem;">🎙️</span>
+            <div>
+              <strong>Live Acoustic Articulation Inspector:</strong><br>
+              <span style="font-size:0.8rem; color:var(--text-muted);">
+                Press <strong>Play Audio</strong> or click any word card above to trace forced alignment, phoneme transitions, and acoustic formants in real-time.
+              </span>
+            </div>
+          </div>
+        `;
+      }
     }
 
     function toggleAudioPlayback() {
@@ -7297,37 +7544,94 @@ docker run --rm did-the-word-survive:latest --lexicon lexicons/sample_lexicon.tx
       if (timerEl) timerEl.textContent = formatTimeHHMMSSMS(curTime);
       if (scrubber && !scrubber.matches(':active')) scrubber.value = curTime;
 
-      // Update active word
+      // Find active word and active phoneme
+      let activeWordIdx = -1;
+      let activeWordObj = null;
       LJ_WORDS.forEach((w, idx) => {
         const el = document.getElementById(`syncWord_${idx}`);
-        if (!el) return;
         if (curTime >= w.start && curTime < w.end) {
-          el.classList.add('active');
+          if (el) el.classList.add('active');
+          activeWordIdx = idx;
+          activeWordObj = w;
         } else {
-          el.classList.remove('active');
+          if (el) el.classList.remove('active');
         }
       });
 
-      // Update active phone
       let activePhoneObj = null;
+      let activePhoneIdx = -1;
       LJ_PHONES.forEach((p, idx) => {
-        const el = document.getElementById(`syncPhone_${idx}`);
-        if (!el) return;
         if (curTime >= p.start && curTime < p.end) {
-          el.classList.add('active');
           activePhoneObj = p;
-        } else {
-          el.classList.remove('active');
+          activePhoneIdx = idx;
         }
       });
 
       const infoEl = document.getElementById('syncCurrentInfo');
-      if (infoEl) {
-        if (activePhoneObj) {
-          infoEl.textContent = `Voicing: "${activePhoneObj.word}" ➔ Phone: ${activePhoneObj.p} [${activePhoneObj.ipa}] (${activePhoneObj.manner.toUpperCase()})`;
-        } else {
-          infoEl.textContent = curTime >= 4.08 ? 'Playback finished.' : 'Silence interval';
+      const stageContainer = document.getElementById('activePhoneticStage');
+
+      if (activeWordObj && stageContainer) {
+        // Collect phonemes belonging to this active word
+        const wordPhones = LJ_PHONES.filter(p => p.word === activeWordObj.word && p.start >= activeWordObj.start - 0.01 && p.end <= activeWordObj.end + 0.01);
+
+        if (infoEl) {
+          infoEl.textContent = activePhoneObj 
+            ? `Voicing: "${activeWordObj.word}" ➔ ${activePhoneObj.p} [${activePhoneObj.ipa}] (${activePhoneObj.manner.toUpperCase()})`
+            : `Word: "${activeWordObj.word}" (${activeWordObj.start.toFixed(2)}s – ${activeWordObj.end.toFixed(2)}s)`;
         }
+
+        // Render focused Active Phonetic Stage
+        stageContainer.innerHTML = `
+          <div class="stage-active-container">
+            <div class="stage-word-banner">
+              <div>
+                <span style="font-size:0.75rem; font-weight:800; text-transform:uppercase; color:var(--text-muted);">Currently Voiced Word:</span>
+                <span style="font-size:1.15rem; font-weight:900; color:var(--text); margin-left:0.4rem;">"${activeWordObj.word}"</span>
+                <span style="font-size:0.8rem; font-weight:700; color:var(--text-muted); margin-left:0.35rem; font-family:var(--font-mono);">
+                  (${activeWordObj.start.toFixed(2)}s – ${activeWordObj.end.toFixed(2)}s)
+                </span>
+              </div>
+              <div>
+                ${activePhoneObj ? `
+                  <span class="condition-pill cond-accented">
+                    Active Phone: ${activePhoneObj.p} [${activePhoneObj.ipa}] (${activePhoneObj.manner.toUpperCase()})
+                  </span>
+                ` : '<span class="condition-pill cond-ambient">Transition Gap</span>'}
+              </div>
+            </div>
+
+            <div>
+              <div style="font-size:0.75rem; font-weight:800; text-transform:uppercase; color:var(--text-muted); margin-bottom:0.4rem;">
+                Constituent Phonemes Sequence:
+              </div>
+              <div class="stage-phones-ribbon">
+                ${wordPhones.map(p => {
+                  const isNow = activePhoneObj && p.p === activePhoneObj.p && Math.abs(p.start - activePhoneObj.start) < 0.02;
+                  return `
+                    <div class="stage-phone-item ${isNow ? 'voicing-now' : ''}" onclick="seekToTimestamp(${p.start})">
+                      <span class="stage-phone-sym">${p.p}</span>
+                      <span class="stage-phone-ipa">[${p.ipa}]</span>
+                      <span class="stage-phone-manner">${p.manner}</span>
+                    </div>
+                  `;
+                }).join('<span style="color:var(--text-muted); font-weight:800;">➔</span>')}
+              </div>
+            </div>
+          </div>
+        `;
+      } else if (stageContainer && curTime >= 4.08) {
+        if (infoEl) infoEl.textContent = 'Playback finished.';
+        stageContainer.innerHTML = `
+          <div class="stage-prompt-box">
+            <span style="font-size:1.4rem;">🏁</span>
+            <div>
+              <strong>Utterance Playback Complete (4.186s):</strong><br>
+              <span style="font-size:0.8rem; color:var(--text-muted);">
+                All 9 words and 52 phonemes of <code>LJ016-0169</code> voiced. Switch models or press Play to replay.
+              </span>
+            </div>
+          </div>
+        `;
       }
     }
 
