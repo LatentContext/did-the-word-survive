@@ -14,6 +14,14 @@
 !/scripts/
 !/demo/
 !/docs/
+!/audio/
+!/audio/**
+!/docs/audio/
+!/docs/audio/**
+!/demo/audio/
+!/demo/audio/**
+!/.github/
+!/.github/**
 
 # Whitelist allowed publication files
 !/README.md
@@ -21,6 +29,7 @@
 !/Dockerfile
 !/.gitignore
 !/.nojekyll
+!/docs/.nojekyll
 !/index.html
 !/pyproject.toml
 !/configs/demo.json
