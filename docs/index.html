@@ -627,7 +627,7 @@
     }
     .filter-pill.corpus-ljs.active  { background: var(--hp-coral); color: #fff; border-color: var(--hp-coral); }
     .filter-pill.corpus-lib.active  { background: var(--hp-sky); color: #0F172A; border-color: var(--hp-sky); }
-    .filter-pill.corpus-vctk.active {{ background: var(--hp-green); color: #fff; border-color: var(--hp-green); }
+    .filter-pill.corpus-vctk.active { background: var(--hp-green); color: #fff; border-color: var(--hp-green); }
     .filter-pill.corpus-free.active { background: var(--hp-yellow); color: #451A03; border-color: var(--hp-yellow); }
 
     
@@ -742,26 +742,26 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 1rem;
+      gap: 0.75rem;
       flex-wrap: wrap;
       background: var(--diff-bg);
       border: 1px solid var(--card-border);
-      border-radius: 10px;
-      padding: 0.75rem 1rem;
-      margin-bottom: 1.25rem;
+      border-radius: 9px;
+      padding: 0.55rem 0.85rem;
+      margin-bottom: 0.85rem;
     }
     .vis-mode-btns {
       display: flex;
-      gap: 0.4rem;
+      gap: 0.35rem;
       flex-wrap: wrap;
     }
     .vis-mode-btn {
-      padding: 0.35rem 0.75rem;
-      border-radius: 8px;
+      padding: 0.3rem 0.65rem;
+      border-radius: 7px;
       border: 1px solid var(--card-border);
       background: var(--surface);
       color: var(--text);
-      font-size: 0.8rem;
+      font-size: 0.78rem;
       font-weight: 700;
       cursor: pointer;
       transition: all 0.15s ease;
@@ -774,46 +774,65 @@
     .vis-legend {
       display: flex;
       align-items: center;
-      gap: 0.75rem;
+      gap: 0.65rem;
       flex-wrap: wrap;
-      font-size: 0.78rem;
+      font-size: 0.76rem;
     }
     .legend-item {
       display: inline-flex;
       align-items: center;
-      gap: 0.3rem;
+      gap: 0.28rem;
       font-weight: 600;
     }
     .legend-box {
-      width: 12px;
-      height: 12px;
+      width: 10px;
+      height: 10px;
       border-radius: 3px;
       display: inline-block;
     }
 
     /* Word-to-Phoneme Hierarchy Flow Map */
+    .flow-section-header, .trajectory-pane-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.4rem;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+    }
+    .flow-section-title {
+      font-size: 0.8rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--text-muted);
+    }
+    .flow-section-hint {
+      font-size: 0.73rem;
+      color: var(--text-muted);
+    }
     .flow-map-container {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.45rem;
+      gap: 0.4rem;
       padding: 0.55rem 0.75rem;
       background: var(--diff-bg);
       border: 1px solid var(--card-border);
       border-radius: 8px;
-      margin-bottom: 0.75rem;
+      margin-bottom: 0.85rem;
       align-items: center;
     }
     .word-cluster {
       display: inline-flex;
       flex-direction: row;
       align-items: center;
-      gap: 0.35rem;
+      gap: 0.3rem;
       background: var(--surface);
       border: 1px solid var(--card-border);
       border-radius: 6px;
-      padding: 0.25rem 0.48rem;
+      padding: 0.2rem 0.45rem;
       box-shadow: 0 1px 2px rgba(0,0,0,0.03);
-      transition: all 0.18s ease;
+      transition: all 0.15s ease;
       cursor: pointer;
     }
     .word-cluster:hover {
@@ -822,13 +841,13 @@
     }
     .word-cluster.active-word {
       border-color: var(--hp-coral) !important;
-      box-shadow: 0 0 0 2px rgba(246, 89, 54, 0.4), 0 2px 6px rgba(0,0,0,0.06) !important;
+      box-shadow: 0 0 0 2px rgba(246, 89, 54, 0.35), 0 2px 6px rgba(0,0,0,0.06) !important;
       background: var(--nav-active-bg) !important;
-      transform: translateY(-1px) scale(1.02);
+      transform: translateY(-1px);
     }
     .word-cluster-header {
       font-weight: 800;
-      font-size: 0.8rem;
+      font-size: 0.78rem;
       color: var(--text);
       margin-bottom: 0;
       border-bottom: none;
@@ -845,14 +864,14 @@
     }
     .word-cluster-phones {
       display: inline-flex;
-      gap: 0.22rem;
+      gap: 0.2rem;
       align-items: center;
       flex-wrap: nowrap;
     }
     .phone-chip {
-      padding: 0.14rem 0.36rem;
+      padding: 0.12rem 0.32rem;
       border-radius: 4px;
-      font-size: 0.72rem;
+      font-size: 0.7rem;
       font-family: var(--font-mono);
       font-weight: 700;
       cursor: pointer;
@@ -860,41 +879,41 @@
       display: inline-flex;
       flex-direction: row;
       align-items: center;
-      gap: 0.15rem;
+      gap: 0.12rem;
       line-height: 1.15;
       position: relative;
       white-space: nowrap;
     }
     .phone-chip:hover {
-      transform: scale(1.15);
+      transform: scale(1.12);
       filter: brightness(1.15);
       z-index: 5;
     }
     .phone-chip.selected-phone {
       outline: 2px solid #FFFFFF;
-      box-shadow: 0 0 0 3px var(--hp-coral), 0 4px 12px rgba(246, 89, 54, 0.45);
-      transform: scale(1.2) !important;
+      box-shadow: 0 0 0 2.5px var(--hp-coral), 0 3px 10px rgba(246, 89, 54, 0.4);
+      transform: scale(1.15) !important;
       z-index: 10;
       filter: brightness(1.2);
       animation: chipPulse 1.8s ease-in-out infinite;
     }
     @keyframes chipPulse {
-      0%   { transform: scale(1.18); box-shadow: 0 0 0 2.5px var(--hp-coral); }
-      50%  { transform: scale(1.25); box-shadow: 0 0 0 5px var(--hp-pink); }
-      100% { transform: scale(1.18); box-shadow: 0 0 0 2.5px var(--hp-coral); }
+      0%   { transform: scale(1.15); box-shadow: 0 0 0 2px var(--hp-coral); }
+      50%  { transform: scale(1.22); box-shadow: 0 0 0 4px var(--hp-pink); }
+      100% { transform: scale(1.15); box-shadow: 0 0 0 2px var(--hp-coral); }
     }
     .phone-ipa {
-      font-size: 0.65rem;
-      opacity: 0.8;
+      font-size: 0.63rem;
+      opacity: 0.85;
     }
 
     /* ── Trajectory & Manner Diagnostics Side-by-Side Layout ── */
     .trajectory-diagnostic-layout {
       display: grid;
-      grid-template-columns: 1fr 290px;
-      gap: 1.25rem;
-      margin-bottom: 1.5rem;
-      align-items: start;
+      grid-template-columns: 1fr 280px;
+      gap: 0.85rem;
+      margin-bottom: 0;
+      align-items: stretch;
     }
     @media (max-width: 960px) {
       .trajectory-diagnostic-layout {
@@ -903,21 +922,25 @@
     }
     .trajectory-main-pane {
       min-width: 0;
+      display: flex;
+      flex-direction: column;
     }
 
     /* SVG Trajectory Chart */
     .trajectory-chart-wrap {
       background: var(--diff-bg);
       border: 1px solid var(--card-border);
-      border-radius: 10px;
-      padding: 1rem;
+      border-radius: 9px;
+      padding: 0.5rem;
       overflow-x: auto;
       position: relative;
+      flex: 1;
     }
     .trajectory-svg {
       width: 100%;
-      min-width: 650px;
-      height: 270px;
+      min-width: 700px;
+      height: 255px;
+      display: block;
     }
     .chart-tooltip {
       position: absolute;
@@ -1013,28 +1036,33 @@
     .manner-side-panel {
       background: var(--diff-bg);
       border: 1px solid var(--card-border);
-      border-radius: 10px;
-      padding: 1.15rem 1rem;
+      border-radius: 9px;
+      padding: 0.75rem 0.85rem;
       box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      height: 100%;
+      box-sizing: border-box;
     }
     .manner-panel-header {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 0.35rem;
+      margin-bottom: 0.25rem;
       border-bottom: 1px solid var(--card-border);
-      padding-bottom: 0.5rem;
+      padding-bottom: 0.35rem;
     }
     .manner-panel-header h4 {
-      font-size: 0.88rem;
+      font-size: 0.85rem;
       font-weight: 800;
       color: var(--text);
       margin: 0;
     }
     .badge-mini {
-      font-size: 0.72rem;
+      font-size: 0.7rem;
       font-weight: 800;
-      padding: 0.18rem 0.5rem;
+      padding: 0.15rem 0.45rem;
       border-radius: 9999px;
       background: var(--surface);
       border: 1px solid var(--card-border);
@@ -1043,19 +1071,20 @@
     .manner-compact-list {
       display: flex;
       flex-direction: column;
-      gap: 0.6rem;
-      margin-top: 0.65rem;
+      gap: 0.38rem;
+      margin-top: 0.3rem;
+      flex: 1;
     }
     .manner-compact-card {
       background: var(--surface);
       border: 1px solid var(--card-border);
-      border-radius: 8px;
-      padding: 0.55rem 0.75rem;
+      border-radius: 6px;
+      padding: 0.35rem 0.55rem;
       cursor: pointer;
-      transition: all 0.18s ease;
+      transition: all 0.15s ease;
     }
     .manner-compact-card:hover {
-      transform: translateX(3px);
+      transform: translateX(2px);
       border-color: var(--hp-pink);
       box-shadow: var(--shadow-sm);
     }
@@ -1068,25 +1097,25 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 0.3rem;
+      margin-bottom: 0.2rem;
     }
     .manner-card-title {
       display: flex;
       align-items: center;
-      gap: 0.4rem;
-      font-size: 0.8rem;
+      gap: 0.35rem;
+      font-size: 0.76rem;
       font-weight: 800;
       text-transform: capitalize;
       color: var(--text);
     }
     .manner-card-stat {
-      font-size: 0.76rem;
+      font-size: 0.72rem;
       font-weight: 800;
       font-family: var(--font-mono);
       color: var(--text-muted);
     }
     .manner-card-progress {
-      height: 6px;
+      height: 4px;
       background: var(--diff-bg);
       border-radius: 9999px;
       overflow: hidden;
@@ -1940,48 +1969,49 @@
       letter-spacing: 0.04em;
     }
 
-    /* ── Spacious UI Adjustments ── */
+    /* ── Polished Layout & Spacing Adjustments ── */
     .card {
-      padding: 2.25rem 2.5rem !important;
-      margin-bottom: 2.5rem !important;
-      border-radius: 14px !important;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.03) !important;
+      padding: 1.35rem 1.6rem !important;
+      margin-bottom: 1.35rem !important;
+      border-radius: 12px !important;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.03) !important;
     }
     @media (max-width: 768px) {
       .card {
-        padding: 1.5rem !important;
-        margin-bottom: 2rem !important;
+        padding: 1.15rem 1rem !important;
+        margin-bottom: 1.15rem !important;
       }
     }
     .container {
       max-width: 1260px !important;
-      padding: 2rem 1.5rem !important;
+      padding: 1.5rem 1.25rem !important;
     }
     .controls-grid {
-      gap: 1.75rem !important;
-      margin-bottom: 2rem !important;
+      gap: 1.15rem !important;
+      margin-bottom: 1.25rem !important;
     }
     .metric-grid {
-      gap: 1.25rem !important;
-      margin-bottom: 2rem !important;
+      gap: 0.9rem !important;
+      margin-bottom: 1.25rem !important;
     }
     .trajectory-diagnostic-layout {
-      gap: 1.5rem !important;
+      gap: 0.85rem !important;
+      margin-bottom: 0 !important;
     }
     .audio-player-deck {
-      padding: 2.25rem !important;
-      border-radius: 14px !important;
-      margin-bottom: 2.5rem !important;
+      padding: 1.5rem !important;
+      border-radius: 12px !important;
+      margin-bottom: 1.75rem !important;
     }
     .spec-vis-container {
-      padding: 2.25rem !important;
-      border-radius: 14px !important;
-      margin-bottom: 2.5rem !important;
+      padding: 1.5rem !important;
+      border-radius: 12px !important;
+      margin-bottom: 1.75rem !important;
     }
     .spss-workflow-diagram {
-      gap: 1rem !important;
-      padding: 1.75rem 1.25rem !important;
-      margin-bottom: 2rem !important;
+      gap: 0.85rem !important;
+      padding: 1.25rem 1rem !important;
+      margin-bottom: 1.5rem !important;
     }
 
     /* ════════════════════════════════════════════════
@@ -2547,10 +2577,45 @@
           <button class="filter-pill asr-pill" data-asr="Wav2vec2-Base" onclick="setFilter('asr','Wav2vec2-Base',this)">🔊 Wav2vec2-Base</button>
         </div>
 
+
         <select id="presetSelect" onchange="loadPreset()" style="margin-top:0.75rem;">
           <!-- Populated by JS -->
         </select>
+
+        <!-- ── Participant / Subject Info Panel ── -->
+        <div id="subjectInfoPanel" style="
+          display: none;
+          margin-top: 0.85rem;
+          background: var(--diff-bg, #f1f5f9);
+          border: 1.5px solid var(--card-border, #e2e8f0);
+          border-radius: 10px;
+          padding: 0.75rem 1rem;
+        ">
+          <div style="display:flex; flex-wrap:wrap; gap:0.5rem 1.25rem; align-items:center;">
+            <div style="display:flex; flex-direction:column; gap:0.15rem;">
+              <span style="font-size:0.65rem; font-weight:800; text-transform:uppercase; letter-spacing:0.06em; color:var(--text-muted, #64748b);">Subject / Sample ID</span>
+              <span id="subjectId" style="font-size:0.95rem; font-weight:900; font-family:var(--font-mono, monospace); color:var(--text, #0f172a);">—</span>
+            </div>
+            <div style="display:flex; flex-direction:column; gap:0.15rem;">
+              <span style="font-size:0.65rem; font-weight:800; text-transform:uppercase; letter-spacing:0.06em; color:var(--text-muted, #64748b);">Corpus (TTS Source)</span>
+              <span id="subjectCorpus" style="font-size:0.9rem; font-weight:700; color:var(--text, #0f172a);">—</span>
+            </div>
+            <div style="display:flex; flex-direction:column; gap:0.15rem;">
+              <span style="font-size:0.65rem; font-weight:800; text-transform:uppercase; letter-spacing:0.06em; color:var(--text-muted, #64748b);">ASR Model</span>
+              <span id="subjectAsr" style="font-size:0.9rem; font-weight:700; color:var(--text, #0f172a);">—</span>
+            </div>
+            <div style="display:flex; flex-direction:column; gap:0.15rem; margin-left:auto;">
+              <span style="font-size:0.65rem; font-weight:800; text-transform:uppercase; letter-spacing:0.06em; color:var(--text-muted, #64748b);">Status</span>
+              <span id="subjectStatus" style="
+                font-size:0.78rem; font-weight:800; padding:0.2rem 0.6rem;
+                border-radius:5px; background:rgba(100,191,86,0.15);
+                color:#2b7720; border:1px solid rgba(100,191,86,0.4);
+              ">✅ Loaded</span>
+            </div>
+          </div>
+        </div>
       </div>
+
 
       <div class="controls-grid">
         <div class="card">
@@ -2617,15 +2682,25 @@
 
       <!-- ── Interactive Phoneme Visualizations Suite ── -->
       <div class="card">
-        <h3 class="card-title">📊 Interactive Phoneme Sequence Flow & Articulation Plots</h3>
-        <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:1rem;">
-          Explore how phonemes evolve along the sentence across words and manner of articulation classes:
-        </p>
+        <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:0.6rem; flex-wrap:wrap; gap:0.5rem;">
+          <div>
+            <h3 class="card-title" style="margin-bottom:0.2rem;">📊 Interactive Phoneme Sequence Flow & Articulation Plots</h3>
+            <p style="font-size:0.83rem; color:var(--text-muted); margin:0;">
+              Explore how phonemes evolve along the sentence across words and manner of articulation classes:
+            </p>
+          </div>
+          <div style="display:flex; align-items:center; gap:0.5rem;">
+            <span id="activeSelectionHint" style="font-size:0.78rem; font-weight:800; color:var(--hp-coral);"></span>
+            <button id="clearSelectionBtn" onclick="clearSelection()" style="display:none; font-size:0.72rem; font-weight:700; padding:0.18rem 0.5rem; border-radius:6px; border:1px solid var(--card-border); background:var(--surface); color:var(--text); cursor:pointer;">
+              ✕ Clear Filter
+            </button>
+          </div>
+        </div>
 
         <!-- Visualization Control Bar -->
         <div class="vis-control-bar">
-          <div style="display:flex; align-items:center; gap:0.6rem; flex-wrap:wrap;">
-            <span style="font-size:0.82rem; font-weight:700; text-transform:uppercase; color:var(--text-muted);">Color Palette Mode:</span>
+          <div style="display:flex; align-items:center; gap:0.55rem; flex-wrap:wrap;">
+            <span style="font-size:0.78rem; font-weight:800; text-transform:uppercase; color:var(--text-muted); letter-spacing:0.04em;">Color Palette:</span>
             <div class="vis-mode-btns">
               <button class="vis-mode-btn active" data-mode="manner" onclick="setVisMode('manner', this)">🎨 Manner of Articulation</button>
               <button class="vis-mode-btn" data-mode="edit" onclick="setVisMode('edit', this)">🎯 Edit Status</button>
@@ -2637,33 +2712,25 @@
           </div>
         </div>
 
-        <!-- Side-by-Side: Speech Articulation Trajectory & Word-Phoneme Hierarchy (Left) + Manner Diagnostics (Right Panel) -->
-        <div class="trajectory-diagnostic-layout">
-          <!-- Left: Speech Articulation Trajectory & Integrated Word-to-Phoneme Flow -->
-          <div class="trajectory-main-pane">
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem; flex-wrap:wrap; gap:0.5rem;">
-              <div style="display:flex; align-items:center; gap:0.5rem; flex-wrap:wrap;">
-                <h4 style="font-size:0.95rem; font-weight:800; color:var(--text); margin:0;">
-                  Speech Articulation Trajectory Curve & Phonetic Hierarchy
-                </h4>
-                <span style="font-size:0.75rem; color:var(--text-muted);">
-                  💡 Click word to highlight span • Click phone to view trajectory node
-                </span>
-              </div>
-              <div style="display:flex; align-items:center; gap:0.5rem;">
-                <span id="activeSelectionHint" style="font-size:0.78rem; font-weight:800; color:var(--hp-coral);"></span>
-                <button id="clearSelectionBtn" onclick="clearSelection()" style="display:none; font-size:0.75rem; font-weight:700; padding:0.2rem 0.55rem; border-radius:6px; border:1px solid var(--card-border); background:var(--surface); color:var(--text); cursor:pointer;">
-                  ✕ Clear Highlight
-                </button>
-              </div>
-            </div>
+        <!-- Full-Width Word-to-Phoneme Flow Hierarchy Ribbon -->
+        <div class="flow-section-header">
+          <span class="flow-section-title">Word & Phoneme Sequence Flow</span>
+          <span class="flow-section-hint">💡 Click any word or phone chip to highlight span & trajectory node</span>
+        </div>
+        <div class="flow-map-container" id="phoneFlowMapView"></div>
 
-            <!-- Sleek Integrated Word-to-Phoneme Flow Ribbon (Compact, non-intrusive) -->
-            <div class="flow-map-container" id="phoneFlowMapView"></div>
+        <!-- Side-by-Side: Speech Articulation Trajectory (Left) + Manner Diagnostics (Right Panel) -->
+        <div class="trajectory-diagnostic-layout">
+          <!-- Left: Speech Articulation Trajectory Curve & Phonetic Hierarchy -->
+          <div class="trajectory-main-pane">
+            <div class="trajectory-pane-header">
+              <span class="flow-section-title">Speech Articulation Trajectory Curve & Phonetic Hierarchy</span>
+              <span class="flow-section-hint">💡 Hover/click points for acoustic details</span>
+            </div>
 
             <!-- SVG Trajectory Curve Chart -->
             <div class="trajectory-chart-wrap" id="trajectoryWrap">
-              <svg class="trajectory-svg" id="trajectorySvg" viewBox="0 0 900 240" preserveAspectRatio="none"></svg>
+              <svg class="trajectory-svg" id="trajectorySvg" viewBox="0 0 900 255"></svg>
               <div class="chart-tooltip" id="chartTooltip"></div>
             </div>
           </div>
@@ -2674,8 +2741,8 @@
               <h4>Manner Diagnostics</h4>
               <span class="badge-mini" id="mannerTotalBadge">0 phones</span>
             </div>
-            <p style="font-size:0.75rem; color:var(--text-muted); margin-top:0.4rem; margin-bottom:0.25rem;">
-              Accuracy & distribution (click to highlight class):
+            <p style="font-size:0.72rem; color:var(--text-muted); margin-top:0.25rem; margin-bottom:0.25rem;">
+              Accuracy & distribution (click to filter):
             </p>
             <div class="manner-compact-list" id="classBreakdownView"></div>
           </div>
@@ -7006,6 +7073,34 @@ docker run --rm did-the-word-survive:latest --lexicon lexicons/sample_lexicon.tx
       if (item) {
         document.getElementById('refInput').value = item.reference;
         document.getElementById('hypInput').value = item.hypothesis;
+
+        // ── Update Participant / Subject Info Panel ──
+        const panel   = document.getElementById('subjectInfoPanel');
+        const idEl    = document.getElementById('subjectId');
+        const corpEl  = document.getElementById('subjectCorpus');
+        const asrEl   = document.getElementById('subjectAsr');
+        const statEl  = document.getElementById('subjectStatus');
+
+        if (panel && idEl && corpEl && asrEl && statEl) {
+          idEl.textContent   = item.id   || '—';
+          corpEl.textContent = item.corpus || '—';
+          asrEl.textContent  = (item.asr === 'all') ? 'All Models' : (item.asr || '—');
+
+          // Show "Processing…" while evaluation runs, then flip to "Loaded"
+          statEl.textContent = '⏳ Processing…';
+          statEl.style.background = 'rgba(234,179,8,0.15)';
+          statEl.style.color      = '#92400e';
+          statEl.style.border     = '1px solid rgba(234,179,8,0.4)';
+          panel.style.display = 'block';
+
+          setTimeout(() => {
+            statEl.textContent = '✅ Loaded';
+            statEl.style.background = 'rgba(100,191,86,0.15)';
+            statEl.style.color      = '#2b7720';
+            statEl.style.border     = '1px solid rgba(100,191,86,0.4)';
+          }, 320);
+        }
+
         clearSelection();
         runEvaluation();
       }
@@ -7295,60 +7390,91 @@ docker run --rm did-the-word-survive:latest --lexicon lexicons/sample_lexicon.tx
       const items = phoneAlign.aligned.filter(item => item.ref);
       if (items.length === 0) return;
 
-      const paddingX = 40;
-      const paddingY = 25;
-      const width = Math.max(820, items.length * 36);
-      const height = 240;
+      const paddingLeft = 165;
+      const paddingRight = 40;
+      const minStepX = 42;
+      const plotWidth = Math.max(680, items.length * minStepX);
+      const width = paddingLeft + plotWidth + paddingRight;
+      const height = 255;
       svg.setAttribute('viewBox', `0 0 ${width} ${height}`);
+      svg.style.minWidth = `${width}px`;
 
       const levelY = {
-        5: paddingY + 15,
-        4: paddingY + 55,
-        3: paddingY + 95,
-        2: paddingY + 135,
-        1: paddingY + 175
+        5: 42,   // Vowels
+        4: 82,   // Approximants
+        3: 122,  // Nasals
+        2: 162,  // Fricatives
+        1: 202   // Plosives
       };
 
       const isDark = document.body.classList.contains('dark-mode');
-      const laneColor = isDark ? 'rgba(255,255,255,0.06)' : 'rgba(0,0,0,0.06)';
+      const laneLineColor = isDark ? 'rgba(255,255,255,0.07)' : 'rgba(0,0,0,0.06)';
       const labelColor = isDark ? '#94A3B8' : '#64748B';
+      const laneBandColor = isDark ? 'rgba(255,255,255,0.015)' : 'rgba(0,0,0,0.015)';
 
-      // 1. Draw horizontal guidelines
-      [
-        { lvl: 5, label: 'Vowels (Open/Sonorant)' },
-        { lvl: 4, label: 'Approximants / Glides' },
-        { lvl: 3, label: 'Nasals (Resonant)' },
-        { lvl: 2, label: 'Fricatives (Turbulent)' },
-        { lvl: 1, label: 'Plosives (Stops/Closure)' }
-      ].forEach(lane => {
+      // 1. Draw horizontal guidelines & Left-side Y-Axis Lane Labels
+      const lanes = [
+        { lvl: 5, label: 'Vowels (Open/Sonorant)', icon: '🌸', color: 'var(--art-vowel)' },
+        { lvl: 4, label: 'Approximants / Glides', icon: '🌊', color: 'var(--art-approx)' },
+        { lvl: 3, label: 'Nasals (Resonant)', icon: '🌿', color: 'var(--art-nasal)' },
+        { lvl: 2, label: 'Fricatives (Turbulent)', icon: '⚡', color: 'var(--art-fricative)' },
+        { lvl: 1, label: 'Plosives (Stops/Closure)', icon: '💧', color: 'var(--art-plosive)' }
+      ];
+
+      lanes.forEach(lane => {
         const y = levelY[lane.lvl];
+
+        // Alternating subtle lane band
+        if (lane.lvl % 2 === 1) {
+          const band = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+          band.setAttribute('x', paddingLeft);
+          band.setAttribute('y', y - 20);
+          band.setAttribute('width', width - paddingLeft - 10);
+          band.setAttribute('height', 40);
+          band.setAttribute('fill', laneBandColor);
+          svg.appendChild(band);
+        }
+
+        // Horizontal dashed guideline
         const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-        line.setAttribute('x1', '10');
+        line.setAttribute('x1', paddingLeft);
         line.setAttribute('y1', y);
-        line.setAttribute('x2', width - 10);
+        line.setAttribute('x2', width - 15);
         line.setAttribute('y2', y);
-        line.setAttribute('stroke', laneColor);
+        line.setAttribute('stroke', laneLineColor);
         line.setAttribute('stroke-width', '1');
         line.setAttribute('stroke-dasharray', '3,3');
         svg.appendChild(line);
 
+        // Lane label in the left axis gutter (x = 12 to 150)
         const txt = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-        txt.setAttribute('x', '14');
-        txt.setAttribute('y', y - 4);
+        txt.setAttribute('x', '12');
+        txt.setAttribute('y', y + 4);
         txt.setAttribute('fill', labelColor);
-        txt.setAttribute('font-size', '9.5');
+        txt.setAttribute('font-size', '10');
         txt.setAttribute('font-weight', '700');
-        txt.textContent = lane.label;
+        txt.setAttribute('font-family', 'var(--font-sans, sans-serif)');
+        txt.textContent = `${lane.icon} ${lane.label}`;
         svg.appendChild(txt);
       });
 
+      // Vertical separator line between axis labels and trajectory plot area
+      const sep = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+      sep.setAttribute('x1', paddingLeft - 8);
+      sep.setAttribute('y1', 15);
+      sep.setAttribute('x2', paddingLeft - 8);
+      sep.setAttribute('y2', height - 20);
+      sep.setAttribute('stroke', isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.08)');
+      sep.setAttribute('stroke-width', '1.5');
+      svg.appendChild(sep);
+
       // 2. Map items to points and associate with parent words
-      const stepX = (width - paddingX * 2) / Math.max(1, items.length - 1);
+      const stepX = (plotWidth) / Math.max(1, items.length - 1);
       currentTrajectoryPoints = items.map((item, idx) => {
         const p = item.ref;
         const manner = getPhoneClass(p);
         const lvl = MANNER_LEVELS[manner] || 3;
-        const x = paddingX + idx * stepX;
+        const x = paddingLeft + idx * stepX;
         const y = levelY[lvl];
 
         // Find parent word
@@ -7365,12 +7491,12 @@ docker run --rm did-the-word-survive:latest --lexicon lexicons/sample_lexicon.tx
         return { x, y, item, manner, p, idx, parentWord, parentWordIdx };
       });
 
-      // 3. Highlight Layer Container (for the 25% opacity vertical highlighted area)
+      // 3. Highlight Layer Container
       const highlightGroup = document.createElementNS('http://www.w3.org/2000/svg', 'g');
       highlightGroup.id = 'svgHighlightGroup';
       svg.appendChild(highlightGroup);
 
-      // 4. Draw connecting bezier path
+      // 4. Connecting bezier path
       if (currentTrajectoryPoints.length > 1) {
         let d = `M ${currentTrajectoryPoints[0].x} ${currentTrajectoryPoints[0].y}`;
         for (let i = 0; i < currentTrajectoryPoints.length - 1; i++) {
@@ -7382,49 +7508,104 @@ docker run --rm did-the-word-survive:latest --lexicon lexicons/sample_lexicon.tx
         const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
         path.setAttribute('d', d);
         path.setAttribute('fill', 'none');
-        path.setAttribute('stroke', isDark ? 'rgba(242, 148, 200, 0.45)' : 'rgba(242, 148, 200, 0.65)');
+        path.setAttribute('stroke', isDark ? 'rgba(242, 148, 200, 0.55)' : 'rgba(242, 148, 200, 0.75)');
         path.setAttribute('stroke-width', '2.5');
         path.setAttribute('stroke-linecap', 'round');
         svg.appendChild(path);
       }
 
-      // 5. Draw interactive nodes
+      // 5. Draw interactive nodes (dots) & phoneme badges
       currentTrajectoryPoints.forEach(pt => {
         const color = getPhoneColor(pt.p, pt.item.type);
+
+        // Vertical tick guideline connecting node down to bottom track
+        const vLine = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+        vLine.setAttribute('x1', pt.x);
+        vLine.setAttribute('y1', pt.y);
+        vLine.setAttribute('x2', pt.x);
+        vLine.setAttribute('y2', height - 20);
+        vLine.setAttribute('stroke', isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.04)');
+        vLine.setAttribute('stroke-dasharray', '2,2');
+        svg.appendChild(vLine);
+
+        // Group for dot
+        const g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+        g.style.cursor = 'pointer';
+
+        // Outer glow circle
+        const glow = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+        glow.setAttribute('cx', pt.x);
+        glow.setAttribute('cy', pt.y);
+        glow.setAttribute('r', '9');
+        glow.setAttribute('fill', color);
+        glow.setAttribute('opacity', '0.22');
+        g.appendChild(glow);
+
+        // Main Point Dot
         const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
         circle.id = `trajNode_${pt.idx}`;
         circle.setAttribute('cx', pt.x);
         circle.setAttribute('cy', pt.y);
-        circle.setAttribute('r', '7.5');
+        circle.setAttribute('r', '6');
         circle.setAttribute('fill', color);
         circle.setAttribute('stroke', isDark ? '#1E293B' : '#FFFFFF');
-        circle.setAttribute('stroke-width', '2');
-        circle.style.cursor = 'pointer';
+        circle.setAttribute('stroke-width', '2.5');
         circle.style.transition = 'all 0.15s ease';
+        g.appendChild(circle);
+
+        // Inner Dot Core for sharp visibility
+        const core = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+        core.setAttribute('cx', pt.x);
+        core.setAttribute('cy', pt.y);
+        core.setAttribute('r', '2');
+        core.setAttribute('fill', '#FFFFFF');
+        core.setAttribute('pointer-events', 'none');
+        g.appendChild(core);
+
+        // Text label: placed below dot if top tier, placed above dot otherwise
+        const isUpper = pt.y <= 60;
+        const lblY = isUpper ? (pt.y + 17) : (pt.y - 11);
 
         const lbl = document.createElementNS('http://www.w3.org/2000/svg', 'text');
         lbl.id = `trajLbl_${pt.idx}`;
         lbl.setAttribute('x', pt.x);
-        lbl.setAttribute('y', pt.y + 18);
+        lbl.setAttribute('y', lblY);
         lbl.setAttribute('text-anchor', 'middle');
-        lbl.setAttribute('fill', isDark ? '#F1F5F9' : '#1E293B');
-        lbl.setAttribute('font-size', '9.5');
+        lbl.setAttribute('fill', isDark ? '#E2E8F0' : '#1E293B');
+        lbl.setAttribute('font-size', '9');
         lbl.setAttribute('font-weight', '800');
-        lbl.setAttribute('font-family', 'ui-monospace, monospace');
+        lbl.setAttribute('font-family', 'var(--font-mono, monospace)');
         lbl.textContent = pt.p;
+        lbl.style.pointerEvents = 'none';
+        g.appendChild(lbl);
+
+        // Bottom IPA label
+        const ipa = getPhoneIpa(pt.p);
+        const ipaLbl = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        ipaLbl.setAttribute('x', pt.x);
+        ipaLbl.setAttribute('y', height - 8);
+        ipaLbl.setAttribute('text-anchor', 'middle');
+        ipaLbl.setAttribute('fill', labelColor);
+        ipaLbl.setAttribute('font-size', '8.5');
+        ipaLbl.setAttribute('font-weight', '600');
+        ipaLbl.setAttribute('font-family', 'var(--font-mono, monospace)');
+        ipaLbl.textContent = `[${ipa}]`;
+        ipaLbl.style.pointerEvents = 'none';
+        svg.appendChild(ipaLbl);
 
         // Click on node highlights phoneme and correlates with Flow Map
-        circle.onclick = (e) => {
+        g.onclick = (e) => {
           e.stopPropagation();
           selectPhoneme(pt.idx);
         };
 
         // Hover events
-        circle.addEventListener('mouseenter', (ev) => {
-          circle.setAttribute('r', '10.5');
+        g.addEventListener('mouseenter', (ev) => {
+          circle.setAttribute('r', '8.5');
+          glow.setAttribute('r', '13');
+          glow.setAttribute('opacity', '0.45');
           const wrap = document.getElementById('trajectoryWrap');
           const wrapRect = wrap.getBoundingClientRect();
-          const ipa = getPhoneIpa(pt.p);
           tooltip.style.display = 'block';
           tooltip.innerHTML = `
             <div style="font-size:0.88rem; font-weight:800; color:var(--hp-coral); margin-bottom:0.2rem;">
@@ -7439,23 +7620,25 @@ docker run --rm did-the-word-survive:latest --lexicon lexicons/sample_lexicon.tx
           tooltip.style.top = `${ev.pageY - wrapRect.top - 40}px`;
         });
 
-        circle.addEventListener('mouseleave', () => {
+        g.addEventListener('mouseleave', () => {
           if (activeSelection.type === 'phone' && activeSelection.phoneIdx === pt.idx) {
-            circle.setAttribute('r', '12');
+            circle.setAttribute('r', '9');
           } else {
-            circle.setAttribute('r', '7.5');
+            circle.setAttribute('r', '6');
+            glow.setAttribute('r', '9');
+            glow.setAttribute('opacity', '0.22');
             tooltip.style.display = 'none';
           }
         });
 
-        svg.appendChild(circle);
-        svg.appendChild(lbl);
+        svg.appendChild(g);
       });
     }
 
     // ── Visualizer 3: Token Error Timeline Strip ──
     function renderErrorTimeline(wordAlign) {
       const strip = document.getElementById('errorTimelineStrip');
+      if (!strip) return;
       strip.innerHTML = '';
       if (!wordAlign.aligned.length) return;
 
@@ -7604,13 +7787,15 @@ docker run --rm did-the-word-survive:latest --lexicon lexicons/sample_lexicon.tx
       document.querySelectorAll('.manner-compact-card').forEach(el => el.classList.remove('active'));
       document.querySelectorAll('.trajectory-svg circle').forEach(el => {
         el.classList.remove('node-active-beacon');
-        el.setAttribute('r', '7.5');
+        if (el.id && el.id.startsWith('trajNode_')) {
+          el.setAttribute('r', '6');
+        }
       });
       if (highlightGroup) highlightGroup.innerHTML = '';
       if (tooltip) tooltip.style.display = 'none';
 
       if (!activeSelection.type) {
-        if (hintEl) hintEl.textContent = '💡 Click any phoneme or word to highlight correlation';
+        if (hintEl) hintEl.textContent = '';
         if (clearBtn) clearBtn.style.display = 'none';
         return;
       }
@@ -7637,7 +7822,10 @@ docker run --rm did-the-word-survive:latest --lexicon lexicons/sample_lexicon.tx
 
         // Highlight node on trajectory curve
         const circle = document.getElementById(`trajNode_${pIdx}`);
-        if (circle) circle.classList.add('node-active-beacon');
+        if (circle) {
+          circle.classList.add('node-active-beacon');
+          circle.setAttribute('r', '8.5');
+        }
 
         // Draw 25% Opacity Vertical Highlight Area on SVG around the phoneme
         if (highlightGroup) {
@@ -7646,7 +7834,7 @@ docker run --rm did-the-word-survive:latest --lexicon lexicons/sample_lexicon.tx
           rect.setAttribute('x', Math.max(5, pt.x - 17));
           rect.setAttribute('y', '8');
           rect.setAttribute('width', '34');
-          rect.setAttribute('height', '224');
+          rect.setAttribute('height', '238');
           highlightGroup.appendChild(rect);
         }
 
@@ -7709,7 +7897,7 @@ docker run --rm did-the-word-survive:latest --lexicon lexicons/sample_lexicon.tx
           rect.setAttribute('x', startX);
           rect.setAttribute('y', '8');
           rect.setAttribute('width', bandWidth);
-          rect.setAttribute('height', '224');
+          rect.setAttribute('height', '238');
           highlightGroup.appendChild(rect);
 
           // Word badge label above the highlighted area
