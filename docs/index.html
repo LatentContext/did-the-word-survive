@@ -2026,42 +2026,125 @@
 
     /* Page header */
     .spss-page-header {
-      padding: 2rem 2.5rem 1.5rem;
+      padding: 1.35rem 1.6rem;
       background: linear-gradient(135deg, rgba(242,148,200,0.06) 0%, rgba(136,223,242,0.07) 60%, rgba(100,191,86,0.05) 100%);
       border-bottom: 1px solid var(--card-border);
     }
     .spss-page-title-row {
       display: flex;
-      align-items: flex-start;
-      gap: 1rem;
-      margin-bottom: 0.75rem;
+      align-items: center;
+      gap: 0.85rem;
+      margin-bottom: 0.4rem;
     }
     .spss-section-icon {
-      font-size: 2rem;
+      font-size: 1.75rem;
       line-height: 1;
       flex-shrink: 0;
-      margin-top: 0.15rem;
     }
-    .spss-page-header .card-title { margin-bottom: 0 !important; }
-    .spss-subtitle {
-      font-size: 0.82rem;
-      font-weight: 700;
-      color: var(--text-muted);
-      letter-spacing: 0.03em;
-      text-transform: uppercase;
-    }
+    .spss-page-header .card-title { margin-bottom: 0 !important; font-size: 1.25rem !important; }
     .spss-intro-text {
-      font-size: 0.93rem;
+      font-size: 0.88rem;
       color: var(--text-muted);
-      line-height: 1.65;
+      line-height: 1.55;
+      margin: 0;
     }
 
-    /* Generic section wrapper */
-    .spss-section {
-      padding: 1.75rem 2.5rem;
+    /* ── Dropdown Menu Bar & Accordion Panels ── */
+    .spss-menu-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 0.75rem 1.6rem;
+      background: var(--diff-bg);
+      border-bottom: 1px solid var(--card-border);
+      flex-wrap: wrap;
+    }
+    .spss-menu-label {
+      font-size: 0.78rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+    }
+    .spss-dropdown-select {
+      padding: 0.4rem 0.85rem;
+      border-radius: 8px;
+      border: 1.5px solid var(--card-border);
+      background: var(--surface);
+      color: var(--text);
+      font-size: 0.82rem;
+      font-weight: 700;
+      cursor: pointer;
+      min-width: 340px;
+      max-width: 100%;
+    }
+    .spss-dropdown-select:focus {
+      outline: none;
+      border-color: var(--hp-pink);
+    }
+
+    .spss-dropdown-section {
       border-bottom: 1px solid var(--card-border);
     }
-    .spss-section:last-child { border-bottom: none; }
+    .spss-dropdown-section:last-child {
+      border-bottom: none;
+    }
+    .spss-dropdown-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.95rem 1.6rem;
+      background: var(--surface);
+      cursor: pointer;
+      user-select: none;
+      transition: background 0.15s ease;
+      gap: 0.75rem;
+    }
+    .spss-dropdown-header:hover {
+      background: var(--diff-bg);
+    }
+    .spss-dropdown-header.active {
+      background: linear-gradient(90deg, rgba(242,148,200,0.06) 0%, transparent 100%);
+      border-bottom: 1px solid var(--card-border);
+    }
+    .spss-dropdown-left {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+    .spss-dropdown-title {
+      font-size: 0.92rem;
+      font-weight: 800;
+      color: var(--text);
+    }
+    .spss-dropdown-pill {
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 0.15rem 0.5rem;
+      border-radius: 6px;
+      background: var(--diff-bg);
+      border: 1px solid var(--card-border);
+      color: var(--text-muted);
+    }
+    .spss-dropdown-chevron {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      transition: transform 0.25s ease;
+      flex-shrink: 0;
+    }
+    .spss-dropdown-header.active .spss-dropdown-chevron {
+      transform: rotate(180deg);
+      color: var(--hp-coral);
+    }
+    .spss-dropdown-body {
+      padding: 1.25rem 1.6rem;
+      display: block;
+    }
+    .spss-dropdown-body.collapsed {
+      display: none;
+    }
 
     /* Section label chip */
     .spss-section-label {
@@ -2208,26 +2291,25 @@
     /* ── HMM-GMM Diagram ── */
     .spss-workflow-diagram {
       display: flex;
-      align-items: stretch;
-      justify-content: flex-start;
-      gap: 0;
-      overflow-x: auto;
-      padding: 1.5rem 1rem;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      padding: 1.25rem 1rem;
       background: var(--diff-bg);
       border: 1px solid var(--card-border);
       border-radius: 12px;
-      scrollbar-width: thin;
     }
     .spss-phone-group {
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 0.5rem;
-      padding: 1rem 1.1rem;
+      gap: 0.45rem;
+      padding: 0.85rem 1rem;
       border-radius: 10px;
       background: var(--surface);
       border: 2px solid var(--card-border);
-      min-width: 155px;
+      min-width: 140px;
       flex-shrink: 0;
       transition: border-color 0.2s ease, box-shadow 0.2s ease;
     }
@@ -2348,6 +2430,110 @@
       display: flex;
       gap: 0.4rem;
       flex-wrap: wrap;
+    }
+
+    /* ── Interactive status bar & crosshair overlay ── */
+    .spec-status-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      padding: 0.65rem 0.95rem;
+      background: var(--diff-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 8px;
+      margin-bottom: 0.85rem;
+      flex-wrap: wrap;
+    }
+    .spec-status-desc {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.84rem;
+      color: var(--text);
+      font-weight: 600;
+      line-height: 1.4;
+      flex-wrap: wrap;
+    }
+    .spec-status-pulse {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--hp-green);
+      box-shadow: 0 0 0 2px rgba(100,191,86,0.3);
+      flex-shrink: 0;
+      animation: pulseGlow 1.8s infinite;
+    }
+    @keyframes pulseGlow {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.3); opacity: 0.6; }
+    }
+    .spec-status-title {
+      font-weight: 800;
+      color: var(--hp-pink);
+    }
+    .spec-status-detail {
+      color: var(--text-muted);
+    }
+    .spec-cursor-readout {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      flex-wrap: wrap;
+    }
+    .spec-cursor-chip {
+      padding: 0.2rem 0.5rem;
+      background: var(--surface);
+      border: 1px solid var(--card-border);
+      border-radius: 5px;
+      color: var(--text-muted);
+    }
+    .spec-cursor-chip strong {
+      color: var(--text);
+    }
+    .spec-cursor-chip.feature {
+      background: rgba(246,89,54,0.12);
+      border-color: var(--hp-coral);
+      color: var(--hp-coral);
+      font-weight: 800;
+    }
+    .spec-canvas-wrap {
+      position: relative;
+      user-select: none;
+    }
+    .spec-interactive-tooltip {
+      position: absolute;
+      pointer-events: none;
+      background: var(--surface);
+      border: 1.5px solid var(--hp-pink);
+      border-radius: 8px;
+      padding: 0.45rem 0.75rem;
+      font-size: 0.76rem;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.18);
+      z-index: 10;
+      transform: translate(-50%, -115%);
+      white-space: nowrap;
+      line-height: 1.35;
+      backdrop-filter: blur(8px);
+    }
+    .spec-interactive-tooltip .tt-title {
+      font-weight: 800;
+      color: var(--hp-pink);
+      margin-bottom: 2px;
+    }
+    .spec-interactive-tooltip .tt-detail {
+      font-family: var(--font-mono);
+      color: var(--text-muted);
+    }
+    .spec-interactive-tooltip .tt-tag {
+      display: inline-block;
+      margin-top: 3px;
+      padding: 1px 5px;
+      border-radius: 4px;
+      font-weight: 800;
+      font-size: 0.7rem;
     }
 
     /* ── Insight card ── */
@@ -2759,244 +2945,294 @@
           <div class="spss-page-title-row">
             <span class="spss-section-icon">🔬</span>
             <div>
-              <h2 class="card-title" style="margin-bottom:0.35rem;">Statistical Parametric Speech Synthesis</h2>
-              <p class="spss-subtitle">SPSS &amp; Waveform Analysis • Aalto University Curriculum (Fig. 2)</p>
+              <h2 class="card-title" style="margin-bottom:0.25rem;">Statistical Parametric Speech Synthesis</h2>
             </div>
           </div>
           <p class="spss-intro-text">
-            Explore the 3-state HMM-GMM phoneme decomposition (<em>s₁, s₂, s₃</em>), resonant spectral <strong>Mountains</strong>
-            (formant poles F₁, F₂, F₃) vs. <strong>Valleys</strong> (nasal antiformants, stop closures, radiation roll-off),
-            and high-precision neural vocoder audio playback.
+            Explore the 3-state HMM-GMM phoneme decomposition (s₁, s₂, s₃), resonant spectral Mountains (formant poles F₁, F₂, F₃) vs. Valleys (nasal antiformants, stop closures, radiation roll-off), and high-precision neural vocoder audio playback.
           </p>
+        </div>
+
+        <!-- ── DROPDOWN QUICK-JUMP MENU BAR ── -->
+        <div class="spss-menu-bar">
+          <span class="spss-menu-label">Interactive Modules</span>
+          <select class="spss-dropdown-select" id="spssModuleSelect" onchange="onSpssModuleSelect(this.value)">
+            <option value="all">📂 View All Modules (Default)</option>
+            <option value="spssSecAudio">§1 · 🎵 High-Precision Empirical Audio Player</option>
+            <option value="spssSecHmm">§2 · HMM-GMM 3-State Phoneme Sequence Model — Word "cat" /k æ t/</option>
+            <option value="spssSecSpec">§3 · Spectral Energy Distribution — Formant "Mountains" vs. Antiresonance "Valleys"</option>
+            <option value="spssSecInsight">§4 · 💡 Acoustic Insight: Classical SPSS vs. Neural Vocoders</option>
+          </select>
         </div>
 
         <!-- ══════════════════════════════════════════ -->
         <!--   SECTION 1 · AUDIO PLAYER                -->
         <!-- ══════════════════════════════════════════ -->
-        <div class="spss-section">
-          <div class="spss-section-label">
-            <span class="spss-section-num">§1</span>
-            <span>🎵 High-Precision Empirical Audio Player</span>
+        <div class="spss-dropdown-section" id="spssSecAudio">
+          <div class="spss-dropdown-header active" onclick="toggleSpssAccordion('spssSecAudio')">
+            <div class="spss-dropdown-left">
+              <span class="spss-dropdown-pill">§1 AUDIO</span>
+              <span class="spss-dropdown-title">🎵 High-Precision Empirical Audio Player</span>
+            </div>
+            <span class="spss-dropdown-chevron">▼</span>
           </div>
 
-          <div class="audio-player-deck spss-audio-deck">
+          <div class="spss-dropdown-body" id="spssBody_spssSecAudio">
+            <div class="audio-player-deck spss-audio-deck">
 
-            <!-- Top row: title + LCD timer -->
-            <div class="spss-audio-top">
-              <div class="spss-audio-info">
-                <span class="spss-audio-utterance-badge">LJ016-0169</span>
-                <span class="spss-audio-meta">LJSpeech Reference vs. 14 Neural Vocoders</span>
-              </div>
-              <div class="audio-lcd-panel">
-                <span class="audio-lcd-label">hh:mm:ss.sss</span>
-                <span class="audio-lcd-timer" id="audioTimerDisplay">00:00:00.000</span>
-                <span class="audio-lcd-duration" id="audioDurationDisplay">/ 00:00:04.186</span>
-              </div>
-            </div>
-
-            <!-- Controls: transport buttons + model selector + rate -->
-            <div class="spss-controls-grid">
-              <!-- Transport buttons -->
-              <div class="spss-transport-group">
-                <button class="audio-btn primary" id="audioPlayBtn" onclick="toggleAudioPlayback()">
-                  <span id="playIcon">▶</span>
-                  <span id="playText">Play</span>
-                </button>
-                <button class="audio-btn" onclick="stopAudioPlayback()">⏹ Stop</button>
-                <button class="audio-btn" onclick="seekAudioRelative(-0.5)" title="Rewind 0.5s">⏪ −0.5s</button>
-                <button class="audio-btn" onclick="seekAudioRelative(0.5)"  title="Forward 0.5s">⏩ +0.5s</button>
-              </div>
-
-              <!-- Model picker -->
-              <div class="spss-model-picker-group">
-                <label class="spss-ctrl-label">Model</label>
-                <select class="audio-model-picker" id="audioModelSelect" onchange="switchAudioModel(this.value)">
-                  <option value="gt">🎙️ Ground Truth (22.05 kHz Reference)</option>
-                  <option value="periodwave_24k">🥇 M14 PeriodWave-24k (Rank 1)</option>
-                  <option value="bigvgan_v2">🥈 M7 BigVGAN-v2 112M (Rank 2)</option>
-                  <option value="periodwave_turbo">🥉 M5 PeriodWave-Turbo (Rank 3)</option>
-                  <option value="flow2gan">⚡ M2 Flow2GAN 4-step (Rank 4)</option>
-                  <option value="bridgevoc">🌉 M4 BridgeVoC (Rank 5)</option>
-                  <option value="vocos">⚡ M3 Vocos Mel-24kHz (Rank 6)</option>
-                  <option value="comvo_large">📦 M9 ComVo-Large (Rank 7)</option>
-                  <option value="wavefm">🌊 M10 WaveFM (Rank 8)</option>
-                  <option value="bigvgan_base">🐍 M8 BigVGAN-Base 14M (Rank 9)</option>
-                  <option value="rndvoc">🎲 M1 RNDVoC (Rank 10)</option>
-                  <option value="comvo_base">📦 M6 ComVo-Base (Rank 11)</option>
-                  <option value="rfwave">🌊 M13 RFWave (Rank 12)</option>
-                  <option value="hifigan">📻 M11 HiFi-GAN Universal (Rank 13)</option>
-                  <option value="freev">⚠️ M12 FreeV (Rank 14)</option>
-                </select>
-              </div>
-
-              <!-- Playback rate -->
-              <div class="spss-rate-group">
-                <label class="spss-ctrl-label">Speed</label>
-                <div class="spss-rate-pills">
-                  <button class="audio-rate-btn" onclick="setAudioRate(0.5, this)">0.5×</button>
-                  <button class="audio-rate-btn" onclick="setAudioRate(0.75, this)">0.75×</button>
-                  <button class="audio-rate-btn active" onclick="setAudioRate(1.0, this)">1.0×</button>
-                  <button class="audio-rate-btn" onclick="setAudioRate(1.25, this)">1.25×</button>
+              <!-- Top row: title + LCD timer -->
+              <div class="spss-audio-top">
+                <div class="spss-audio-info">
+                  <span class="spss-audio-utterance-badge">LJ016-0169</span>
+                  <span class="spss-audio-meta">LJSpeech Reference vs. 14 Neural Vocoders</span>
+                </div>
+                <div class="audio-lcd-panel">
+                  <span class="audio-lcd-label">hh:mm:ss.sss</span>
+                  <span class="audio-lcd-timer" id="audioTimerDisplay">00:00:00.000</span>
+                  <span class="audio-lcd-duration" id="audioDurationDisplay">/ 00:00:04.186</span>
                 </div>
               </div>
-            </div>
 
-            <!-- Scrub slider -->
-            <div class="audio-scrubber-wrap">
-              <input type="range" class="audio-scrub-slider" id="audioScrubber"
-                     min="0" max="4.1867" step="0.001" value="0" oninput="onScrubInput(this.value)">
-            </div>
-
-            <!-- Forced Alignment Timeline -->
-            <div class="audio-stage-card">
-              <div class="audio-stage-header">
-                <div style="display:flex; align-items:center; gap:0.6rem;">
-                  <span class="pulse-beacon-dot"></span>
-                  <span class="spss-align-title">Forced-Alignment Acoustic Timeline (MFA TextGrid)</span>
+              <!-- Controls: transport buttons + model selector + rate -->
+              <div class="spss-controls-grid">
+                <!-- Transport buttons -->
+                <div class="spss-transport-group">
+                  <button class="audio-btn primary" id="audioPlayBtn" onclick="toggleAudioPlayback()">
+                    <span id="playIcon">▶</span>
+                    <span id="playText">Play</span>
+                  </button>
+                  <button class="audio-btn" onclick="stopAudioPlayback()">⏹ Stop</button>
+                  <button class="audio-btn" onclick="seekAudioRelative(-0.5)" title="Rewind 0.5s">⏪ −0.5s</button>
+                  <button class="audio-btn" onclick="seekAudioRelative(0.5)"  title="Forward 0.5s">⏩ +0.5s</button>
                 </div>
-                <span id="syncCurrentInfo" class="spss-sync-status">Click any word below or press Play</span>
+
+                <!-- Model picker -->
+                <div class="spss-model-picker-group">
+                  <label class="spss-ctrl-label">Model</label>
+                  <select class="audio-model-picker" id="audioModelSelect" onchange="switchAudioModel(this.value)">
+                    <option value="gt">🎙️ Ground Truth (22.05 kHz Reference)</option>
+                    <option value="periodwave_24k">🥇 M14 PeriodWave-24k (Rank 1)</option>
+                    <option value="bigvgan_v2">🥈 M7 BigVGAN-v2 112M (Rank 2)</option>
+                    <option value="periodwave_turbo">🥉 M5 PeriodWave-Turbo (Rank 3)</option>
+                    <option value="flow2gan">⚡ M2 Flow2GAN 4-step (Rank 4)</option>
+                    <option value="bridgevoc">🌉 M4 BridgeVoC (Rank 5)</option>
+                    <option value="vocos">⚡ M3 Vocos Mel-24kHz (Rank 6)</option>
+                    <option value="comvo_large">📦 M9 ComVo-Large (Rank 7)</option>
+                    <option value="wavefm">🌊 M10 WaveFM (Rank 8)</option>
+                    <option value="bigvgan_base">🐍 M8 BigVGAN-Base 14M (Rank 9)</option>
+                    <option value="rndvoc">🎲 M1 RNDVoC (Rank 10)</option>
+                    <option value="comvo_base">📦 M6 ComVo-Base (Rank 11)</option>
+                    <option value="rfwave">🌊 M13 RFWave (Rank 12)</option>
+                    <option value="hifigan">📻 M11 HiFi-GAN Universal (Rank 13)</option>
+                    <option value="freev">⚠️ M12 FreeV (Rank 14)</option>
+                  </select>
+                </div>
+
+                <!-- Playback rate -->
+                <div class="spss-rate-group">
+                  <label class="spss-ctrl-label">Speed</label>
+                  <div class="spss-rate-pills">
+                    <button class="audio-rate-btn" onclick="setAudioRate(0.5, this)">0.5×</button>
+                    <button class="audio-rate-btn" onclick="setAudioRate(0.75, this)">0.75×</button>
+                    <button class="audio-rate-btn active" onclick="setAudioRate(1.0, this)">1.0×</button>
+                    <button class="audio-rate-btn" onclick="setAudioRate(1.25, this)">1.25×</button>
+                  </div>
+                </div>
               </div>
 
-              <div class="spss-timeline-section">
-                <div class="spss-timeline-label">Sentence Words <span class="spss-hint">(click to jump)</span></div>
-                <div class="sync-word-timeline" id="syncWordStream"><!-- JS populated --></div>
+              <!-- Scrub slider -->
+              <div class="audio-scrubber-wrap">
+                <input type="range" class="audio-scrub-slider" id="audioScrubber"
+                       min="0" max="4.1867" step="0.001" value="0" oninput="onScrubInput(this.value)">
               </div>
 
-              <div class="active-phonetic-stage" id="activePhoneticStage"><!-- JS populated --></div>
+              <!-- Forced Alignment Timeline -->
+              <div class="audio-stage-card">
+                <div class="audio-stage-header">
+                  <div style="display:flex; align-items:center; gap:0.6rem;">
+                    <span class="pulse-beacon-dot"></span>
+                    <span class="spss-align-title">Forced-Alignment Acoustic Timeline (MFA TextGrid)</span>
+                  </div>
+                  <span id="syncCurrentInfo" class="spss-sync-status">Click any word below or press Play</span>
+                </div>
+
+                <div class="spss-timeline-section">
+                  <div class="spss-timeline-label">Sentence Words <span class="spss-hint">(click to jump)</span></div>
+                  <div class="sync-word-timeline" id="syncWordStream"><!-- JS populated --></div>
+                </div>
+
+                <div class="active-phonetic-stage" id="activePhoneticStage"><!-- JS populated --></div>
+              </div>
+
+              <audio id="mainAudioElement" preload="auto" style="display:none;"></audio>
             </div>
-
-            <audio id="mainAudioElement" preload="auto" style="display:none;"></audio>
           </div>
         </div>
 
         <!-- ══════════════════════════════════════════ -->
         <!--   SECTION 2 · HMM-GMM DIAGRAM             -->
         <!-- ══════════════════════════════════════════ -->
-        <div class="spss-section">
-          <div class="spss-section-label">
-            <span class="spss-section-num">§2</span>
-            <span>HMM-GMM 3-State Phoneme Sequence Model — Word "cat" /k æ t/</span>
+        <div class="spss-dropdown-section" id="spssSecHmm">
+          <div class="spss-dropdown-header active" onclick="toggleSpssAccordion('spssSecHmm')">
+            <div class="spss-dropdown-left">
+              <span class="spss-dropdown-pill">§2 HMM-GMM</span>
+              <span class="spss-dropdown-title">🧬 HMM-GMM 3-State Phoneme Sequence Model — Word "cat" /k æ t/</span>
+            </div>
+            <span class="spss-dropdown-chevron">▼</span>
           </div>
-          <p class="spss-section-desc">
-            Each phoneme is decomposed into <strong>3 left-to-right Markov states</strong>
-            (s₁ onset → s₂ steady nucleus → s₃ coda decay). At each time step <em>t</em>, the active state
-            samples an <em>N</em>-dimensional feature vector <em>y_t</em> from its GMM.
-            <span class="spss-hint">Click any state badge to view its spectral response.</span>
-          </p>
 
-          <div class="spss-workflow-diagram" id="spssWorkflowDiagram">
+          <div class="spss-dropdown-body" id="spssBody_spssSecHmm">
+            <p class="spss-section-desc">
+              Left-to-right 3-state HMM: onset (s₁), steady nucleus (s₂), coda decay (s₃). Click any state badge to inspect its spectral response.
+            </p>
 
-            <div class="spss-phone-group" id="spssGroup_k">
-              <div class="spss-phone-header">/k/ [k]<span class="spss-manner-tag">Velar Stop</span></div>
-              <div class="spss-states-row">
-                <button class="spss-state-badge" onclick="selectSpssPhoneState('k', 1, this)">k₁<small>Onset</small></button>
-                <button class="spss-state-badge" onclick="selectSpssPhoneState('k', 2, this)">k₂<small>Burst</small></button>
-                <button class="spss-state-badge" onclick="selectSpssPhoneState('k', 3, this)">k₃<small>VOT</small></button>
+            <div class="spss-workflow-diagram" id="spssWorkflowDiagram">
+
+              <div class="spss-phone-group" id="spssGroup_k">
+                <div class="spss-phone-header">/k/ [k]<span class="spss-manner-tag">Velar Stop</span></div>
+                <div class="spss-states-row">
+                  <button class="spss-state-badge" onclick="selectSpssPhoneState('k', 1, this)">k₁<small>Onset</small></button>
+                  <button class="spss-state-badge" onclick="selectSpssPhoneState('k', 2, this)">k₂<small>Burst</small></button>
+                  <button class="spss-state-badge" onclick="selectSpssPhoneState('k', 3, this)">k₃<small>VOT</small></button>
+                </div>
               </div>
-            </div>
 
-            <div class="spss-arrow-connector">
-              <div class="spss-arrow-line"></div>
-              <div class="spss-arrow-head">▶</div>
-            </div>
-
-            <div class="spss-phone-group active" id="spssGroup_ae">
-              <div class="spss-phone-header">/æ/ [æ]<span class="spss-manner-tag">Open Vowel</span></div>
-              <div class="spss-states-row">
-                <button class="spss-state-badge" onclick="selectSpssPhoneState('ae', 1, this)">æ₁<small>Rise</small></button>
-                <button class="spss-state-badge active" onclick="selectSpssPhoneState('ae', 2, this)">æ₂<small>Nucleus</small></button>
-                <button class="spss-state-badge" onclick="selectSpssPhoneState('ae', 3, this)">æ₃<small>Decay</small></button>
+              <div class="spss-arrow-connector">
+                <div class="spss-arrow-line"></div>
+                <div class="spss-arrow-head">▶</div>
               </div>
-            </div>
 
-            <div class="spss-arrow-connector">
-              <div class="spss-arrow-line"></div>
-              <div class="spss-arrow-head">▶</div>
-            </div>
-
-            <div class="spss-phone-group" id="spssGroup_t">
-              <div class="spss-phone-header">/t/ [t]<span class="spss-manner-tag">Alveolar Stop</span></div>
-              <div class="spss-states-row">
-                <button class="spss-state-badge" onclick="selectSpssPhoneState('t', 1, this)">t₁<small>Closure</small></button>
-                <button class="spss-state-badge" onclick="selectSpssPhoneState('t', 2, this)">t₂<small>Burst</small></button>
-                <button class="spss-state-badge" onclick="selectSpssPhoneState('t', 3, this)">t₃<small>Release</small></button>
+              <div class="spss-phone-group active" id="spssGroup_ae">
+                <div class="spss-phone-header">/æ/ [æ]<span class="spss-manner-tag">Open Vowel</span></div>
+                <div class="spss-states-row">
+                  <button class="spss-state-badge" onclick="selectSpssPhoneState('ae', 1, this)">æ₁<small>Rise</small></button>
+                  <button class="spss-state-badge active" onclick="selectSpssPhoneState('ae', 2, this)">æ₂<small>Nucleus</small></button>
+                  <button class="spss-state-badge" onclick="selectSpssPhoneState('ae', 3, this)">æ₃<small>Decay</small></button>
+                </div>
               </div>
-            </div>
 
-            <div class="spss-arrow-connector">
-              <div class="spss-arrow-line"></div>
-              <div class="spss-arrow-head">▶</div>
-            </div>
-
-            <div class="spss-phone-group spss-silence-group" id="spssGroup_sil">
-              <div class="spss-phone-header">[ sil ]<span class="spss-manner-tag">Silence</span></div>
-              <div class="spss-states-row">
-                <button class="spss-state-badge" onclick="selectSpssPhoneState('sil', 1, this)">s₁₀<small>Decay</small></button>
+              <div class="spss-arrow-connector">
+                <div class="spss-arrow-line"></div>
+                <div class="spss-arrow-head">▶</div>
               </div>
-            </div>
 
+              <div class="spss-phone-group" id="spssGroup_t">
+                <div class="spss-phone-header">/t/ [t]<span class="spss-manner-tag">Alveolar Stop</span></div>
+                <div class="spss-states-row">
+                  <button class="spss-state-badge" onclick="selectSpssPhoneState('t', 1, this)">t₁<small>Closure</small></button>
+                  <button class="spss-state-badge" onclick="selectSpssPhoneState('t', 2, this)">t₂<small>Burst</small></button>
+                  <button class="spss-state-badge" onclick="selectSpssPhoneState('t', 3, this)">t₃<small>Release</small></button>
+                </div>
+              </div>
+
+              <div class="spss-arrow-connector">
+                <div class="spss-arrow-line"></div>
+                <div class="spss-arrow-head">▶</div>
+              </div>
+
+              <div class="spss-phone-group" id="spssGroup_m">
+                <div class="spss-phone-header">/m/ [m]<span class="spss-manner-tag">Bilabial Nasal</span></div>
+                <div class="spss-states-row">
+                  <button class="spss-state-badge" onclick="selectSpssPhoneState('m', 1, this)">m₁<small>Closure</small></button>
+                  <button class="spss-state-badge" onclick="selectSpssPhoneState('m', 2, this)" title="Nasal Murmur: -32dB Antiformant Valley at 850Hz">m₂<small>Murmur</small></button>
+                  <button class="spss-state-badge" onclick="selectSpssPhoneState('m', 3, this)">m₃<small>Release</small></button>
+                </div>
+              </div>
+
+              <div class="spss-arrow-connector">
+                <div class="spss-arrow-line"></div>
+                <div class="spss-arrow-head">▶</div>
+              </div>
+
+              <div class="spss-phone-group spss-silence-group" id="spssGroup_sil">
+                <div class="spss-phone-header">[ sil ]<span class="spss-manner-tag">Silence</span></div>
+                <div class="spss-states-row">
+                  <button class="spss-state-badge" onclick="selectSpssPhoneState('sil', 1, this)">s₁₀<small>Decay</small></button>
+                </div>
+              </div>
+
+            </div>
           </div>
         </div>
 
         <!-- ══════════════════════════════════════════ -->
         <!--   SECTION 3 · SPECTRAL CANVAS             -->
         <!-- ══════════════════════════════════════════ -->
-        <div class="spss-section">
-          <div class="spss-section-label">
-            <span class="spss-section-num">§3</span>
-            <span>Spectral Energy Distribution — Formant "Mountains" vs. Antiresonance "Valleys"</span>
+        <div class="spss-dropdown-section" id="spssSecSpec">
+          <div class="spss-dropdown-header active" onclick="toggleSpssAccordion('spssSecSpec')">
+            <div class="spss-dropdown-left">
+              <span class="spss-dropdown-pill">§3 SPECTRUM</span>
+              <span class="spss-dropdown-title">⛰️ Spectral Energy Distribution — Formant "Mountains" vs. Antiresonance "Valleys"</span>
+            </div>
+            <span class="spss-dropdown-chevron">▼</span>
           </div>
-          <p class="spss-section-desc">
-            Frequency response H(z) showing resonant formant poles (F₁, F₂, F₃) vs. zeros (nasal notches, closures).
-            <span class="spss-hint">Select a phoneme preset and HMM state, then toggle layers.</span>
-          </p>
 
-          <div class="spec-vis-container spss-spec-container">
+          <div class="spss-dropdown-body" id="spssBody_spssSecSpec">
+            <p class="spss-section-desc">
+              Frequency response H(z) showing resonant formant poles (F₁, F₂, F₃) vs. anti-resonant zeros (nasal notches, closures). Hover over plot to inspect frequency and energy.
+            </p>
 
-            <!-- Controls row: phoneme pills + state + layer toggles -->
-            <div class="spss-spec-controls">
-              <div class="spss-spec-ctrl-group">
-                <div class="spss-ctrl-label">Phoneme</div>
-                <div class="spec-selector-pills">
-                  <button class="spec-phone-btn active" data-phone="ae" onclick="selectSpecPhone('ae', this)">/æ/ cat</button>
-                  <button class="spec-phone-btn" data-phone="i"  onclick="selectSpecPhone('i',  this)">/i/ see</button>
-                  <button class="spec-phone-btn" data-phone="u"  onclick="selectSpecPhone('u',  this)">/u/ boot</button>
-                  <button class="spec-phone-btn" data-phone="m"  onclick="selectSpecPhone('m',  this)">/m/ nasal</button>
-                  <button class="spec-phone-btn" data-phone="s"  onclick="selectSpecPhone('s',  this)">/s/ fric.</button>
-                  <button class="spec-phone-btn" data-phone="t"  onclick="selectSpecPhone('t',  this)">/t/ stop</button>
+            <div class="spec-vis-container spss-spec-container">
+
+              <!-- Controls row: phoneme pills + state + layer toggles -->
+              <div class="spss-spec-controls">
+                <div class="spss-spec-ctrl-group">
+                  <div class="spss-ctrl-label">Phoneme</div>
+                  <div class="spec-selector-pills">
+                    <button class="spec-phone-btn active" data-phone="ae" onclick="selectSpecPhone('ae', this)">/æ/ cat</button>
+                    <button class="spec-phone-btn" data-phone="i"  onclick="selectSpecPhone('i',  this)">/i/ see</button>
+                    <button class="spec-phone-btn" data-phone="u"  onclick="selectSpecPhone('u',  this)">/u/ boot</button>
+                    <button class="spec-phone-btn" data-phone="m"  onclick="selectSpecPhone('m',  this)">/m/ nasal</button>
+                    <button class="spec-phone-btn" data-phone="s"  onclick="selectSpecPhone('s',  this)">/s/ fric.</button>
+                    <button class="spec-phone-btn" data-phone="t"  onclick="selectSpecPhone('t',  this)">/t/ stop</button>
+                  </div>
+                </div>
+                <div class="spss-spec-ctrl-group">
+                  <div class="spss-ctrl-label">HMM State</div>
+                  <div style="display:flex; gap:0.35rem; flex-wrap:wrap;">
+                    <button class="spec-state-btn"        data-state="1" onclick="selectSpecState(1, this)">s₁ Onset</button>
+                    <button class="spec-state-btn active" data-state="2" onclick="selectSpecState(2, this)">s₂ Nucleus</button>
+                    <button class="spec-state-btn"        data-state="3" onclick="selectSpecState(3, this)">s₃ Coda</button>
+                  </div>
+                </div>
+                <div class="spss-spec-ctrl-group">
+                  <div class="spss-ctrl-label">Layers</div>
+                  <div class="spec-layer-toggles">
+                    <button class="spec-layer-btn active" id="toggleLayerEnv" onclick="toggleSpecLayer('env', this)">Formant Env.</button>
+                    <button class="spec-layer-btn active" id="toggleLayerMel" onclick="toggleSpecLayer('mel', this)">Mel-Bank</button>
+                    <button class="spec-layer-btn active" id="toggleLayerVoc" onclick="toggleSpecLayer('voc', this)">Vocoder vs GT</button>
+                  </div>
                 </div>
               </div>
-              <div class="spss-spec-ctrl-group">
-                <div class="spss-ctrl-label">HMM State</div>
-                <div style="display:flex; gap:0.35rem; flex-wrap:wrap;">
-                  <button class="spec-state-btn"        data-state="1" onclick="selectSpecState(1, this)">s₁ Onset</button>
-                  <button class="spec-state-btn active" data-state="2" onclick="selectSpecState(2, this)">s₂ Nucleus</button>
-                  <button class="spec-state-btn"        data-state="3" onclick="selectSpecState(3, this)">s₃ Coda</button>
+
+              <!-- Interactive Status & Readout Bar -->
+              <div class="spec-status-bar" id="specStatusBar">
+                <div class="spec-status-desc" id="specStatusText">
+                  <span class="spec-status-pulse"></span>
+                  <span class="spec-status-title">Phoneme: /æ/ "cat"</span> • <span class="spec-status-detail">State 2: Steady-state nucleus: wide pharynx creates high F1 resonant mountain</span>
+                </div>
+                <div class="spec-cursor-readout" id="specCursorReadout">
+                  <span class="spec-cursor-chip" id="specReadoutFreq">Freq: <strong>—</strong></span>
+                  <span class="spec-cursor-chip" id="specReadoutDb">Energy: <strong>—</strong></span>
+                  <span class="spec-cursor-chip feature" id="specReadoutFeature" style="display:none;"></span>
                 </div>
               </div>
-              <div class="spss-spec-ctrl-group">
-                <div class="spss-ctrl-label">Layers</div>
-                <div class="spec-layer-toggles">
-                  <button class="spec-layer-btn active" id="toggleLayerEnv" onclick="toggleSpecLayer('env', this)">Formant Env.</button>
-                  <button class="spec-layer-btn active" id="toggleLayerMel" onclick="toggleSpecLayer('mel', this)">Mel-Bank</button>
-                  <button class="spec-layer-btn active" id="toggleLayerVoc" onclick="toggleSpecLayer('voc', this)">Vocoder vs GT</button>
-                </div>
+
+              <!-- Responsive SVG Canvas -->
+              <div class="spec-canvas-wrap" id="specCanvasWrap" style="position:relative; cursor:crosshair;">
+                <svg class="spec-svg" id="specSvg" viewBox="0 0 900 320" preserveAspectRatio="none">
+                  <!-- Dynamically rendered -->
+                </svg>
+                <div class="spec-interactive-tooltip" id="specTooltip" style="display:none;"></div>
               </div>
-            </div>
 
-            <!-- Responsive SVG Canvas -->
-            <div class="spec-canvas-wrap" id="specCanvasWrap">
-              <svg class="spec-svg" id="specSvg" viewBox="0 0 900 320" preserveAspectRatio="none">
-                <!-- Dynamically rendered -->
-              </svg>
-            </div>
-
-            <!-- Legend -->
-            <div class="spec-legend-banner">
-              <div class="spec-legend-item"><span class="spec-indicator-box" style="background:var(--hp-green);"></span>Spectral "Mountains" (Formants F₁ F₂ F₃)</div>
-              <div class="spec-legend-item"><span class="spec-indicator-box" style="background:var(--hp-coral);"></span>Spectral "Valleys" (Nasal Zeros &amp; Closures)</div>
-              <div class="spec-legend-item"><span class="spec-indicator-box" style="background:var(--hp-sky);"></span>Mel Filterbank (80 Triangular Bands)</div>
-              <div class="spec-legend-item"><span class="spec-indicator-box" style="background:var(--hp-pink);"></span>Neural Vocoder Synthesis Envelope</div>
+              <!-- Legend -->
+              <div class="spec-legend-banner">
+                <div class="spec-legend-item"><span class="spec-indicator-box" style="background:var(--hp-green);"></span>Spectral "Mountains" (Formants F₁ F₂ F₃)</div>
+                <div class="spec-legend-item"><span class="spec-indicator-box" style="background:var(--hp-coral);"></span>Spectral "Valleys" (Nasal Zeros &amp; Closures)</div>
+                <div class="spec-legend-item"><span class="spec-indicator-box" style="background:var(--hp-sky);"></span>Mel Filterbank (80 Triangular Bands)</div>
+                <div class="spec-legend-item"><span class="spec-indicator-box" style="background:var(--hp-pink);"></span>Neural Vocoder Synthesis Envelope</div>
+              </div>
             </div>
           </div>
         </div>
@@ -3004,19 +3240,27 @@
         <!-- ══════════════════════════════════════════ -->
         <!--   SECTION 4 · ACOUSTIC INSIGHT            -->
         <!-- ══════════════════════════════════════════ -->
-        <div class="spss-insight-card">
-          <div class="spss-insight-header">
-            <span class="spss-insight-icon">💡</span>
-            <h4>Acoustic Insight: Why Classical SPSS Sounds Muffled vs. Why Neural Vocoders Excel</h4>
-          </div>
-          <div class="spss-insight-body">
-            <div class="spss-insight-row">
-              <span class="spss-insight-badge spss-badge-warn">Classical SPSS</span>
-              <p>Maximizes P(<strong>y</strong> | <strong>s</strong>) via MLPG, producing <em>over-smoothed</em> averaged trajectories that strip away natural glottal jitter, vocal shimmer, and high-frequency turbulence → the infamous <strong>"robotic / muffled"</strong> quality.</p>
+        <div class="spss-dropdown-section" id="spssSecInsight">
+          <div class="spss-dropdown-header active" onclick="toggleSpssAccordion('spssSecInsight')">
+            <div class="spss-dropdown-left">
+              <span class="spss-dropdown-pill">§4 INSIGHT</span>
+              <span class="spss-dropdown-title">💡 Acoustic Insight: Why Classical SPSS Sounds Muffled vs. Why Neural Vocoders Excel</span>
             </div>
-            <div class="spss-insight-row">
-              <span class="spss-insight-badge spss-badge-good">Neural Vocoders</span>
-              <p>Models like <strong>PeriodWave</strong> and <strong>BigVGAN-v2</strong> use periodic inductive biases (Snake activations, continuous vector-field flow-matching) to synthesize realistic non-linear phase structures, turbulent friction above 4 kHz, and sharp plosive releases — no metallic buzzing.</p>
+            <span class="spss-dropdown-chevron">▼</span>
+          </div>
+
+          <div class="spss-dropdown-body" id="spssBody_spssSecInsight">
+            <div class="spss-insight-card" style="margin:0;">
+              <div class="spss-insight-body">
+                <div class="spss-insight-row">
+                  <span class="spss-insight-badge spss-badge-warn">Classical SPSS</span>
+                  <p>Maximizes P(<strong>y</strong> | <strong>s</strong>) via MLPG, producing <em>over-smoothed</em> averaged trajectories that strip away natural glottal jitter, vocal shimmer, and high-frequency turbulence → the infamous <strong>"robotic / muffled"</strong> quality.</p>
+                </div>
+                <div class="spss-insight-row">
+                  <span class="spss-insight-badge spss-badge-good">Neural Vocoders</span>
+                  <p>Models like <strong>PeriodWave</strong> and <strong>BigVGAN-v2</strong> use periodic inductive biases (Snake activations, continuous vector-field flow-matching) to synthesize realistic non-linear phase structures, turbulent friction above 4 kHz, and sharp plosive releases — no metallic buzzing.</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -8375,10 +8619,68 @@ docker run --rm did-the-word-survive:latest --lexicon lexicons/sample_lexicon.tx
     let curSpecState = 2;
     let specLayers = { env: true, mel: true, voc: true };
 
+    function toggleSpssAccordion(secId) {
+      const sec = document.getElementById(secId);
+      if (!sec) return;
+      const header = sec.querySelector('.spss-dropdown-header');
+      const body = document.getElementById(`spssBody_${secId}`);
+      if (!body) return;
+
+      const isCollapsed = body.classList.contains('collapsed');
+      if (isCollapsed) {
+        body.classList.remove('collapsed');
+        if (header) header.classList.add('active');
+      } else {
+        body.classList.add('collapsed');
+        if (header) header.classList.remove('active');
+      }
+    }
+
+    function onSpssModuleSelect(val) {
+      const sections = ['spssSecAudio', 'spssSecHmm', 'spssSecSpec', 'spssSecInsight'];
+      if (val === 'all') {
+        sections.forEach(id => {
+          const b = document.getElementById(`spssBody_${id}`);
+          const h = document.querySelector(`#${id} .spss-dropdown-header`);
+          if (b) b.classList.remove('collapsed');
+          if (h) h.classList.add('active');
+        });
+      } else {
+        // Expand the target section
+        const targetBody = document.getElementById(`spssBody_${val}`);
+        const targetHeader = document.querySelector(`#${val} .spss-dropdown-header`);
+        if (targetBody) targetBody.classList.remove('collapsed');
+        if (targetHeader) targetHeader.classList.add('active');
+
+        // Smoothly scroll to the target section
+        const targetEl = document.getElementById(val);
+        if (targetEl) {
+          targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }
+    }
+
     function selectSpecPhone(pKey, btn) {
       curSpecPhone = pKey;
-      document.querySelectorAll('.spec-phone-btn').forEach(b => b.classList.remove('active'));
-      if (btn) btn.classList.add('active');
+      if (pKey === 'm') curSpecState = 2; // Default to state 2 to showcase -32dB valley immediately!
+
+      document.querySelectorAll('.spec-phone-btn').forEach(b => {
+        b.classList.toggle('active', b.dataset.phone === pKey);
+      });
+      document.querySelectorAll('.spec-state-btn').forEach(b => {
+        b.classList.toggle('active', parseInt(b.dataset.state) === curSpecState);
+      });
+
+      // Synchronize Section 2 HMM diagram
+      document.querySelectorAll('.spss-phone-group').forEach(g => g.classList.remove('active'));
+      document.querySelectorAll('.spss-state-badge').forEach(b => b.classList.remove('active'));
+      const grp = document.getElementById(`spssGroup_${pKey}`);
+      if (grp) {
+        grp.classList.add('active');
+        const stBtns = grp.querySelectorAll('.spss-state-badge');
+        if (stBtns[curSpecState - 1]) stBtns[curSpecState - 1].classList.add('active');
+      }
+
       renderSpectralCanvas();
     }
 
@@ -8386,6 +8688,15 @@ docker run --rm did-the-word-survive:latest --lexicon lexicons/sample_lexicon.tx
       curSpecState = stNum;
       document.querySelectorAll('.spec-state-btn').forEach(b => b.classList.remove('active'));
       if (btn) btn.classList.add('active');
+
+      // Sync Section 2 active badge
+      const grp = document.getElementById(`spssGroup_${curSpecPhone}`);
+      if (grp) {
+        grp.querySelectorAll('.spss-state-badge').forEach((b, idx) => {
+          b.classList.toggle('active', idx + 1 === stNum);
+        });
+      }
+
       renderSpectralCanvas();
     }
 
@@ -8418,12 +8729,41 @@ docker run --rm did-the-word-survive:latest --lexicon lexicons/sample_lexicon.tx
       renderSpectralCanvas();
     }
 
+    function computeSpectralResponse(f, pObj, st, curState) {
+      if (pObj.class === 'plosive' && curState === 1) {
+        return -65 - (f / 8000) * 10;
+      }
+      const r1 = st.g1 / (1 + Math.pow((f - st.f1) / 75, 2));
+      const r2 = st.g2 / (1 + Math.pow((f - st.f2) / 95, 2));
+      const r3 = st.g3 / (1 + Math.pow((f - st.f3) / 120, 2));
+      const tilt = (f / 1000) * 2.8; // Glottal roll-off
+      let resp = -15 + r1 + r2 + r3 - tilt;
+
+      // Nasal / laminar zeros (Valleys)
+      if (pObj.zeros) {
+        pObj.zeros.forEach(z => {
+          const dip = z.depth / (1 + Math.pow((f - z.freq) / (z.bw / 2), 2));
+          resp += dip;
+        });
+      }
+      return Math.max(-80, Math.min(20, resp));
+    }
+
     function renderSpectralCanvas() {
       const svg = document.getElementById('specSvg');
       if (!svg) return;
 
       const pObj = SPEC_DATA[curSpecPhone] || SPEC_DATA['ae'];
       const st = pObj.states[curSpecState] || pObj.states[2];
+
+      // Update interactive status bar
+      const statusEl = document.getElementById('specStatusText');
+      if (statusEl) {
+        statusEl.innerHTML = `
+          <span class="spec-status-pulse"></span>
+          <span class="spec-status-title">Phoneme: ${pObj.name}</span> • <span class="spec-status-detail">State ${curSpecState}: ${st.desc}</span>
+        `;
+      }
 
       const width = 900;
       const height = 320;
@@ -8497,28 +8837,7 @@ docker run --rm did-the-word-survive:latest --lexicon lexicons/sample_lexicon.tx
 
       for (let i = 0; i <= numPts; i++) {
         const f = minF + (i / numPts) * (maxF - minF);
-
-        // Vocal tract poles (Mountains)
-        let resp = 0;
-        if (pObj.class === 'plosive' && curSpecState === 1) {
-          resp = -65 - (f / 8000) * 10;
-        } else {
-          const r1 = st.g1 / (1 + Math.pow((f - st.f1) / 75, 2));
-          const r2 = st.g2 / (1 + Math.pow((f - st.f2) / 95, 2));
-          const r3 = st.g3 / (1 + Math.pow((f - st.f3) / 120, 2));
-          const tilt = (f / 1000) * 2.8; // Glottal roll-off
-          resp = -15 + r1 + r2 + r3 - tilt;
-
-          // Nasal / laminar zeros (Valleys)
-          if (pObj.zeros) {
-            pObj.zeros.forEach(z => {
-              const dip = z.depth / (1 + Math.pow((f - z.freq) / (z.bw / 2), 2));
-              resp += dip;
-            });
-          }
-        }
-
-        const clampedDb = Math.max(minDb, Math.min(maxDb, resp));
+        const clampedDb = computeSpectralResponse(f, pObj, st, curSpecState);
         curvePts.push({ x: fToX(f), y: dbToY(clampedDb), f, db: clampedDb });
 
         // Neural Vocoder slight harmonic variation
@@ -8571,14 +8890,22 @@ docker run --rm did-the-word-survive:latest --lexicon lexicons/sample_lexicon.tx
       }
 
       // Valley Zeros
-      if (pObj.zeros) {
+      if (pObj.zeros && pObj.zeros.length > 0) {
         pObj.zeros.forEach(z => {
           const xZ = fToX(z.freq);
           const yZ = dbToY(minDb + 16);
+          const yDip = dbToY(Math.max(minDb, computeSpectralResponse(z.freq, pObj, st, curSpecState)));
           svgHtml += `
-            <line x1="${xZ}" y1="${padTop + 10}" x2="${xZ}" y2="${dbToY(minDb)}" stroke="var(--hp-coral)" stroke-dasharray="4,2" stroke-width="2"/>
-            <rect x="${xZ - 65}" y="${yZ - 20}" width="130" height="22" rx="4" fill="var(--surface)" stroke="var(--hp-coral)" stroke-width="1"/>
-            <text x="${xZ}" y="${yZ - 5}" font-size="9.5" font-weight="800" fill="var(--hp-coral)" text-anchor="middle">Valley: ${z.freq}Hz Zero</text>
+            <g class="spec-valley-highlight">
+              <line x1="${xZ}" y1="${padTop + 10}" x2="${xZ}" y2="${dbToY(minDb)}" stroke="var(--hp-coral)" stroke-dasharray="4,2" stroke-width="2"/>
+              <circle cx="${xZ}" cy="${yDip}" r="7" fill="var(--hp-coral)" stroke="#fff" stroke-width="2">
+                <animate attributeName="r" values="6;8.5;6" dur="2s" repeatCount="indefinite"/>
+              </circle>
+              <rect x="${xZ - 92}" y="${yZ - 22}" width="184" height="22" rx="4" fill="var(--surface)" stroke="var(--hp-coral)" stroke-width="1.5" filter="drop-shadow(0 2px 5px rgba(0,0,0,0.12))"/>
+              <text x="${xZ}" y="${yZ - 7}" font-size="10" font-weight="900" fill="var(--hp-coral)" text-anchor="middle">
+                Valley: ${z.freq}Hz (${z.depth}dB Antiformant)
+              </text>
+            </g>
           `;
         });
       }
@@ -8591,14 +8918,131 @@ docker run --rm did-the-word-survive:latest --lexicon lexicons/sample_lexicon.tx
         `;
       }
 
-      // State Description watermark
-      svgHtml += `
-        <text x="${padLeft + 14}" y="${padTop + 24}" font-size="11.5" font-weight="800" fill="var(--text)">
-          Phoneme: ${pObj.name} • State ${curSpecState}: ${st.desc}
-        </text>
-      `;
+      // Group for interactive crosshairs
+      svgHtml += `<g id="specCrosshairGroup"></g>`;
 
       svg.innerHTML = svgHtml;
+      initSpectralInteractions();
+    }
+
+    function initSpectralInteractions() {
+      const wrap = document.getElementById('specCanvasWrap');
+      const svg = document.getElementById('specSvg');
+      const tooltip = document.getElementById('specTooltip');
+      if (!wrap || !svg || svg._hasInteractions) return;
+      svg._hasInteractions = true;
+
+      const width = 900, height = 320;
+      const padLeft = 60, padRight = 30, padTop = 30, padBottom = 40;
+      const plotW = width - padLeft - padRight;
+      const plotH = height - padTop - padBottom;
+      const minF = 50, maxF = 8000, minDb = -80, maxDb = 20;
+
+      const fToX = f => padLeft + ((f - minF) / (maxF - minF)) * plotW;
+      const dbToY = db => padTop + plotH - ((db - minDb) / (maxDb - minDb)) * plotH;
+
+      wrap.addEventListener('mousemove', (e) => {
+        const rect = svg.getBoundingClientRect();
+        if (rect.width === 0 || rect.height === 0) return;
+
+        const mouseSvgX = ((e.clientX - rect.left) / rect.width) * width;
+        const mouseSvgY = ((e.clientY - rect.top) / rect.height) * height;
+
+        if (mouseSvgX < padLeft || mouseSvgX > padLeft + plotW) {
+          clearCrosshair();
+          return;
+        }
+
+        const f = minF + ((mouseSvgX - padLeft) / plotW) * (maxF - minF);
+        const pObj = SPEC_DATA[curSpecPhone] || SPEC_DATA['ae'];
+        const st = pObj.states[curSpecState] || pObj.states[2];
+        const db = computeSpectralResponse(f, pObj, st, curSpecState);
+        const ptY = dbToY(db);
+
+        // Update crosshair in SVG
+        let chGroup = document.getElementById('specCrosshairGroup');
+        if (!chGroup) {
+          chGroup = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+          chGroup.id = 'specCrosshairGroup';
+          svg.appendChild(chGroup);
+        }
+
+        // Detect nearby feature
+        let featText = '';
+        let featTag = '';
+        let featColor = 'var(--hp-coral)';
+        if (st.f1 && Math.abs(f - st.f1) < 85) {
+          featText = `Formant Peak F₁ (${st.f1} Hz)`;
+          featTag = 'F₁ Formant';
+          featColor = 'var(--hp-coral)';
+        } else if (st.f2 && Math.abs(f - st.f2) < 110) {
+          featText = `Formant Peak F₂ (${st.f2} Hz)`;
+          featTag = 'F₂ Formant';
+          featColor = 'var(--hp-green)';
+        } else if (st.f3 && Math.abs(f - st.f3) < 140) {
+          featText = `Formant Peak F₃ (${st.f3} Hz)`;
+          featTag = 'F₃ Formant';
+          featColor = 'var(--hp-sky)';
+        } else if (pObj.zeros && pObj.zeros.length > 0) {
+          const nearZero = pObj.zeros.find(z => Math.abs(f - z.freq) < 130);
+          if (nearZero) {
+            featText = `Antiformant Valley (${nearZero.freq} Hz, ${nearZero.depth} dB)`;
+            featTag = `${nearZero.depth}dB Valley`;
+            featColor = 'var(--hp-coral)';
+          }
+        }
+
+        chGroup.innerHTML = `
+          <line x1="${mouseSvgX}" y1="${padTop}" x2="${mouseSvgX}" y2="${padTop + plotH}" stroke="var(--hp-pink)" stroke-width="1.5" stroke-dasharray="4,3"/>
+          <line x1="${padLeft}" y1="${ptY}" x2="${padLeft + plotW}" y2="${ptY}" stroke="rgba(242,148,200,0.35)" stroke-width="1" stroke-dasharray="2,2"/>
+          <circle cx="${mouseSvgX}" cy="${ptY}" r="6" fill="#fff" stroke="var(--hp-pink)" stroke-width="2.5"/>
+          <circle cx="${mouseSvgX}" cy="${ptY}" r="11" fill="none" stroke="var(--hp-pink)" stroke-width="1" opacity="0.6"/>
+        `;
+
+        // Update chips
+        const chipF = document.getElementById('specReadoutFreq');
+        const chipDb = document.getElementById('specReadoutDb');
+        const chipFeat = document.getElementById('specReadoutFeature');
+        if (chipF) chipF.innerHTML = `Freq: <strong>${Math.round(f)} Hz</strong>`;
+        if (chipDb) chipDb.innerHTML = `Energy: <strong>${db.toFixed(1)} dB</strong>`;
+        if (chipFeat) {
+          if (featText) {
+            chipFeat.style.display = 'inline-block';
+            chipFeat.textContent = `🎯 ${featText}`;
+          } else {
+            chipFeat.style.display = 'none';
+          }
+        }
+
+        // Position & show tooltip
+        if (tooltip) {
+          const wrapRect = wrap.getBoundingClientRect();
+          const tipX = e.clientX - wrapRect.left;
+          const tipY = e.clientY - wrapRect.top;
+          tooltip.style.left = `${tipX}px`;
+          tooltip.style.top = `${Math.max(10, tipY - 12)}px`;
+          tooltip.style.display = 'block';
+          tooltip.innerHTML = `
+            <div class="tt-title">${Math.round(f)} Hz · ${db.toFixed(1)} dB</div>
+            <div class="tt-detail">${featText || (db > 0 ? 'Resonant Passband' : 'Acoustic Attenuation')}</div>
+            ${featTag ? `<div class="tt-tag" style="background:${featColor}; color:#fff;">${featTag}</div>` : ''}
+          `;
+        }
+      });
+
+      wrap.addEventListener('mouseleave', clearCrosshair);
+
+      function clearCrosshair() {
+        const chGroup = document.getElementById('specCrosshairGroup');
+        if (chGroup) chGroup.innerHTML = '';
+        if (tooltip) tooltip.style.display = 'none';
+        const chipF = document.getElementById('specReadoutFreq');
+        const chipDb = document.getElementById('specReadoutDb');
+        const chipFeat = document.getElementById('specReadoutFeature');
+        if (chipF) chipF.innerHTML = `Freq: <strong>—</strong>`;
+        if (chipDb) chipDb.innerHTML = `Energy: <strong>—</strong>`;
+        if (chipFeat) chipFeat.style.display = 'none';
+      }
     }
 
     // Hook into window load
