@@ -1,0 +1,55 @@
+[
+  {
+    "id": "pooled",
+    "name": "Pooled (All 4 Corpora)",
+    "short_name": "Pooled",
+    "utterances": 7999,
+    "speakers": 802,
+    "sample_rate": 22050,
+    "description": "Full experimental cohort intersecting all 14 neural vocoders and GT across 4 corpora."
+  },
+  {
+    "id": "LJSpeech",
+    "name": "LJSpeech",
+    "short_name": "LJSpeech",
+    "utterances": 2000,
+    "speakers": 1,
+    "sample_rate": 22050,
+    "gender": "Female",
+    "accent": "General American",
+    "description": "Single-speaker studio audiobook reading with high recording consistency."
+  },
+  {
+    "id": "LibriTTS",
+    "name": "LibriTTS",
+    "short_name": "LibriTTS",
+    "utterances": 2000,
+    "speakers": 682,
+    "sample_rate": 22050,
+    "gender": "Female / Male",
+    "accent": "Diverse American/International",
+    "description": "Multi-speaker audiobook subset sampling wide acoustic and speaker diversity."
+  },
+  {
+    "id": "VCTK",
+    "name": "VCTK",
+    "short_name": "VCTK",
+    "utterances": 1999,
+    "speakers": 109,
+    "sample_rate": 22050,
+    "gender": "Female / Male",
+    "accent": "British and Regional Accents",
+    "description": "Multi-speaker newspaper prompt reading across British and Commonwealth accents (1 utterance omitted due to missing TextGrid p345_292)."
+  },
+  {
+    "id": "Free_ST",
+    "name": "Free_ST",
+    "short_name": "Free_ST",
+    "utterances": 2000,
+    "speakers": 10,
+    "sample_rate": 22050,
+    "gender": "Female / Male",
+    "accent": "Chinese-Accented English",
+    "description": "Non-native English speech with distinct phonetic transfer and timing characteristics."
+  }
+]

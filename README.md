@@ -1,11 +1,13 @@
 <p align="center">
   <!-- Core -->
+  <a href="https://latentcontext.github.io/did-the-word-survive/"><img src="https://img.shields.io/badge/Website%202.0-Live%20on%20GitHub%20Pages-brightgreen?style=for-the-badge&logo=githubpages&logoColor=white" alt="Website 2.0 Live"></a>
+  <a href="https://latentcontext.github.io/did-the-word-survive/v1_classic.html"><img src="https://img.shields.io/badge/Classic%20v1.0-Reback%20Demo-f59e0b?style=for-the-badge" alt="Classic Demo v1.0"></a>
+  <br><br>
   <a href="https://www.python.org/downloads/"><img src="https://img.shields.io/badge/python-3.9%20|%203.10%20|%203.11%20|%203.12-blue?logo=python&logoColor=white" alt="Python 3.9+"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-22c55e?logo=open-source-initiative&logoColor=white" alt="MIT License"></a>
   <img src="https://img.shields.io/badge/dependencies-zero-22c55e" alt="Zero external dependencies">
   <img src="https://img.shields.io/badge/tests-22%20passing-22c55e?logo=github-actions&logoColor=white" alt="Tests passing">
   <img src="https://img.shields.io/badge/MFA-compatible-0284c7" alt="MFA Compatible">
-  <a href="https://latentcontext.github.io/did-the-word-survive/"><img src="https://img.shields.io/badge/Live%20Demo-GitHub%20Pages-0ea5e9?logo=githubpages&logoColor=white" alt="Live Web Demo"></a>
   <br>
   <!-- Resources -->
   <a href="#-benchmarked-vocoders-14-models"><img src="https://img.shields.io/badge/Vocoders-14%20Neural%20Models-blueviolet" alt="14 Vocoder Models"></a>
@@ -17,7 +19,8 @@
 
 <br>
 
-<h1 align="center">Did The Word Survive?</h1>
+<h1 align="center">Did The Word Survive? 2.0</h1>
+<h3 align="center">An Acoustic and Perceptual Autopsy of Modern Speech Resynthesis — Final Website 2.0</h3>
 
 <br>
 
@@ -27,7 +30,8 @@
 
 - [Overview](#-overview)
 - [Quick Links](#-quick-links)
-- [Live Web Demo (GitHub Pages)](#-interactive-web-demo-github-pages)
+- [Live Web Demo 2.0 (GitHub Pages)](#-interactive-web-demo-20-github-pages)
+- [Reback to Classic v1.0 Demo](#-reback-to-classic-v10-demo)
 - [Benchmarked Vocoders (14 Models)](#-benchmarked-vocoders-14-models)
 - [Benchmark Datasets (4 Corpora)](#-benchmark-datasets-4-corpora)
 - [Montreal Forced Alignment (MFA) & Lexicons](#-montreal-forced-alignment-mfa--lexicons)
@@ -51,26 +55,17 @@
 
 ## 🔍 Overview
 
-This repository provides a self-contained, reproducible evaluation demo for speech research workflows using **edit-distance (Levenshtein) alignments** at both word, character, and phoneme granularities.
+This repository provides the official open-source evaluation benchmark and interactive web platform for **"Did the Word Survive the Vocoder? An Acoustic and Perceptual Autopsy of Modern Speech Resynthesis"** (NAACL 2026).
 
-The core implementation operates in **pure Python with zero external runtime dependencies**, while providing optional integrations with **Montreal Forced Aligner (MFA)** pronunciation lexicons and ARPAbet phonetic class diagnostics (Manner of Articulation).
+The benchmark systematically evaluates speech synthesis preservation across **120,000 waveforms** (112,000 synthesized + 8,000 reference audios) spanning **14 neural vocoders** (M1–M14) and **4 diverse voice contexts** (LJSpeech, LibriTTS, Free_ST, VCTK).
 
-**What this repo includes:**
-
-| Component | Description |
-|-----------|-------------|
-| `metrics.py` | Standard WER, CER, MER via dynamic-programming Levenshtein alignment |
-| `phonetics.py` | ARPAbet phoneme extraction, Phone Error Rate (PER), and manner-of-articulation class breakdown |
-| `cli.py` | CLI driver supporting `--format table / json / text` and optional `--lexicon` |
-| `sample_lexicon.txt` | 142-word ARPAbet pronunciation dictionary in standard MFA / CMU Dict format |
-| `setup_mfa.sh` | Shell automation for Montreal Forced Aligner installation, acoustic model download, and alignment |
-| `toy_manifest.jsonl` | 20 synthetic reference/hypothesis pairs covering varied phonetic conditions |
-| `phonetic_manifest.jsonl` | Phoneme-annotated synthetic samples with expected class categorizations |
-| `demo.json` | Generic normalization configuration (lowercase, punctuation stripping) |
-| `test_demo.py` | 22 comprehensive unit tests covering edge cases, alignments, and CLI operations |
-| `Dockerfile` | Multi-stage container definition for zero-setup isolated execution |
-
-**What this repo does not include:** private experimental data, internal author paths, or proprietary model checkpoints.
+### What's New in Final Website 2.0:
+- **Comprehensive 120,000-Waveform Evaluation Suite**: Multi-corpus benchmark with verified ground-truth reference pairing.
+- **Permanent Exclusion of Griffin-Lim**: All benchmarks exclusively evaluate 14 modern neural vocoder architectures; Griffin-Lim has been expunged.
+- **Mathematically Bounded Error Ledgers**: Remediated reference exposure denominators ($N_{\text{ref}} = N_{\text{match}} + N_{\text{sub}} + N_{\text{del}}$) and asymmetric Wilson score 95% confidence intervals.
+- **Dedicated Affricate (`CH`, `JH`) & `/h/` (`HH`) Acoustics**: 38,724 tokens analyzed with closure-to-release energy ratios, spectral tilt, and voicing proportions (zero class-level fallbacks).
+- **Interactive Dual-Recognizer Alignment**: Contrast autoregressive LM recovery (OpenAI Whisper) against frame-level acoustic CTC decoding (Meta Wav2Vec2).
+- **Full Backward Compatibility ("Reback")**: Seamless one-click navigation between Final Website 2.0 and the legacy single-file Classic v1.0 demo.
 
 ---
 
@@ -78,36 +73,44 @@ The core implementation operates in **pure Python with zero external runtime dep
 
 | Resource | Scope / Description | Link |
 |:---|:---|:---:|
-| 🌐 **Live Web Demo** | Interactive In-Browser Alignment & PER Calculator | [Open Demo (GitHub Pages) →](https://latentcontext.github.io/did-the-word-survive/) |
-| 📄 **Paper (PDF)** | Methodology & Research Findings | *Coming soon* |
+| 🚀 **Live Website 2.0** | Final Interactive Benchmark Platform (React/Vite/Tailwind) | [**Open Website 2.0 →**](https://latentcontext.github.io/did-the-word-survive/) |
+| ↩️ **Classic v1.0 Demo** | Legacy Single-File Client-Side Levenshtein Evaluator | [**Reback to v1.0 Demo →**](https://latentcontext.github.io/did-the-word-survive/v1_classic.html) |
+| 📄 **Paper Draft & Findings** | Autopsy Methodology & Phonetic Vulnerability Report | *NAACL 2026* |
 | 🔊 **Vocoder Models (14)** | Benchmark Vocoder Papers, Code & Checkpoints | [View 14 Vocoders Table ↓](#-benchmarked-vocoders-14-models) |
 | 📊 **Benchmark Datasets (4)** | LJSpeech, LibriTTS, VCTK, Free_ST | [View 4 Datasets Table ↓](#-benchmark-datasets-4-corpora) |
 | 🗣️ **Montreal Forced Aligner** | Official MFA Documentation | [montreal-forced-aligner.readthedocs.io →](https://montreal-forced-aligner.readthedocs.io/) |
 | 📖 **CMU Pronouncing Dictionary** | ARPAbet Phonetic Lexicon Reference | [www.speech.cs.cmu.edu/cgi-bin/cmudict →](http://www.speech.cs.cmu.edu/cgi-bin/cmudict) |
 | 🐳 **Docker Image** | `latentcontext/did-the-word-survive` | [Docker Hub →](https://hub.docker.com/) |
 | 🤖 **ASR Model Reference** | OpenAI Whisper (Evaluation Backend) | [github.com/openai/whisper →](https://github.com/openai/whisper) |
-| 💻 **Source Code (Demo)** | Minimal Dependency-Free Demo | [This repository →](https://github.com/LatentContext/did-the-word-survive) |
+| 💻 **Source Code (Website 2.0)** | TypeScript / React Web Application | [`demo_website_src/`](demo_website_src/) |
 
 ---
 
-## 🌐 Interactive Web Demo (GitHub Pages)
+## 🌐 Interactive Web Demo 2.0 (GitHub Pages)
 
-A complete, client-side web application demo is available in the [`demo/`](demo/) directory and hosted on GitHub Pages:
+The **Final Website 2.0** is hosted directly on GitHub Pages:
 
-🔗 **Live Web Application:** [https://latentcontext.github.io/did-the-word-survive/](https://latentcontext.github.io/did-the-word-survive/)
+🔗 **Live Platform URL:** [https://latentcontext.github.io/did-the-word-survive/](https://latentcontext.github.io/did-the-word-survive/)
 
-### Key Capabilities of the Web Demo:
-- **Client-Side Levenshtein Dynamic Programming**: Computes Word Error Rate (WER), Character Error Rate (CER), Match Error Rate (MER), and Phone Error Rate (PER) directly in the browser with **zero server calls, zero telemetry, and zero third-party dependencies**.
-- **Visual Token-Level Diff**: Color-coded token alignment displaying Exact Hits (`H`), Substitutions (`S`), Deletions (`D`), and Insertions (`I`).
-- **Phonetic Diagnostics (Manner of Articulation)**: Converts text into ARPAbet phoneme sequences using an embedded 142-word pronunciation lexicon, computing per-class accuracy across Vowels, Plosives, Fricatives, Nasals, and Approximants.
-- **Preloaded Benchmark Manifest**: Dropdown switcher containing all 20 reference/hypothesis pairs from [`examples/toy_manifest.jsonl`](examples/toy_manifest.jsonl), with full support for custom user inputs.
-- **Interactive Reference Tables**: Searchable catalogs of all 14 benchmarked neural vocoders and 4 speech datasets with active links to papers, code repositories, and model checkpoints.
+### 8 Interactive Analysis Suites:
+1. 🌐 **Overview**: Guided discovery journey, 120,000-waveform census, voice contexts, and 4 pedagogical insights.
+2. 🧪 **Evaluator**: Real-time Levenshtein dynamic programming calculator for WER, CER, MER, and PER.
+3. 🔬 **SPSS & Audio**: Synchronized interactive spectrograms and paired audio playback (GT vs. 14 neural systems).
+4. 📊 **Compare**: Cross-vocoder metric matrices, radar comparison charts, and objective acoustic distance.
+5. 🎙️ **Phonetics**: Phone vulnerability rankings, vowel formant shifts, stop landmarks, and frication spectral cues.
+6. 🤖 **ASR Models**: Dual-recognizer screening breakdown (Whisper LM prior vs. Wav2Vec2 acoustic CTC).
+7. 📋 **Protocol**: Montreal Forced Aligner timing constraints, two-ASR consensus, and context rescue estimand $D$.
+8. 📂 **Resources**: Authoritative data tables, methodology notes, reproduction scripts, and citations.
 
-### Running the Web Demo Locally:
-You can run the web demo immediately without any web server or build tool:
+---
 
-```bash
-# Option A: Open directly in your browser
+## ↩️ Reback to Classic v1.0 Demo
+
+For reviewers or users seeking the original lightweight, single-file HTML evaluation utility:
+
+🔗 **Classic v1.0 URL:** [https://latentcontext.github.io/did-the-word-survive/v1_classic.html](https://latentcontext.github.io/did-the-word-survive/v1_classic.html)
+
+Both Website 2.0 and Classic v1.0 feature persistent bidirectional navigation bars allowing instant switching between versions at any time.
 xdg-open demo/index.html   # On Linux
 open demo/index.html       # On macOS
 

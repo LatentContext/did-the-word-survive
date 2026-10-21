@@ -14,12 +14,19 @@
 !/scripts/
 !/demo/
 !/docs/
+!/docs/**
 !/audio/
 !/audio/**
-!/docs/audio/
-!/docs/audio/**
-!/demo/audio/
-!/demo/audio/**
+!/assets/
+!/assets/**
+!/data/
+!/data/**
+!/figures/
+!/figures/**
+!/images/
+!/images/**
+!/demo_website_src/
+!/demo_website_src/**
 !/.github/
 !/.github/**
 
@@ -29,8 +36,12 @@
 !/Dockerfile
 !/.gitignore
 !/.nojekyll
-!/docs/.nojekyll
 !/index.html
+!/v1_classic.html
+!/hero_banner.png
+!/apple-touch-icon.png
+!/favicon*.png
+!/favicon.svg
 !/pyproject.toml
 !/configs/demo.json
 !/src/context_demo/__init__.py
@@ -44,4 +55,3 @@
 !/lexicons/sample_lexicon.txt
 !/scripts/setup_mfa.sh
 !/demo/index.html
-!/docs/index.html

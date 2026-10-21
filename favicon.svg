@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#14213D" />
+      <stop offset="50%" stop-color="#281B45" />
+      <stop offset="100%" stop-color="#0F172A" />
+    </linearGradient>
+    <linearGradient id="earGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F294C8" />
+      <stop offset="100%" stop-color="#88DFF2" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background rounded squircle with glowing border -->
+  <rect x="4" y="4" width="92" height="92" rx="24" fill="url(#bgGrad)" stroke="#88DFF2" stroke-width="2.5" stroke-opacity="0.6" />
+
+  <!-- Outer Helix of the Ear -->
+  <path d="M42 20 C24 20, 16 33, 16 48 C16 62, 25 72, 34 78 C39 81, 44 82, 44 87 C44 90, 41 92, 37 92 C33 92, 29 90, 27 88" 
+        fill="none" stroke="url(#earGrad)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" />
+
+  <!-- Antihelix & Concha of the Ear -->
+  <path d="M42 32 C33 32, 28 39, 28 48 C28 56, 33 63, 40 65 C44 66, 47 63, 47 59 C47 54, 43 51, 38 50 C34 49, 32 46, 32 43 C32 38, 36 36, 41 36" 
+        fill="none" stroke="#FFFFFF" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" />
+
+  <!-- Tragus / Canal Entrance -->
+  <circle cx="36" cy="56" r="3.5" fill="#88DFF2" />
+
+  <!-- Acoustic Speech Waves Entering the Ear (Perceptual Evaluation / TTS) -->
+  <!-- Wave 1 (Inner) -->
+  <path d="M57 38 C62 44, 62 56, 57 62" 
+        fill="none" stroke="#F2C53D" stroke-width="4.5" stroke-linecap="round" />
+
+  <!-- Wave 2 (Middle) -->
+  <path d="M68 30 C76 40, 76 60, 68 70" 
+        fill="none" stroke="#88DFF2" stroke-width="5" stroke-linecap="round" />
+
+  <!-- Wave 3 (Outer) -->
+  <path d="M79 22 C91 36, 91 64, 79 78" 
+        fill="none" stroke="#F294C8" stroke-width="5" stroke-linecap="round" />
+</svg>

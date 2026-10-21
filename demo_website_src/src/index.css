@@ -1,0 +1,183 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* =====================================================
+   Did The Word Survive? Happy Color Palette (by Nguyen Khanh)
+   #F294C8 Pink | #88DFF2 Cyan | #64BF56 Green
+   #F2C53D Yellow | #F65936 Red
+   ===================================================== */
+@layer base {
+  :root {
+    --color-pink:   #F294C8;
+    --color-cyan:   #88DFF2;
+    --color-green:  #64BF56;
+    --color-yellow: #F2C53D;
+    --color-red:    #F65936;
+
+    /* Surface / text tokens: light mode (crisp pure white & high-contrast text) */
+    --bg-base:      #FFFFFF;
+    --bg-card:      #FFFFFF;
+    --bg-subtle:    #F8FAFC;
+    --border:       #D6EDF8;
+    --text-primary: #0F172A;
+    --text-muted:   #334155;
+
+    --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    --font-mono: 'JetBrains Mono', "Fira Code", monospace;
+  }
+
+  /* Dark mode tokens */
+  .dark {
+    --bg-base:      #0D1117;
+    --bg-card:      #161B22;
+    --bg-subtle:    #1A2332;
+    --border:       #2A3F54;
+    --text-primary: #E6F0F8;
+    --text-muted:   #7A9BB8;
+  }
+
+  html {
+    background-color: var(--bg-base);
+    color: var(--text-primary);
+    transition: filter 0.2s ease, font-size 0.2s ease;
+  }
+
+  /* Accessibility Visual Filter Modes */
+  html.grayscale-mode {
+    filter: grayscale(100%) !important;
+  }
+
+  html.high-contrast-mode {
+    filter: contrast(130%) brightness(98%) !important;
+  }
+
+  /* In light (white) mode, ensure all colored text has high-contrast readability */
+  html:not(.dark) .text-\[\#88DFF2\] {
+    color: #0284C7;
+  }
+  html:not(.dark) .text-\[\#F2C53D\] {
+    color: #B45309;
+  }
+  html:not(.dark) .text-\[\#5A7086\] {
+    color: #334155;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    background-color: var(--bg-base);
+    color: var(--text-primary);
+    min-height: 100vh;
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+
+  code, kbd, samp, pre, .font-mono {
+    font-family: var(--font-mono);
+  }
+}
+
+/* =====================================================
+   Animations
+   ===================================================== */
+@keyframes fadeSlideUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.97); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(136, 223, 242, 0.3); }
+  50%       { box-shadow: 0 0 0 8px rgba(136, 223, 242, 0); }
+}
+
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position:  200% center; }
+}
+
+@keyframes bounceIn {
+  0%   { opacity: 0; transform: scale(0.8); }
+  60%  { opacity: 1; transform: scale(1.04); }
+  100% { transform: scale(1); }
+}
+
+@keyframes slideRight {
+  from { opacity: 0; transform: translateX(-16px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+.anim-fade-up      { animation: fadeSlideUp 0.4s ease both; }
+.anim-fade-in      { animation: fadeIn      0.35s ease both; }
+.anim-scale-in     { animation: scaleIn     0.35s cubic-bezier(.22,1,.36,1) both; }
+.anim-bounce-in    { animation: bounceIn    0.45s cubic-bezier(.22,1,.36,1) both; }
+.anim-slide-right  { animation: slideRight  0.35s ease both; }
+
+/* Stagger delays for list items */
+.anim-stagger > *:nth-child(1) { animation-delay: 0.00s; }
+.anim-stagger > *:nth-child(2) { animation-delay: 0.05s; }
+.anim-stagger > *:nth-child(3) { animation-delay: 0.10s; }
+.anim-stagger > *:nth-child(4) { animation-delay: 0.15s; }
+.anim-stagger > *:nth-child(5) { animation-delay: 0.20s; }
+.anim-stagger > *:nth-child(6) { animation-delay: 0.25s; }
+.anim-stagger > *:nth-child(7) { animation-delay: 0.30s; }
+.anim-stagger > *:nth-child(8) { animation-delay: 0.35s; }
+
+/* =====================================================
+   Happy Palette Utility Classes
+   ===================================================== */
+.bg-happy-pink   { background-color: #F294C8; }
+.bg-happy-cyan   { background-color: #88DFF2; }
+.bg-happy-green  { background-color: #64BF56; }
+.bg-happy-yellow { background-color: #F2C53D; }
+.bg-happy-red    { background-color: #F65936; }
+
+.text-happy-pink   { color: #F294C8; }
+.text-happy-cyan   { color: #88DFF2; }
+.text-happy-green  { color: #64BF56; }
+.text-happy-yellow { color: #F2C53D; }
+.text-happy-red    { color: #F65936; }
+
+.border-happy-pink   { border-color: #F294C8; }
+.border-happy-cyan   { border-color: #88DFF2; }
+.border-happy-green  { border-color: #64BF56; }
+.border-happy-yellow { border-color: #F2C53D; }
+.border-happy-red    { border-color: #F65936; }
+
+/* Gradient shimmer for stat cards */
+.shimmer-card {
+  background: linear-gradient(90deg, #F294C820 0%, #88DFF230 50%, #64BF5620 100%);
+  background-size: 200%;
+  animation: shimmer 3s linear infinite;
+}
+
+/* Glow pulse on active audio */
+.glow-cyan { animation: pulseGlow 2s ease-in-out infinite; }
+
+/* =====================================================
+   Scrollbar
+   ===================================================== */
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #88DFF280; border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: #88DFF2BB; }
+
+/* =====================================================
+   Focus ring (accessible)
+   ===================================================== */
+*:focus-visible {
+  outline: 2px solid #88DFF2;
+  outline-offset: 2px;
+}
+
+/* Print */
+@media print {
+  body { background: white !important; color: black !important; }
+}

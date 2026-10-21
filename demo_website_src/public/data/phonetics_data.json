@@ -1,0 +1,1702 @@
+{
+  "coverage_matrix": {
+    "corpora": [
+      "LJSpeech",
+      "LibriTTS",
+      "Free_ST",
+      "VCTK"
+    ],
+    "columns": [
+      "GT",
+      "RNDVoC",
+      "Flow2GAN (4-step)",
+      "Vocos",
+      "BridgeVoC",
+      "PeriodWave-Turbo",
+      "ComVo-Base",
+      "BigVGAN-v2 (112M)",
+      "BigVGAN-Base (14M)",
+      "ComVo-Large",
+      "WaveFM",
+      "HiFi-GAN v1",
+      "FreeV",
+      "RFWave",
+      "PeriodWave-24k"
+    ],
+    "data": {
+      "LJSpeech": {
+        "GT": 100.0,
+        "RNDVoC": 100.0,
+        "Flow2GAN (4-step)": 100.0,
+        "Vocos": 100.0,
+        "BridgeVoC": 100.0,
+        "PeriodWave-Turbo": 100.0,
+        "ComVo-Base": 100.0,
+        "BigVGAN-v2 (112M)": 100.0,
+        "BigVGAN-Base (14M)": 100.0,
+        "ComVo-Large": 100.0,
+        "WaveFM": 100.0,
+        "HiFi-GAN v1": 100.0,
+        "FreeV": 100.0,
+        "RFWave": 100.0,
+        "PeriodWave-24k": 100.0
+      },
+      "LibriTTS": {
+        "GT": 100.0,
+        "RNDVoC": 100.0,
+        "Flow2GAN (4-step)": 100.0,
+        "Vocos": 100.0,
+        "BridgeVoC": 100.0,
+        "PeriodWave-Turbo": 100.0,
+        "ComVo-Base": 100.0,
+        "BigVGAN-v2 (112M)": 100.0,
+        "BigVGAN-Base (14M)": 100.0,
+        "ComVo-Large": 100.0,
+        "WaveFM": 100.0,
+        "HiFi-GAN v1": 100.0,
+        "FreeV": 100.0,
+        "RFWave": 100.0,
+        "PeriodWave-24k": 100.0
+      },
+      "Free_ST": {
+        "GT": 100.0,
+        "RNDVoC": 100.0,
+        "Flow2GAN (4-step)": 100.0,
+        "Vocos": 100.0,
+        "BridgeVoC": 100.0,
+        "PeriodWave-Turbo": 100.0,
+        "ComVo-Base": 100.0,
+        "BigVGAN-v2 (112M)": 100.0,
+        "BigVGAN-Base (14M)": 100.0,
+        "ComVo-Large": 100.0,
+        "WaveFM": 100.0,
+        "HiFi-GAN v1": 100.0,
+        "FreeV": 100.0,
+        "RFWave": 100.0,
+        "PeriodWave-24k": 100.0
+      },
+      "VCTK": {
+        "GT": 100.0,
+        "RNDVoC": 100.0,
+        "Flow2GAN (4-step)": 100.0,
+        "Vocos": 100.0,
+        "BridgeVoC": 100.0,
+        "PeriodWave-Turbo": 100.0,
+        "ComVo-Base": 100.0,
+        "BigVGAN-v2 (112M)": 100.0,
+        "BigVGAN-Base (14M)": 100.0,
+        "ComVo-Large": 100.0,
+        "WaveFM": 100.0,
+        "HiFi-GAN v1": 100.0,
+        "FreeV": 100.0,
+        "RFWave": 100.0,
+        "PeriodWave-24k": 100.0
+      }
+    }
+  },
+  "phone_occurrences": [
+    {
+      "base_phone": "AH",
+      "ipa": "\u0259 / \u028c",
+      "phone_class": "Vowel",
+      "Count": 3742,
+      "Percentage": 10.393,
+      "LJSpeech_count": 1417,
+      "LibriTTS_count": 1189,
+      "VCTK_count": 555,
+      "Free_ST_count": 581
+    },
+    {
+      "base_phone": "T",
+      "ipa": "t",
+      "phone_class": "Plosive",
+      "Count": 2661,
+      "Percentage": 7.39,
+      "LJSpeech_count": 1011,
+      "LibriTTS_count": 861,
+      "VCTK_count": 373,
+      "Free_ST_count": 416
+    },
+    {
+      "base_phone": "N",
+      "ipa": "n",
+      "phone_class": "Nasal",
+      "Count": 2601,
+      "Percentage": 7.224,
+      "LJSpeech_count": 1026,
+      "LibriTTS_count": 830,
+      "VCTK_count": 345,
+      "Free_ST_count": 400
+    },
+    {
+      "base_phone": "IH",
+      "ipa": "\u026a",
+      "phone_class": "Vowel",
+      "Count": 2313,
+      "Percentage": 6.424,
+      "LJSpeech_count": 825,
+      "LibriTTS_count": 689,
+      "VCTK_count": 355,
+      "Free_ST_count": 444
+    },
+    {
+      "base_phone": "D",
+      "ipa": "d",
+      "phone_class": "Plosive",
+      "Count": 1672,
+      "Percentage": 4.644,
+      "LJSpeech_count": 665,
+      "LibriTTS_count": 572,
+      "VCTK_count": 198,
+      "Free_ST_count": 237
+    },
+    {
+      "base_phone": "S",
+      "ipa": "s",
+      "phone_class": "Fricative",
+      "Count": 1640,
+      "Percentage": 4.555,
+      "LJSpeech_count": 618,
+      "LibriTTS_count": 512,
+      "VCTK_count": 218,
+      "Free_ST_count": 292
+    },
+    {
+      "base_phone": "R",
+      "ipa": "\u0279",
+      "phone_class": "Approximant",
+      "Count": 1596,
+      "Percentage": 4.433,
+      "LJSpeech_count": 605,
+      "LibriTTS_count": 499,
+      "VCTK_count": 229,
+      "Free_ST_count": 263
+    },
+    {
+      "base_phone": "L",
+      "ipa": "l",
+      "phone_class": "Approximant",
+      "Count": 1390,
+      "Percentage": 3.86,
+      "LJSpeech_count": 498,
+      "LibriTTS_count": 455,
+      "VCTK_count": 207,
+      "Free_ST_count": 230
+    },
+    {
+      "base_phone": "IY",
+      "ipa": "i",
+      "phone_class": "Vowel",
+      "Count": 1366,
+      "Percentage": 3.794,
+      "LJSpeech_count": 504,
+      "LibriTTS_count": 422,
+      "VCTK_count": 192,
+      "Free_ST_count": 248
+    },
+    {
+      "base_phone": "DH",
+      "ipa": "\u00f0",
+      "phone_class": "Fricative",
+      "Count": 1199,
+      "Percentage": 3.33,
+      "LJSpeech_count": 453,
+      "LibriTTS_count": 390,
+      "VCTK_count": 174,
+      "Free_ST_count": 182
+    },
+    {
+      "base_phone": "Z",
+      "ipa": "z",
+      "phone_class": "Fricative",
+      "Count": 1109,
+      "Percentage": 3.08,
+      "LJSpeech_count": 404,
+      "LibriTTS_count": 331,
+      "VCTK_count": 184,
+      "Free_ST_count": 190
+    },
+    {
+      "base_phone": "AE",
+      "ipa": "\u00e6",
+      "phone_class": "Vowel",
+      "Count": 1073,
+      "Percentage": 2.98,
+      "LJSpeech_count": 402,
+      "LibriTTS_count": 376,
+      "VCTK_count": 119,
+      "Free_ST_count": 176
+    },
+    {
+      "base_phone": "EH",
+      "ipa": "\u025b",
+      "phone_class": "Vowel",
+      "Count": 1043,
+      "Percentage": 2.897,
+      "LJSpeech_count": 387,
+      "LibriTTS_count": 350,
+      "VCTK_count": 138,
+      "Free_ST_count": 168
+    },
+    {
+      "base_phone": "M",
+      "ipa": "m",
+      "phone_class": "Nasal",
+      "Count": 1009,
+      "Percentage": 2.802,
+      "LJSpeech_count": 349,
+      "LibriTTS_count": 354,
+      "VCTK_count": 117,
+      "Free_ST_count": 189
+    },
+    {
+      "base_phone": "K",
+      "ipa": "k",
+      "phone_class": "Plosive",
+      "Count": 1001,
+      "Percentage": 2.78,
+      "LJSpeech_count": 386,
+      "LibriTTS_count": 281,
+      "VCTK_count": 157,
+      "Free_ST_count": 177
+    },
+    {
+      "base_phone": "ER",
+      "ipa": "\u025a / \u025d",
+      "phone_class": "Vowel",
+      "Count": 916,
+      "Percentage": 2.544,
+      "LJSpeech_count": 380,
+      "LibriTTS_count": 307,
+      "VCTK_count": 103,
+      "Free_ST_count": 126
+    },
+    {
+      "base_phone": "W",
+      "ipa": "w",
+      "phone_class": "Approximant",
+      "Count": 821,
+      "Percentage": 2.28,
+      "LJSpeech_count": 276,
+      "LibriTTS_count": 271,
+      "VCTK_count": 139,
+      "Free_ST_count": 135
+    },
+    {
+      "base_phone": "P",
+      "ipa": "p",
+      "phone_class": "Plosive",
+      "Count": 741,
+      "Percentage": 2.058,
+      "LJSpeech_count": 286,
+      "LibriTTS_count": 235,
+      "VCTK_count": 106,
+      "Free_ST_count": 114
+    },
+    {
+      "base_phone": "V",
+      "ipa": "v",
+      "phone_class": "Fricative",
+      "Count": 719,
+      "Percentage": 1.997,
+      "LJSpeech_count": 295,
+      "LibriTTS_count": 206,
+      "VCTK_count": 91,
+      "Free_ST_count": 127
+    },
+    {
+      "base_phone": "AA",
+      "ipa": "\u0251",
+      "phone_class": "Vowel",
+      "Count": 712,
+      "Percentage": 1.977,
+      "LJSpeech_count": 294,
+      "LibriTTS_count": 209,
+      "VCTK_count": 99,
+      "Free_ST_count": 110
+    },
+    {
+      "base_phone": "B",
+      "ipa": "b",
+      "phone_class": "Plosive",
+      "Count": 680,
+      "Percentage": 1.889,
+      "LJSpeech_count": 243,
+      "LibriTTS_count": 208,
+      "VCTK_count": 122,
+      "Free_ST_count": 107
+    },
+    {
+      "base_phone": "F",
+      "ipa": "f",
+      "phone_class": "Fricative",
+      "Count": 667,
+      "Percentage": 1.852,
+      "LJSpeech_count": 277,
+      "LibriTTS_count": 207,
+      "VCTK_count": 93,
+      "Free_ST_count": 90
+    },
+    {
+      "base_phone": "HH",
+      "ipa": "h",
+      "phone_class": "Aspirate",
+      "Count": 657,
+      "Percentage": 1.825,
+      "LJSpeech_count": 232,
+      "LibriTTS_count": 261,
+      "VCTK_count": 85,
+      "Free_ST_count": 79
+    },
+    {
+      "base_phone": "AY",
+      "ipa": "a\u026a",
+      "phone_class": "Vowel",
+      "Count": 640,
+      "Percentage": 1.777,
+      "LJSpeech_count": 200,
+      "LibriTTS_count": 215,
+      "VCTK_count": 103,
+      "Free_ST_count": 122
+    },
+    {
+      "base_phone": "EY",
+      "ipa": "e\u026a",
+      "phone_class": "Vowel",
+      "Count": 580,
+      "Percentage": 1.611,
+      "LJSpeech_count": 227,
+      "LibriTTS_count": 175,
+      "VCTK_count": 83,
+      "Free_ST_count": 95
+    },
+    {
+      "base_phone": "OW",
+      "ipa": "o\u028a",
+      "phone_class": "Vowel",
+      "Count": 490,
+      "Percentage": 1.361,
+      "LJSpeech_count": 162,
+      "LibriTTS_count": 172,
+      "VCTK_count": 82,
+      "Free_ST_count": 74
+    },
+    {
+      "base_phone": "UW",
+      "ipa": "u",
+      "phone_class": "Vowel",
+      "Count": 438,
+      "Percentage": 1.216,
+      "LJSpeech_count": 167,
+      "LibriTTS_count": 136,
+      "VCTK_count": 58,
+      "Free_ST_count": 77
+    },
+    {
+      "base_phone": "NG",
+      "ipa": "\u014b",
+      "phone_class": "Nasal",
+      "Count": 377,
+      "Percentage": 1.047,
+      "LJSpeech_count": 118,
+      "LibriTTS_count": 145,
+      "VCTK_count": 29,
+      "Free_ST_count": 85
+    },
+    {
+      "base_phone": "AO",
+      "ipa": "\u0254",
+      "phone_class": "Vowel",
+      "Count": 292,
+      "Percentage": 0.811,
+      "LJSpeech_count": 119,
+      "LibriTTS_count": 97,
+      "VCTK_count": 42,
+      "Free_ST_count": 34
+    },
+    {
+      "base_phone": "SH",
+      "ipa": "\u0283",
+      "phone_class": "Fricative",
+      "Count": 285,
+      "Percentage": 0.792,
+      "LJSpeech_count": 111,
+      "LibriTTS_count": 89,
+      "VCTK_count": 44,
+      "Free_ST_count": 41
+    },
+    {
+      "base_phone": "G",
+      "ipa": "\u0261",
+      "phone_class": "Plosive",
+      "Count": 277,
+      "Percentage": 0.769,
+      "LJSpeech_count": 90,
+      "LibriTTS_count": 102,
+      "VCTK_count": 42,
+      "Free_ST_count": 43
+    },
+    {
+      "base_phone": "Y",
+      "ipa": "j",
+      "phone_class": "Approximant",
+      "Count": 235,
+      "Percentage": 0.653,
+      "LJSpeech_count": 77,
+      "LibriTTS_count": 74,
+      "VCTK_count": 32,
+      "Free_ST_count": 52
+    },
+    {
+      "base_phone": "TH",
+      "ipa": "\u03b8",
+      "phone_class": "Fricative",
+      "Count": 224,
+      "Percentage": 0.622,
+      "LJSpeech_count": 86,
+      "LibriTTS_count": 84,
+      "VCTK_count": 23,
+      "Free_ST_count": 31
+    },
+    {
+      "base_phone": "AW",
+      "ipa": "a\u028a",
+      "phone_class": "Vowel",
+      "Count": 207,
+      "Percentage": 0.575,
+      "LJSpeech_count": 73,
+      "LibriTTS_count": 72,
+      "VCTK_count": 23,
+      "Free_ST_count": 39
+    },
+    {
+      "base_phone": "JH",
+      "ipa": "d\u0292",
+      "phone_class": "Affricate",
+      "Count": 176,
+      "Percentage": 0.489,
+      "LJSpeech_count": 74,
+      "LibriTTS_count": 35,
+      "VCTK_count": 36,
+      "Free_ST_count": 31
+    },
+    {
+      "base_phone": "CH",
+      "ipa": "t\u0283",
+      "phone_class": "Affricate",
+      "Count": 164,
+      "Percentage": 0.455,
+      "LJSpeech_count": 53,
+      "LibriTTS_count": 71,
+      "VCTK_count": 11,
+      "Free_ST_count": 29
+    },
+    {
+      "base_phone": "UH",
+      "ipa": "\u028a",
+      "phone_class": "Vowel",
+      "Count": 162,
+      "Percentage": 0.45,
+      "LJSpeech_count": 38,
+      "LibriTTS_count": 59,
+      "VCTK_count": 28,
+      "Free_ST_count": 37
+    },
+    {
+      "base_phone": "spn",
+      "ipa": "spn",
+      "phone_class": "Other",
+      "Count": 79,
+      "Percentage": 0.219,
+      "LJSpeech_count": 36,
+      "LibriTTS_count": 16,
+      "VCTK_count": 13,
+      "Free_ST_count": 14
+    },
+    {
+      "base_phone": "OY",
+      "ipa": "\u0254\u026a",
+      "phone_class": "Vowel",
+      "Count": 28,
+      "Percentage": 0.078,
+      "LJSpeech_count": 9,
+      "LibriTTS_count": 12,
+      "VCTK_count": 3,
+      "Free_ST_count": 4
+    },
+    {
+      "base_phone": "ZH",
+      "ipa": "\u0292",
+      "phone_class": "Fricative",
+      "Count": 24,
+      "Percentage": 0.067,
+      "LJSpeech_count": 11,
+      "LibriTTS_count": 4,
+      "VCTK_count": 7,
+      "Free_ST_count": 2
+    }
+  ],
+  "phonetic_classes": [
+    {
+      "phone_class": "Vowel",
+      "class_name": "Vowel",
+      "Count": 14002,
+      "token_count": 14002,
+      "Percentage": 38.89,
+      "token_pct": 38.89,
+      "phone_types": "AA, AE, AH, AO, AW, AY, EH, ER, EY, IH, IY, OW, OY, UH, UW"
+    },
+    {
+      "phone_class": "Plosive",
+      "class_name": "Plosive",
+      "Count": 7032,
+      "token_count": 7032,
+      "Percentage": 19.53,
+      "token_pct": 19.53,
+      "phone_types": "B, D, G, K, P, T"
+    },
+    {
+      "phone_class": "Fricative",
+      "class_name": "Fricative",
+      "Count": 5867,
+      "token_count": 5867,
+      "Percentage": 16.29,
+      "token_pct": 16.29,
+      "phone_types": "DH, F, S, SH, TH, V, Z, ZH"
+    },
+    {
+      "phone_class": "Approximant",
+      "class_name": "Approximant",
+      "Count": 4042,
+      "token_count": 4042,
+      "Percentage": 11.23,
+      "token_pct": 11.23,
+      "phone_types": "L, R, W, Y"
+    },
+    {
+      "phone_class": "Nasal",
+      "class_name": "Nasal",
+      "Count": 3987,
+      "token_count": 3987,
+      "Percentage": 11.07,
+      "token_pct": 11.07,
+      "phone_types": "M, N, NG"
+    },
+    {
+      "phone_class": "Aspirate",
+      "class_name": "Aspirate",
+      "Count": 657,
+      "token_count": 657,
+      "Percentage": 1.82,
+      "token_pct": 1.82,
+      "phone_types": "HH"
+    },
+    {
+      "phone_class": "Affricate",
+      "class_name": "Affricate",
+      "Count": 340,
+      "token_count": 340,
+      "Percentage": 0.94,
+      "token_pct": 0.94,
+      "phone_types": "CH, JH"
+    },
+    {
+      "phone_class": "Other",
+      "class_name": "Other",
+      "Count": 79,
+      "token_count": 79,
+      "Percentage": 0.22,
+      "token_pct": 0.22,
+      "phone_types": "spn"
+    }
+  ],
+  "vowel_stress": [
+    {
+      "stress_label": "Primary Stress (1)",
+      "stress_category": "Primary Stress (1)",
+      "count": 7644,
+      "token_count": 7644,
+      "mean": 101.77,
+      "mean_duration_ms": 101.77,
+      "std": 56.07,
+      "min": 10.0,
+      "25%": 60.0,
+      "50%": 90.0,
+      "75%": 130.0,
+      "max": 490.0
+    },
+    {
+      "stress_label": "Unstressed (0)",
+      "stress_category": "Unstressed (0)",
+      "count": 5997,
+      "token_count": 5997,
+      "mean": 67.6,
+      "mean_duration_ms": 67.6,
+      "std": 45.28,
+      "min": 10.0,
+      "25%": 40.0,
+      "50%": 50.0,
+      "75%": 80.0,
+      "max": 1030.0
+    },
+    {
+      "stress_label": "Secondary Stress (2)",
+      "stress_category": "Secondary Stress (2)",
+      "count": 361,
+      "token_count": 361,
+      "mean": 100.03,
+      "mean_duration_ms": 100.03,
+      "std": 52.61,
+      "min": 30.0,
+      "25%": 60.0,
+      "50%": 90.0,
+      "75%": 130.0,
+      "max": 360.0
+    }
+  ],
+  "phone_durations": [
+    {
+      "base_phone": "AH",
+      "phone": "AH",
+      "count": 3742,
+      "mean": 58.05,
+      "mean_ms": 58.05,
+      "std": 36.73,
+      "min": 10.0,
+      "25%": 40.0,
+      "50%": 50.0,
+      "75%": 70.0,
+      "max": 1030.0
+    },
+    {
+      "base_phone": "T",
+      "phone": "T",
+      "count": 2661,
+      "mean": 78.54,
+      "mean_ms": 78.54,
+      "std": 40.08,
+      "min": 10.0,
+      "25%": 50.0,
+      "50%": 70.0,
+      "75%": 100.0,
+      "max": 370.0
+    },
+    {
+      "base_phone": "N",
+      "phone": "N",
+      "count": 2601,
+      "mean": 66.01,
+      "mean_ms": 66.01,
+      "std": 36.02,
+      "min": 30.0,
+      "25%": 40.0,
+      "50%": 60.0,
+      "75%": 80.0,
+      "max": 350.0
+    },
+    {
+      "base_phone": "IH",
+      "phone": "IH",
+      "count": 2313,
+      "mean": 67.0,
+      "mean_ms": 67.0,
+      "std": 32.25,
+      "min": 10.0,
+      "25%": 50.0,
+      "50%": 60.0,
+      "75%": 80.0,
+      "max": 340.0
+    },
+    {
+      "base_phone": "D",
+      "phone": "D",
+      "count": 1672,
+      "mean": 66.17,
+      "mean_ms": 66.17,
+      "std": 33.03,
+      "min": 30.0,
+      "25%": 40.0,
+      "50%": 60.0,
+      "75%": 80.0,
+      "max": 290.0
+    },
+    {
+      "base_phone": "S",
+      "phone": "S",
+      "count": 1640,
+      "mean": 118.05,
+      "mean_ms": 118.05,
+      "std": 49.25,
+      "min": 10.0,
+      "25%": 90.0,
+      "50%": 110.0,
+      "75%": 140.0,
+      "max": 420.0
+    },
+    {
+      "base_phone": "R",
+      "phone": "R",
+      "count": 1596,
+      "mean": 70.2,
+      "mean_ms": 70.2,
+      "std": 37.28,
+      "min": 30.0,
+      "25%": 40.0,
+      "50%": 60.0,
+      "75%": 90.0,
+      "max": 300.0
+    },
+    {
+      "base_phone": "L",
+      "phone": "L",
+      "count": 1390,
+      "mean": 82.29,
+      "mean_ms": 82.29,
+      "std": 45.52,
+      "min": 30.0,
+      "25%": 50.0,
+      "50%": 70.0,
+      "75%": 100.0,
+      "max": 370.0
+    },
+    {
+      "base_phone": "IY",
+      "phone": "IY",
+      "count": 1366,
+      "mean": 102.03,
+      "mean_ms": 102.03,
+      "std": 56.3,
+      "min": 30.0,
+      "25%": 60.0,
+      "50%": 90.0,
+      "75%": 130.0,
+      "max": 370.0
+    },
+    {
+      "base_phone": "DH",
+      "phone": "DH",
+      "count": 1199,
+      "mean": 45.52,
+      "mean_ms": 45.52,
+      "std": 18.14,
+      "min": 10.0,
+      "25%": 40.0,
+      "50%": 40.0,
+      "75%": 50.0,
+      "max": 220.0
+    },
+    {
+      "base_phone": "Z",
+      "phone": "Z",
+      "count": 1109,
+      "mean": 97.32,
+      "mean_ms": 97.32,
+      "std": 48.83,
+      "min": 30.0,
+      "25%": 70.0,
+      "50%": 80.0,
+      "75%": 110.0,
+      "max": 320.0
+    },
+    {
+      "base_phone": "AE",
+      "phone": "AE",
+      "count": 1073,
+      "mean": 99.17,
+      "mean_ms": 99.17,
+      "std": 52.79,
+      "min": 30.0,
+      "25%": 60.0,
+      "50%": 90.0,
+      "75%": 130.0,
+      "max": 330.0
+    },
+    {
+      "base_phone": "EH",
+      "phone": "EH",
+      "count": 1043,
+      "mean": 80.97,
+      "mean_ms": 80.97,
+      "std": 33.06,
+      "min": 30.0,
+      "25%": 60.0,
+      "50%": 80.0,
+      "75%": 100.0,
+      "max": 320.0
+    },
+    {
+      "base_phone": "M",
+      "phone": "M",
+      "count": 1009,
+      "mean": 77.74,
+      "mean_ms": 77.74,
+      "std": 37.29,
+      "min": 30.0,
+      "25%": 50.0,
+      "50%": 70.0,
+      "75%": 90.0,
+      "max": 370.0
+    },
+    {
+      "base_phone": "K",
+      "phone": "K",
+      "count": 1001,
+      "mean": 99.15,
+      "mean_ms": 99.15,
+      "std": 37.25,
+      "min": 10.0,
+      "25%": 70.0,
+      "50%": 90.0,
+      "75%": 120.0,
+      "max": 280.0
+    },
+    {
+      "base_phone": "ER",
+      "phone": "ER",
+      "count": 916,
+      "mean": 104.09,
+      "mean_ms": 104.09,
+      "std": 56.91,
+      "min": 30.0,
+      "25%": 60.0,
+      "50%": 90.0,
+      "75%": 130.0,
+      "max": 380.0
+    },
+    {
+      "base_phone": "W",
+      "phone": "W",
+      "count": 821,
+      "mean": 63.64,
+      "mean_ms": 63.64,
+      "std": 30.15,
+      "min": 10.0,
+      "25%": 40.0,
+      "50%": 60.0,
+      "75%": 80.0,
+      "max": 230.0
+    },
+    {
+      "base_phone": "P",
+      "phone": "P",
+      "count": 741,
+      "mean": 98.39,
+      "mean_ms": 98.39,
+      "std": 32.48,
+      "min": 30.0,
+      "25%": 80.0,
+      "50%": 90.0,
+      "75%": 120.0,
+      "max": 260.0
+    },
+    {
+      "base_phone": "V",
+      "phone": "V",
+      "count": 719,
+      "mean": 71.27,
+      "mean_ms": 71.27,
+      "std": 31.48,
+      "min": 30.0,
+      "25%": 50.0,
+      "50%": 60.0,
+      "75%": 80.0,
+      "max": 300.0
+    },
+    {
+      "base_phone": "AA",
+      "phone": "AA",
+      "count": 712,
+      "mean": 104.48,
+      "mean_ms": 104.48,
+      "std": 52.24,
+      "min": 30.0,
+      "25%": 70.0,
+      "50%": 100.0,
+      "75%": 130.0,
+      "max": 380.0
+    }
+  ],
+  "bigram_transitions": {
+    "phones": [
+      "AH",
+      "T",
+      "N",
+      "IH",
+      "D",
+      "S",
+      "R",
+      "L",
+      "IY",
+      "DH",
+      "Z",
+      "AE",
+      "EH",
+      "M",
+      "K"
+    ],
+    "matrix": {
+      "AH": {
+        "AH": 0.4176157934700076,
+        "T": 9.870918754745633,
+        "N": 30.561883067577828,
+        "IH": 0.1518602885345482,
+        "D": 4.859529233105543,
+        "S": 11.19969627942293,
+        "R": 2.619589977220957,
+        "L": 15.375854214123008,
+        "IY": 0.0,
+        "DH": 3.151100987091876,
+        "Z": 7.099468488990129,
+        "AE": 0.2277904328018223,
+        "EH": 0.2277904328018223,
+        "M": 9.870918754745633,
+        "K": 4.365983295368261
+      },
+      "T": {
+        "AH": 25.141242937853107,
+        "T": 4.632768361581921,
+        "N": 1.694915254237288,
+        "IH": 19.039548022598872,
+        "D": 2.1468926553672314,
+        "S": 8.757062146892656,
+        "R": 8.926553672316384,
+        "L": 3.5593220338983054,
+        "IY": 5.762711864406779,
+        "DH": 6.9491525423728815,
+        "Z": 0.0564971751412429,
+        "AE": 3.898305084745763,
+        "EH": 4.745762711864407,
+        "M": 3.333333333333333,
+        "K": 1.3559322033898304
+      },
+      "N": {
+        "AH": 10.037776578521315,
+        "T": 19.05018888289261,
+        "N": 0.809498111171074,
+        "IH": 4.910955207771182,
+        "D": 28.710199676200755,
+        "S": 10.091743119266056,
+        "R": 0.7555315704263357,
+        "L": 2.1046950890447924,
+        "IY": 4.0474905558553695,
+        "DH": 6.799784133837021,
+        "Z": 3.8855909336211543,
+        "AE": 2.860226659471128,
+        "EH": 2.6443604964921748,
+        "M": 1.1872638963842417,
+        "K": 2.1046950890447924
+      },
+      "IH": {
+        "AH": 0.0,
+        "T": 15.782907049282596,
+        "N": 24.26699937616968,
+        "IH": 0.0623830318153462,
+        "D": 7.797878976918278,
+        "S": 11.104179663131628,
+        "R": 4.242046163443543,
+        "L": 7.174048658764816,
+        "IY": 0.0623830318153462,
+        "DH": 1.8714909544603868,
+        "Z": 15.283842794759824,
+        "AE": 0.0,
+        "EH": 0.0,
+        "M": 4.990642545227699,
+        "K": 7.361197754210854
+      },
+      "D": {
+        "AH": 17.305801376597838,
+        "T": 5.408062930186824,
+        "N": 3.736479842674533,
+        "IH": 22.32055063913471,
+        "D": 1.1799410029498525,
+        "S": 4.71976401179941,
+        "R": 6.391347099311701,
+        "L": 2.8515240904621435,
+        "IY": 6.096361848574238,
+        "DH": 11.60275319567355,
+        "Z": 4.818092428711897,
+        "AE": 3.933136676499508,
+        "EH": 2.8515240904621435,
+        "M": 2.8515240904621435,
+        "K": 3.933136676499508
+      },
+      "S": {
+        "AH": 19.726729291204094,
+        "T": 32.53629376601195,
+        "N": 0.8539709649871904,
+        "IH": 12.809564474807855,
+        "D": 1.3663535439795047,
+        "S": 1.0247651579846286,
+        "R": 0.9393680614859092,
+        "L": 1.8787361229718187,
+        "IY": 4.782237403928266,
+        "DH": 2.134927412467976,
+        "Z": 0.0,
+        "AE": 3.0742954739538857,
+        "EH": 9.991460290350128,
+        "M": 2.7327070879590094,
+        "K": 6.148590947907771
+      },
+      "R": {
+        "AH": 15.22748375116063,
+        "T": 8.170844939647168,
+        "N": 2.2284122562674096,
+        "IH": 17.270194986072422,
+        "D": 4.36397400185701,
+        "S": 3.3426183844011144,
+        "R": 0.9285051067780872,
+        "L": 2.321262766945218,
+        "IY": 20.42711234911792,
+        "DH": 2.2284122562674096,
+        "Z": 2.5998142989786444,
+        "AE": 5.478180129990715,
+        "EH": 9.37790157845868,
+        "M": 2.8783658310120708,
+        "K": 3.1569173630454963
+      },
+      "L": {
+        "AH": 15.175537938844846,
+        "T": 4.190260475651189,
+        "N": 1.245753114382786,
+        "IH": 12.004530011325029,
+        "D": 12.004530011325029,
+        "S": 3.8505096262740657,
+        "R": 1.359003397508494,
+        "L": 1.0192525481313703,
+        "IY": 23.44280860702152,
+        "DH": 2.831257078142696,
+        "Z": 4.190260475651189,
+        "AE": 6.455266138165346,
+        "EH": 6.342015855039637,
+        "M": 3.397508493771234,
+        "K": 2.491506228765572
+      },
+      "IY": {
+        "AH": 15.30494821634062,
+        "T": 8.400460299194476,
+        "N": 6.904487917146144,
+        "IH": 6.67433831990794,
+        "D": 8.63060989643268,
+        "S": 8.860759493670885,
+        "R": 3.79746835443038,
+        "L": 6.214039125431531,
+        "IY": 0.805523590333717,
+        "DH": 1.8411967779056384,
+        "Z": 11.162255466052931,
+        "AE": 4.948216340621404,
+        "EH": 3.222094361334868,
+        "M": 5.293440736478711,
+        "K": 7.940161104718067
+      },
+      "DH": {
+        "AH": 57.10200190657769,
+        "T": 0.0,
+        "N": 0.0,
+        "IH": 7.149666348903717,
+        "D": 0.0953288846520495,
+        "S": 0.0,
+        "R": 0.0,
+        "L": 0.0,
+        "IY": 13.06005719733079,
+        "DH": 0.0953288846520495,
+        "Z": 0.0953288846520495,
+        "AE": 13.44137273593899,
+        "EH": 8.960915157292659,
+        "M": 0.0,
+        "K": 0.0
+      },
+      "Z": {
+        "AH": 28.50812407680945,
+        "T": 7.090103397341212,
+        "N": 5.465288035450517,
+        "IH": 11.816838995568684,
+        "D": 6.499261447562777,
+        "S": 5.022156573116692,
+        "R": 2.806499261447563,
+        "L": 3.2496307237813884,
+        "IY": 1.1816838995568686,
+        "DH": 11.669128508124077,
+        "Z": 0.0,
+        "AE": 6.942392909896602,
+        "EH": 2.2156573116691285,
+        "M": 4.283604135893649,
+        "K": 3.2496307237813884
+      },
+      "AE": {
+        "AH": 0.0,
+        "T": 24.412094064949606,
+        "N": 42.44120940649496,
+        "IH": 0.0,
+        "D": 8.51063829787234,
+        "S": 5.1511758118701,
+        "R": 0.3359462486002239,
+        "L": 3.471444568868981,
+        "IY": 0.0,
+        "DH": 0.4479283314669653,
+        "Z": 6.83090705487122,
+        "AE": 0.0,
+        "EH": 0.0,
+        "M": 1.9036954087346023,
+        "K": 6.4949608062709965
+      },
+      "EH": {
+        "AH": 0.0,
+        "T": 4.740904079382579,
+        "N": 27.34288864388093,
+        "IH": 0.0,
+        "D": 6.615214994487322,
+        "S": 7.497243660418963,
+        "R": 21.389195148842337,
+        "L": 9.481808158765158,
+        "IY": 0.0,
+        "DH": 0.9922822491730982,
+        "Z": 4.961411245865491,
+        "AE": 0.0,
+        "EH": 0.0,
+        "M": 4.740904079382579,
+        "K": 12.238147739801542
+      },
+      "M": {
+        "AH": 27.516778523489933,
+        "T": 4.697986577181208,
+        "N": 1.174496644295302,
+        "IH": 14.597315436241612,
+        "D": 3.523489932885906,
+        "S": 5.033557046979865,
+        "R": 1.174496644295302,
+        "L": 0.8389261744966443,
+        "IY": 6.711409395973154,
+        "DH": 5.5369127516778525,
+        "Z": 5.87248322147651,
+        "AE": 10.906040268456376,
+        "EH": 10.06711409395973,
+        "M": 1.8456375838926176,
+        "K": 0.5033557046979865
+      },
+      "K": {
+        "AH": 33.181126331811264,
+        "T": 17.04718417047184,
+        "N": 0.60882800608828,
+        "IH": 5.93607305936073,
+        "D": 0.15220700152207,
+        "S": 14.45966514459665,
+        "R": 7.4581430745814306,
+        "L": 6.0882800608828,
+        "IY": 2.13089802130898,
+        "DH": 2.28310502283105,
+        "Z": 0.0,
+        "AE": 6.392694063926941,
+        "EH": 3.50076103500761,
+        "M": 0.60882800608828,
+        "K": 0.15220700152207
+      }
+    }
+  },
+  "phone_confusions": {
+    "source_type": "ASR-G2P proxy edits (1,419 substitution pairs)",
+    "reference_phones": [
+      "\u00e6",
+      "t",
+      "\u1d7b",
+      "d",
+      "\u026a",
+      "\u0250",
+      "n",
+      "\u025b",
+      "\u025a",
+      "\u0259"
+    ],
+    "hypothesis_phones": [
+      "\u0259",
+      "\u026a",
+      "t",
+      "\u0251\u02d0",
+      "\u027e",
+      "\u025b",
+      "\u025a",
+      "\u028c",
+      "\u00f0",
+      "v"
+    ],
+    "matrix": {
+      "\u00e6": {
+        "\u0259": 7,
+        "\u026a": 23,
+        "t": 14,
+        "\u0251\u02d0": 13,
+        "\u027e": 0,
+        "\u025b": 13,
+        "\u025a": 0,
+        "\u028c": 14,
+        "\u00f0": 0,
+        "v": 0
+      },
+      "t": {
+        "\u0259": 28,
+        "\u026a": 0,
+        "t": 0,
+        "\u0251\u02d0": 0,
+        "\u027e": 42,
+        "\u025b": 0,
+        "\u025a": 0,
+        "\u028c": 0,
+        "\u00f0": 0,
+        "v": 0
+      },
+      "\u1d7b": {
+        "\u0259": 3,
+        "\u026a": 23,
+        "t": 10,
+        "\u0251\u02d0": 0,
+        "\u027e": 0,
+        "\u025b": 0,
+        "\u025a": 14,
+        "\u028c": 0,
+        "\u00f0": 0,
+        "v": 0
+      },
+      "d": {
+        "\u0259": 10,
+        "\u026a": 0,
+        "t": 16,
+        "\u0251\u02d0": 0,
+        "\u027e": 18,
+        "\u025b": 0,
+        "\u025a": 0,
+        "\u028c": 0,
+        "\u00f0": 4,
+        "v": 0
+      },
+      "\u026a": {
+        "\u0259": 3,
+        "\u026a": 0,
+        "t": 0,
+        "\u0251\u02d0": 0,
+        "\u027e": 0,
+        "\u025b": 14,
+        "\u025a": 0,
+        "\u028c": 0,
+        "\u00f0": 0,
+        "v": 0
+      },
+      "\u0250": {
+        "\u0259": 38,
+        "\u026a": 1,
+        "t": 0,
+        "\u0251\u02d0": 0,
+        "\u027e": 0,
+        "\u025b": 4,
+        "\u025a": 0,
+        "\u028c": 0,
+        "\u00f0": 0,
+        "v": 0
+      },
+      "n": {
+        "\u0259": 0,
+        "\u026a": 0,
+        "t": 0,
+        "\u0251\u02d0": 18,
+        "\u027e": 1,
+        "\u025b": 14,
+        "\u025a": 1,
+        "\u028c": 0,
+        "\u00f0": 0,
+        "v": 0
+      },
+      "\u025b": {
+        "\u0259": 29,
+        "\u026a": 13,
+        "t": 0,
+        "\u0251\u02d0": 1,
+        "\u027e": 0,
+        "\u025b": 0,
+        "\u025a": 0,
+        "\u028c": 0,
+        "\u00f0": 0,
+        "v": 0
+      },
+      "\u025a": {
+        "\u0259": 14,
+        "\u026a": 0,
+        "t": 0,
+        "\u0251\u02d0": 14,
+        "\u027e": 0,
+        "\u025b": 0,
+        "\u025a": 0,
+        "\u028c": 0,
+        "\u00f0": 0,
+        "v": 0
+      },
+      "\u0259": {
+        "\u0259": 0,
+        "\u026a": 14,
+        "t": 1,
+        "\u0251\u02d0": 4,
+        "\u027e": 0,
+        "\u025b": 0,
+        "\u025a": 0,
+        "\u028c": 0,
+        "\u00f0": 0,
+        "v": 14
+      }
+    }
+  },
+  "error_decomposition": [
+    {
+      "System": "PeriodWave-24k",
+      "Substitutions": 0.9712928987696956,
+      "Deletions": 0.4208935894668681,
+      "Insertions": 0.7446578890567667,
+      "Total_PER": 2.1368443772933303
+    },
+    {
+      "System": "Vocos",
+      "Substitutions": 1.0360457586876757,
+      "Deletions": 0.4532700194258579,
+      "Insertions": 0.7230736024174401,
+      "Total_PER": 2.2123893805309733
+    },
+    {
+      "System": "BridgeVoC",
+      "Substitutions": 1.0900064752859917,
+      "Deletions": 0.4208935894668681,
+      "Insertions": 0.7122814590977768,
+      "Total_PER": 2.223181523850637
+    },
+    {
+      "System": "ComVo-Large",
+      "Substitutions": 1.057630045327002,
+      "Deletions": 0.4101014461472048,
+      "Insertions": 0.7662421756960932,
+      "Total_PER": 2.2339736671703
+    },
+    {
+      "System": "WaveFM",
+      "Substitutions": 1.0900064752859917,
+      "Deletions": 0.4316857327865314,
+      "Insertions": 0.7554500323764299,
+      "Total_PER": 2.2771422404489527
+    },
+    {
+      "System": "Flow2GAN (4-step)",
+      "Substitutions": 1.0900064752859917,
+      "Deletions": 0.3993093028275415,
+      "Insertions": 0.7878264623354198,
+      "Total_PER": 2.277142240448953
+    },
+    {
+      "System": "BigVGAN-Base (14M)",
+      "Substitutions": 1.0684221886466652,
+      "Deletions": 0.4424778761061947,
+      "Insertions": 0.7770343190157565,
+      "Total_PER": 2.2879343837686164
+    },
+    {
+      "System": "RNDVoC",
+      "Substitutions": 1.1115907619253182,
+      "Deletions": 0.4208935894668681,
+      "Insertions": 0.7554500323764299,
+      "Total_PER": 2.2879343837686164
+    },
+    {
+      "System": "BigVGAN-v2 (112M)",
+      "Substitutions": 1.1115907619253182,
+      "Deletions": 0.4424778761061947,
+      "Insertions": 0.7338657457371034,
+      "Total_PER": 2.2879343837686164
+    },
+    {
+      "System": "ComVo-Base",
+      "Substitutions": 1.1115907619253182,
+      "Deletions": 0.4208935894668681,
+      "Insertions": 0.7878264623354198,
+      "Total_PER": 2.3203108137276063
+    },
+    {
+      "System": "RFWave",
+      "Substitutions": 1.133175048564645,
+      "Deletions": 0.4532700194258579,
+      "Insertions": 0.7446578890567667,
+      "Total_PER": 2.331102957047269
+    },
+    {
+      "System": "PeriodWave-Turbo",
+      "Substitutions": 1.1223829052449816,
+      "Deletions": 0.4101014461472048,
+      "Insertions": 0.8094107489747464,
+      "Total_PER": 2.3418951003669326
+    },
+    {
+      "System": "FreeV",
+      "Substitutions": 1.1979279084826246,
+      "Deletions": 0.4101014461472048,
+      "Insertions": 0.7446578890567667,
+      "Total_PER": 2.352687243686596
+    },
+    {
+      "System": "HiFi-GAN v1",
+      "Substitutions": 1.1223829052449816,
+      "Deletions": 0.4424778761061947,
+      "Insertions": 0.7986186056550831,
+      "Total_PER": 2.36347938700626
+    }
+  ],
+  "bootstrap_per_ci": [
+    {
+      "System": "Vocos",
+      "Mean_PER": 3.144778010779419,
+      "CI_Low": 1.483960914721281,
+      "CI_High": 4.314363444431395
+    },
+    {
+      "System": "PeriodWave-24k",
+      "Mean_PER": 3.288412335358024,
+      "CI_Low": 1.491571829151381,
+      "CI_High": 4.5901716160994965
+    },
+    {
+      "System": "ComVo-Large",
+      "Mean_PER": 3.29934923933493,
+      "CI_Low": 1.635359504103979,
+      "CI_High": 4.551608491606108
+    },
+    {
+      "System": "WaveFM",
+      "Mean_PER": 3.331798779638866,
+      "CI_Low": 1.7633168317259682,
+      "CI_High": 4.483573986763678
+    },
+    {
+      "System": "BigVGAN-Base (14M)",
+      "Mean_PER": 3.404354349681398,
+      "CI_Low": 1.7354449928132425,
+      "CI_High": 4.697905849892098
+    },
+    {
+      "System": "RNDVoC",
+      "Mean_PER": 3.4095269131462125,
+      "CI_Low": 1.7499622149968164,
+      "CI_High": 4.68907624931976
+    },
+    {
+      "System": "BridgeVoC",
+      "Mean_PER": 3.440267517257779,
+      "CI_Low": 1.7724606483388772,
+      "CI_High": 4.680319619862964
+    },
+    {
+      "System": "BigVGAN-v2 (112M)",
+      "Mean_PER": 3.441120011405977,
+      "CI_Low": 1.7288735421613883,
+      "CI_High": 4.731066165608394
+    },
+    {
+      "System": "ComVo-Base",
+      "Mean_PER": 3.483062562955877,
+      "CI_Low": 1.812997825806177,
+      "CI_High": 4.75992468984218
+    },
+    {
+      "System": "PeriodWave-Turbo",
+      "Mean_PER": 3.4929535215261684,
+      "CI_Low": 1.8119686112423377,
+      "CI_High": 4.688620565309774
+    },
+    {
+      "System": "Flow2GAN (4-step)",
+      "Mean_PER": 3.519265448515435,
+      "CI_Low": 1.815373662079471,
+      "CI_High": 4.766277395180905
+    },
+    {
+      "System": "FreeV",
+      "Mean_PER": 3.52149089026108,
+      "CI_Low": 1.7223525278475975,
+      "CI_High": 4.799004110462708
+    },
+    {
+      "System": "RFWave",
+      "Mean_PER": 3.538594547438235,
+      "CI_Low": 1.823846371717616,
+      "CI_High": 4.798690251844376
+    },
+    {
+      "System": "HiFi-GAN v1",
+      "Mean_PER": 3.562923392233805,
+      "CI_Low": 1.931703232465649,
+      "CI_High": 4.897599621988495
+    }
+  ],
+  "class_errors": [
+    {
+      "phone_class": "Affricate",
+      "Deletions": 0,
+      "Insertions": 0,
+      "Substitutions": 30
+    },
+    {
+      "phone_class": "Approximant",
+      "Deletions": 33,
+      "Insertions": 122,
+      "Substitutions": 76
+    },
+    {
+      "phone_class": "Fricative",
+      "Deletions": 148,
+      "Insertions": 221,
+      "Substitutions": 99
+    },
+    {
+      "phone_class": "Nasal",
+      "Deletions": 59,
+      "Insertions": 68,
+      "Substitutions": 98
+    },
+    {
+      "phone_class": "Plosive",
+      "Deletions": 67,
+      "Insertions": 190,
+      "Substitutions": 254
+    },
+    {
+      "phone_class": "Vowel",
+      "Deletions": 247,
+      "Insertions": 385,
+      "Substitutions": 862
+    }
+  ],
+  "phonetic_lsd_hierarchy": [
+    {
+      "Phone Class": "Plosives (/p, b, t, d, k, g/)",
+      "Metric Column": "phonetic_plosives_lsd",
+      "Mean LSD (dB)": 6.771641306325958,
+      "Std Dev": 1.4006245889426183,
+      "SE": 0.0040654210733617,
+      "95% CI Half": 0.007968225303789,
+      "95% CI Range": "[6.7637, 6.7796]",
+      "95% StdDev Band": "[4.03, 9.52]"
+    },
+    {
+      "Phone Class": "Fricatives (/f, v, s, z, sh.../)",
+      "Metric Column": "phonetic_fricatives_lsd",
+      "Mean LSD (dB)": 6.932079469120977,
+      "Std Dev": 1.2787899888172427,
+      "SE": 0.0037357042014444,
+      "95% CI Half": 0.007321980234831,
+      "95% CI Range": "[6.9248, 6.9394]",
+      "95% StdDev Band": "[4.43, 9.44]"
+    },
+    {
+      "Phone Class": "Nasals (/m, n, ng/)",
+      "Metric Column": "phonetic_nasals_lsd",
+      "Mean LSD (dB)": 7.0518335075210175,
+      "Std Dev": 1.5283393664181746,
+      "SE": 0.0045448263944104,
+      "95% CI Half": 0.0089078597330445,
+      "95% CI Range": "[7.0429, 7.0607]",
+      "95% StdDev Band": "[4.06, 10.05]"
+    },
+    {
+      "Phone Class": "Vowels (monophthongs/diphthongs)",
+      "Metric Column": "phonetic_vowels_lsd",
+      "Mean LSD (dB)": 6.809225909950248,
+      "Std Dev": 1.352293553359604,
+      "SE": 0.0039054442410601,
+      "95% CI Half": 0.0076546707124778,
+      "95% CI Range": "[6.8016, 6.8169]",
+      "95% StdDev Band": "[4.16, 9.46]"
+    },
+    {
+      "Phone Class": "Approximants (/l, r, w, y/)",
+      "Metric Column": "phonetic_approximants_lsd",
+      "Mean LSD (dB)": 7.008867951562139,
+      "Std Dev": 1.4586219876393212,
+      "SE": 0.0042902502379973,
+      "95% CI Half": 0.0084088904664747,
+      "95% CI Range": "[7.0005, 7.0173]",
+      "95% StdDev Band": "[4.15, 9.87]"
+    },
+    {
+      "Phone Class": "Phone Boundaries (Transitions)",
+      "Metric Column": "phonetic_boundary_lsd",
+      "Mean LSD (dB)": 6.864122297803089,
+      "Std Dev": 1.356075652775053,
+      "SE": 0.0039158771187201,
+      "95% CI Half": 0.0076751191526915,
+      "95% CI Range": "[6.8564, 6.8718]",
+      "95% StdDev Band": "[4.21, 9.52]"
+    }
+  ],
+  "f0_rmse": [
+    {
+      "model_id": "periodwave_turbo",
+      "f0_rmse_cents_mean": 21.25586718082428,
+      "f0_rmse_cents_std": 1.920841843921744
+    },
+    {
+      "model_id": "flow2gan",
+      "f0_rmse_cents_mean": 21.277679991722103,
+      "f0_rmse_cents_std": 5.356170594921987
+    },
+    {
+      "model_id": "bigvgan_v2_24khz_100band_256x",
+      "f0_rmse_cents_mean": 22.51580945491791,
+      "f0_rmse_cents_std": 4.99033459558867
+    },
+    {
+      "model_id": "bridgevoc",
+      "f0_rmse_cents_mean": 23.29077946186065,
+      "f0_rmse_cents_std": 3.9559892986213088
+    },
+    {
+      "model_id": "rndvoc",
+      "f0_rmse_cents_mean": 24.82092618942261,
+      "f0_rmse_cents_std": 3.4856573582690444
+    },
+    {
+      "model_id": "comvo_large",
+      "f0_rmse_cents_mean": 29.34220076084137,
+      "f0_rmse_cents_std": 4.739372822188139
+    },
+    {
+      "model_id": "periodwave_24k",
+      "f0_rmse_cents_mean": 33.04275693416596,
+      "f0_rmse_cents_std": 11.825420185244289
+    },
+    {
+      "model_id": "bigvgan_base_24khz_100band",
+      "f0_rmse_cents_mean": 35.25120695114136,
+      "f0_rmse_cents_std": 6.201109038631111
+    },
+    {
+      "model_id": "vocos_mel_24khz",
+      "f0_rmse_cents_mean": 36.62790515899658,
+      "f0_rmse_cents_std": 8.502539567381884
+    },
+    {
+      "model_id": "wavefm",
+      "f0_rmse_cents_mean": 37.02088583946228,
+      "f0_rmse_cents_std": 5.633810954995386
+    },
+    {
+      "model_id": "comvo_base",
+      "f0_rmse_cents_mean": 39.412850856781006,
+      "f0_rmse_cents_std": 11.760658159059956
+    },
+    {
+      "model_id": "rfwave_libritts_24k",
+      "f0_rmse_cents_mean": 43.80630918502808,
+      "f0_rmse_cents_std": 29.03224087180412
+    },
+    {
+      "model_id": "hifigan_universal_v1",
+      "f0_rmse_cents_mean": 61.122028656005874,
+      "f0_rmse_cents_std": 19.293553887353628
+    },
+    {
+      "model_id": "freev",
+      "f0_rmse_cents_mean": 125.00449261470716,
+      "f0_rmse_cents_std": 53.97326849733983
+    }
+  ]
+}

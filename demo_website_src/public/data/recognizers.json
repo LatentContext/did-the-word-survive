@@ -1,0 +1,23 @@
+[
+  {
+    "id": "two_asr_consensus",
+    "name": "Two-ASR Consensus (Primary Diagnostic)",
+    "short_name": "Two-ASR Consensus",
+    "type": "Ensemble",
+    "description": "Agreement requirement between Whisper-tiny.en and Wav2Vec2-base-960h to isolate robust word recognition outcomes."
+  },
+  {
+    "id": "whisper_tiny",
+    "name": "Whisper-tiny.en",
+    "short_name": "Whisper-tiny",
+    "type": "Autoregressive Encoder-Decoder",
+    "description": "OpenAI Whisper-tiny English model; incorporates broad linguistic language model conditioning."
+  },
+  {
+    "id": "wav2vec2_base",
+    "name": "Wav2Vec2-base-960h",
+    "short_name": "Wav2Vec2-base",
+    "type": "Self-Supervised CTC",
+    "description": "Meta wav2vec 2.0 base CTC model; acoustic-dominant screening without strong LM prior."
+  }
+]

@@ -1,0 +1,39 @@
+{
+  "analysis_id": "NAACL_2026_RECONCILED_V3",
+  "date": "2026-10-20",
+  "aligner_version": "Montreal Forced Aligner (MFA v3)",
+  "dictionary": "CMUdict v0.7b (39 base ARPAbet phones)",
+  "eval_asr_models": [
+    "openai/whisper-tiny.en",
+    "facebook/wav2vec2-base-960h"
+  ],
+  "acoustic_stft_settings": {
+    "fft_size": 1024,
+    "hop_length": 256,
+    "window": "Hann",
+    "frequency_range_hz": [
+      0,
+      8000
+    ],
+    "reference_level": "Peak 0 dB"
+  },
+  "populations": {
+    "source_utterances": 8000,
+    "valid_textgrids": 7999,
+    "excluded_utterances": [
+      "VCTK p345_292 (non-monotonic MFA boundaries)"
+    ],
+    "total_waveform_files": 120000,
+    "evaluated_neural_models": 14,
+    "reference_baseline_models": 1,
+    "reference_phone_intervals": 36006,
+    "arpabet_phone_intervals": 35927,
+    "spoken_noise_spn_intervals": 79,
+    "vowel_intervals": 14002,
+    "primary_stress_vowels": 7644,
+    "secondary_stress_vowels": 361,
+    "unstressed_vowels": 5997,
+    "missing_stress_vowels": 0
+  },
+  "status": "Traceable & Audited"
+}

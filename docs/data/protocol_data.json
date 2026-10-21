@@ -1,0 +1,176 @@
+{
+  "tab1_inventory": [
+    {
+      "corpus": "LJSpeech",
+      "utterances": 2000,
+      "speakers": 1,
+      "fs": "22.05 kHz",
+      "intersected": 2000,
+      "accent": "General American Studio"
+    },
+    {
+      "corpus": "LibriTTS",
+      "utterances": 2000,
+      "speakers": 682,
+      "fs": "24.00 kHz",
+      "intersected": 2000,
+      "accent": "American Multi-Speaker"
+    },
+    {
+      "corpus": "VCTK",
+      "utterances": 2000,
+      "speakers": 109,
+      "fs": "24.00 kHz",
+      "intersected": 1999,
+      "accent": "Regional British & Scottish"
+    },
+    {
+      "corpus": "Free_ST",
+      "utterances": 2000,
+      "speakers": 10,
+      "fs": "16.00 kHz",
+      "intersected": 2000,
+      "accent": "Mandarin-Accented L2 English"
+    },
+    {
+      "corpus": "Total Pooled",
+      "utterances": 8000,
+      "speakers": 802,
+      "fs": "Multi (16-24k)",
+      "intersected": 7999,
+      "accent": "Multi-Corpus Benchmark"
+    }
+  ],
+  "tab2_context_rescue": [
+    {
+      "corpus": "LJSpeech",
+      "targets": 2160,
+      "p_orig": 0.958,
+      "p_recon": 0.958,
+      "d_estimand": 0.039,
+      "ci": "[0.000, 0.105]"
+    },
+    {
+      "corpus": "LibriTTS",
+      "targets": 1770,
+      "p_orig": 0.932,
+      "p_recon": 0.936,
+      "d_estimand": 0.19,
+      "ci": "[0.000, 0.391]"
+    },
+    {
+      "corpus": "VCTK",
+      "targets": 1305,
+      "p_orig": 0.989,
+      "p_recon": 0.991,
+      "d_estimand": 0.202,
+      "ci": "[0.000, 0.682]"
+    },
+    {
+      "corpus": "Free_ST",
+      "targets": 750,
+      "p_orig": 0.96,
+      "p_recon": 0.96,
+      "d_estimand": 0.064,
+      "ci": "[0.000, 0.128]"
+    },
+    {
+      "corpus": "Pooled (All)",
+      "targets": 5985,
+      "p_orig": 0.957,
+      "p_recon": 0.959,
+      "d_estimand": 0.122,
+      "ci": "[0.047, 0.233]"
+    }
+  ],
+  "tab4_asr_screening": [
+    {
+      "asr": "Whisper-tiny.en",
+      "agreement_category": "Autoregressive (Strong LM Prior)",
+      "concordance": "High lexical reliance",
+      "type": "OpenAI frozen checkpoint",
+      "status": "Verified Empirical"
+    },
+    {
+      "asr": "Wav2Vec2-base-960h",
+      "agreement_category": "Self-Supervised CTC (Acoustic Dominant)",
+      "concordance": "Direct frame acoustic decoding",
+      "type": "Meta frozen checkpoint",
+      "status": "Verified Empirical"
+    },
+    {
+      "asr": "Two-ASR Consensus",
+      "agreement_category": "Both Models In Agreement",
+      "concordance": "Dual-recognizer intersection",
+      "type": "Diagnostic screening baseline",
+      "status": "Verified Empirical"
+    }
+  ],
+  "tab5_screening_budget": [
+    {
+      "method": "Random Guessing Baseline",
+      "top25": 25.0,
+      "prec25": 14.8,
+      "top50": 50.0,
+      "prec50": 14.8,
+      "top100": 100.0,
+      "prec100": 14.8
+    },
+    {
+      "method": "Wav2Vec2 CTC Loss Alone",
+      "top25": 54.2,
+      "prec25": 32.1,
+      "top50": 78.4,
+      "prec50": 23.2,
+      "top100": 100.0,
+      "prec100": 14.8
+    },
+    {
+      "method": "Two-ASR Consensus Loss",
+      "top25": 73.8,
+      "prec25": 43.7,
+      "top50": 91.2,
+      "prec50": 27.0,
+      "top100": 100.0,
+      "prec100": 14.8
+    }
+  ],
+  "tab6_linguistic_predictors": [
+    {
+      "predictor": "Word Position: Syllable Coda vs Onset",
+      "beta": 0.908,
+      "se": 0.098,
+      "odds_ratio": 2.48,
+      "ci": "[2.05, 3.00]",
+      "p": "< 0.001",
+      "significant": true
+    },
+    {
+      "predictor": "Manner: Fricative vs Plosive",
+      "beta": 0.457,
+      "se": 0.112,
+      "odds_ratio": 1.58,
+      "ci": "[1.27, 1.97]",
+      "p": "< 0.001",
+      "significant": true
+    },
+    {
+      "predictor": "Target Duration (per 100 ms decrease)",
+      "beta": 0.385,
+      "se": 0.089,
+      "odds_ratio": 1.47,
+      "ci": "[1.23, 1.75]",
+      "p": "< 0.001",
+      "significant": true
+    },
+    {
+      "predictor": "Lexical Frequency (Log Zipf)",
+      "beta": -0.124,
+      "se": 0.065,
+      "odds_ratio": 0.88,
+      "ci": "[0.78, 1.00]",
+      "p": "0.058",
+      "significant": false
+    }
+  ]
+}
