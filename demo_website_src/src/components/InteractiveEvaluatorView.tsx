@@ -823,7 +823,7 @@ export const InteractiveEvaluatorView: React.FC = () => {
     const items = evalData.phoneAlign.aligned.filter((item) => item.ref);
     if (items.length === 0) return [];
 
-    const paddingLeft = 165;
+    const paddingLeft = 80;
     const paddingRight = 40;
     const minStepX = 42;
     const plotWidth = Math.max(680, items.length * minStepX);
@@ -860,7 +860,7 @@ export const InteractiveEvaluatorView: React.FC = () => {
   }, [evalData]);
 
   // SVG dimensions
-  const svgWidth = trajectoryPoints.length > 0 ? 165 + Math.max(680, trajectoryPoints.length * 42) + 40 : 800;
+  const svgWidth = trajectoryPoints.length > 0 ? 80 + Math.max(680, trajectoryPoints.length * 42) + 40 : 800;
   const svgHeight = 255;
 
   // Active highlight band bounds (with 25% opacity)
@@ -1352,10 +1352,9 @@ export const InteractiveEvaluatorView: React.FC = () => {
           </div>
         </div>
 
-        {/* Side-by-Side: Speech Articulation Trajectory (Left) + Manner Diagnostics (Right Panel) */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
-          {/* Left: SVG Trajectory Chart */}
-          <div className="lg:col-span-8 space-y-2">
+        {/* Full-width: Speech Articulation Trajectory Chart */}
+        <div className="space-y-2">
+          <div className="space-y-2">
             <div className="flex items-center justify-between text-xs font-bold text-[#5A7086] dark:text-[#7A9BB8]">
               <span className="uppercase tracking-wider">Speech Articulation Trajectory Curve & Phonetic Hierarchy</span>
               <span>💡 Y-axis reflects natural acoustic sonority</span>
@@ -1364,20 +1363,20 @@ export const InteractiveEvaluatorView: React.FC = () => {
             <div className="rounded-xl border border-[#D6EDF8] dark:border-[#2A3F54] bg-[#0C1322] p-2 overflow-x-auto relative">
               <svg
                 viewBox={`0 0 ${svgWidth} ${svgHeight}`}
-                className="w-full h-auto min-w-[720px] block select-none"
+                className="w-full h-auto min-w-[600px] block select-none"
               >
                 {/* Horizontal lanes and labels */}
                 {[
-                  { lvl: 5, label: 'Vowels (Open/Sonorant)', icon: '🌸', y: 42 },
-                  { lvl: 4, label: 'Approximants / Glides', icon: '🌊', y: 82 },
-                  { lvl: 3, label: 'Nasals (Resonant)', icon: '🌿', y: 122 },
-                  { lvl: 2, label: 'Fricatives (Turbulent)', icon: '⚡', y: 162 },
-                  { lvl: 1, label: 'Plosives (Stops/Closure)', icon: '💧', y: 202 }
+                  { lvl: 5, label: 'Vowels', icon: '🌸', y: 42 },
+                  { lvl: 4, label: 'Approximants', icon: '🌊', y: 82 },
+                  { lvl: 3, label: 'Nasals', icon: '🌿', y: 122 },
+                  { lvl: 2, label: 'Fricatives', icon: '⚡', y: 162 },
+                  { lvl: 1, label: 'Plosives', icon: '💧', y: 202 }
                 ].map((lane) => (
                   <g key={lane.lvl}>
                     {/* Lane guide line */}
                     <line
-                      x1={165}
+                      x1={80}
                       y1={lane.y}
                       x2={svgWidth - 20}
                       y2={lane.y}
@@ -1387,7 +1386,7 @@ export const InteractiveEvaluatorView: React.FC = () => {
                     />
                     {/* Left Axis Gutter Label */}
                     <text
-                      x={14}
+                      x={8}
                       y={lane.y + 4}
                       fill="#7A9BB8"
                       fontSize="10"
@@ -1401,9 +1400,9 @@ export const InteractiveEvaluatorView: React.FC = () => {
 
                 {/* Vertical Separator */}
                 <line
-                  x1={155}
+                  x1={75}
                   y1={15}
-                  x2={155}
+                  x2={75}
                   y2={svgHeight - 15}
                   stroke="rgba(255,255,255,0.15)"
                   strokeWidth="1.5"
@@ -1531,19 +1530,19 @@ export const InteractiveEvaluatorView: React.FC = () => {
             </div>
           </div>
 
-          {/* Right: Manner Diagnostics Side Panel */}
-          <div className="lg:col-span-4 p-5 rounded-2xl bg-[#F0F8FF]/80 dark:bg-[#0D1117] border border-[#D6EDF8] dark:border-[#2A3F54] space-y-4">
-            <div className="flex items-center justify-between border-b border-[#D6EDF8]/60 dark:border-[#2A3F54]/60 pb-3">
-              <div>
+          {/* Bottom: Manner Diagnostics as compact horizontal row */}
+          <div className="rounded-2xl bg-[#F0F8FF]/80 dark:bg-[#0D1117] border border-[#D6EDF8] dark:border-[#2A3F54] p-4">
+            <div className="flex items-center justify-between mb-3">
+              <div className="flex items-center gap-2">
                 <h4 className="font-bold text-sm text-[#14213D] dark:text-white">Manner Diagnostics</h4>
-                <p className="text-[11px] text-[#5A7086]">Accuracy & phonetic distribution</p>
+                <p className="text-[11px] text-[#5A7086] dark:text-[#7A9BB8]">Accuracy & phonetic distribution</p>
               </div>
               <span className="px-2.5 py-1 rounded-full text-xs font-bold font-mono bg-[#88DFF2]/20 text-[#14213D] dark:text-[#88DFF2]">
                 {evalData.totalPhonesCount} phones
               </span>
             </div>
 
-            <div className="space-y-3">
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-7 gap-2">
               {Object.entries(evalData.classStats).map(([cls, stats]) => {
                 const pct = stats.total > 0 ? ((stats.hits / stats.total) * 100).toFixed(0) : '100';
                 const isSelected =
@@ -1559,28 +1558,24 @@ export const InteractiveEvaluatorView: React.FC = () => {
                         setActiveSelection({ type: 'manner', manner: cls, phoneIdx: null, wordIdx: null });
                       }
                     }}
-                    className={`p-3 rounded-xl border transition-all cursor-pointer ${
+                    className={`p-2.5 rounded-xl border transition-all cursor-pointer text-center ${
                       isSelected
                         ? 'border-[#88DFF2] bg-[#88DFF2]/15 shadow-xs'
                         : 'border-[#D6EDF8] dark:border-[#2A3F54] bg-white dark:bg-[#161B22] hover:border-[#88DFF2]'
                     }`}
                   >
-                    <div className="flex items-center justify-between text-xs mb-1.5">
-                      <span className="font-bold capitalize text-[#14213D] dark:text-white flex items-center gap-1.5">
-                        <span>{stats.icon}</span>
-                        <span>{cls}</span>
-                      </span>
-                      <span className="font-mono font-semibold text-[#5A7086] dark:text-[#7A9BB8]">
-                        {stats.hits} / {stats.total} ({pct}%)
-                      </span>
+                    <div className="text-lg mb-0.5">{stats.icon}</div>
+                    <div className="font-bold text-[11px] capitalize text-[#14213D] dark:text-white">{cls}</div>
+                    <div className="font-mono text-[10px] text-[#5A7086] dark:text-[#7A9BB8] mt-0.5">
+                      {stats.hits}/{stats.total}
                     </div>
-
-                    <div className="w-full h-2 rounded-full bg-[#D6EDF8] dark:bg-[#2A3F54] overflow-hidden">
+                    <div className="w-full h-1.5 rounded-full bg-[#D6EDF8] dark:bg-[#2A3F54] overflow-hidden mt-1.5">
                       <div
                         className="h-full rounded-full transition-all duration-300"
                         style={{ width: `${pct}%`, backgroundColor: stats.color }}
                       />
                     </div>
+                    <div className="text-[10px] font-bold mt-1" style={{ color: stats.color }}>{pct}%</div>
                   </div>
                 );
               })}
