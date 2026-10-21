@@ -1,7 +1,6 @@
 {
-  "name": "did-the-word-survive-website-v2",
+  "name": "did-the-word-survive-website",
   "private": true,
-  "version": "2.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",

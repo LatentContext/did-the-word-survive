@@ -1,7 +1,6 @@
 <p align="center">
   <!-- Core -->
-  <a href="https://latentcontext.github.io/did-the-word-survive/"><img src="https://img.shields.io/badge/Website%202.0-Live%20on%20GitHub%20Pages-brightgreen?style=for-the-badge&logo=githubpages&logoColor=white" alt="Website 2.0 Live"></a>
-  <a href="https://latentcontext.github.io/did-the-word-survive/v1_classic.html"><img src="https://img.shields.io/badge/Classic%20v1.0-Reback%20Demo-f59e0b?style=for-the-badge" alt="Classic Demo v1.0"></a>
+  <a href="https://latentcontext.github.io/did-the-word-survive/"><img src="https://img.shields.io/badge/Benchmark%20Platform-Live%20on%20GitHub%20Pages-brightgreen?style=for-the-badge&logo=githubpages&logoColor=white" alt="Benchmark Platform Live"></a>
   <br><br>
   <a href="https://www.python.org/downloads/"><img src="https://img.shields.io/badge/python-3.9%20|%203.10%20|%203.11%20|%203.12-blue?logo=python&logoColor=white" alt="Python 3.9+"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-22c55e?logo=open-source-initiative&logoColor=white" alt="MIT License"></a>
@@ -19,8 +18,8 @@
 
 <br>
 
-<h1 align="center">Did The Word Survive? 2.0</h1>
-<h3 align="center">An Acoustic and Perceptual Autopsy of Modern Speech Resynthesis — Final Website 2.0</h3>
+<h1 align="center">Did The Word Survive?</h1>
+<h3 align="center">An Acoustic and Perceptual Autopsy of Modern Speech Resynthesis</h3>
 
 <br>
 
@@ -30,8 +29,7 @@
 
 - [Overview](#-overview)
 - [Quick Links](#-quick-links)
-- [Live Web Demo 2.0 (GitHub Pages)](#-interactive-web-demo-20-github-pages)
-- [Reback to Classic v1.0 Demo](#-reback-to-classic-v10-demo)
+- [Live Web Demo (GitHub Pages)](#-interactive-web-demo-github-pages)
 - [Benchmarked Vocoders (14 Models)](#-benchmarked-vocoders-14-models)
 - [Benchmark Datasets (4 Corpora)](#-benchmark-datasets-4-corpora)
 - [Montreal Forced Alignment (MFA) & Lexicons](#-montreal-forced-alignment-mfa--lexicons)
@@ -59,13 +57,12 @@ This repository provides the official open-source evaluation benchmark and inter
 
 The benchmark systematically evaluates speech synthesis preservation across **120,000 waveforms** (112,000 synthesized + 8,000 reference audios) spanning **14 neural vocoders** (M1–M14) and **4 diverse voice contexts** (LJSpeech, LibriTTS, Free_ST, VCTK).
 
-### What's New in Final Website 2.0:
+### Benchmark Platform Highlights:
 - **Comprehensive 120,000-Waveform Evaluation Suite**: Multi-corpus benchmark with verified ground-truth reference pairing.
 - **Permanent Exclusion of Griffin-Lim**: All benchmarks exclusively evaluate 14 modern neural vocoder architectures; Griffin-Lim has been expunged.
 - **Mathematically Bounded Error Ledgers**: Remediated reference exposure denominators ($N_{\text{ref}} = N_{\text{match}} + N_{\text{sub}} + N_{\text{del}}$) and asymmetric Wilson score 95% confidence intervals.
 - **Dedicated Affricate (`CH`, `JH`) & `/h/` (`HH`) Acoustics**: 38,724 tokens analyzed with closure-to-release energy ratios, spectral tilt, and voicing proportions (zero class-level fallbacks).
 - **Interactive Dual-Recognizer Alignment**: Contrast autoregressive LM recovery (OpenAI Whisper) against frame-level acoustic CTC decoding (Meta Wav2Vec2).
-- **Full Backward Compatibility ("Reback")**: Seamless one-click navigation between Final Website 2.0 and the legacy single-file Classic v1.0 demo.
 
 ---
 
@@ -73,8 +70,7 @@ The benchmark systematically evaluates speech synthesis preservation across **12
 
 | Resource | Scope / Description | Link |
 |:---|:---|:---:|
-| 🚀 **Live Website 2.0** | Final Interactive Benchmark Platform (React/Vite/Tailwind) | [**Open Website 2.0 →**](https://latentcontext.github.io/did-the-word-survive/) |
-| ↩️ **Classic v1.0 Demo** | Legacy Single-File Client-Side Levenshtein Evaluator | [**Reback to v1.0 Demo →**](https://latentcontext.github.io/did-the-word-survive/v1_classic.html) |
+| 🚀 **Live Benchmark Platform** | Interactive Benchmark Platform (React/Vite/Tailwind) | [**Open Benchmark Platform →**](https://latentcontext.github.io/did-the-word-survive/) |
 | 📄 **Paper Draft & Findings** | Autopsy Methodology & Phonetic Vulnerability Report | *NAACL 2026* |
 | 🔊 **Vocoder Models (14)** | Benchmark Vocoder Papers, Code & Checkpoints | [View 14 Vocoders Table ↓](#-benchmarked-vocoders-14-models) |
 | 📊 **Benchmark Datasets (4)** | LJSpeech, LibriTTS, VCTK, Free_ST | [View 4 Datasets Table ↓](#-benchmark-datasets-4-corpora) |
@@ -82,13 +78,13 @@ The benchmark systematically evaluates speech synthesis preservation across **12
 | 📖 **CMU Pronouncing Dictionary** | ARPAbet Phonetic Lexicon Reference | [www.speech.cs.cmu.edu/cgi-bin/cmudict →](http://www.speech.cs.cmu.edu/cgi-bin/cmudict) |
 | 🐳 **Docker Image** | `latentcontext/did-the-word-survive` | [Docker Hub →](https://hub.docker.com/) |
 | 🤖 **ASR Model Reference** | OpenAI Whisper (Evaluation Backend) | [github.com/openai/whisper →](https://github.com/openai/whisper) |
-| 💻 **Source Code (Website 2.0)** | TypeScript / React Web Application | [`demo_website_src/`](demo_website_src/) |
+| 💻 **Source Code (Web Application)** | TypeScript / React Web Application | [`demo_website_src/`](demo_website_src/) |
 
 ---
 
-## 🌐 Interactive Web Demo 2.0 (GitHub Pages)
+## 🌐 Interactive Web Demo (GitHub Pages)
 
-The **Final Website 2.0** is hosted directly on GitHub Pages:
+The interactive benchmark platform is hosted directly on GitHub Pages:
 
 🔗 **Live Platform URL:** [https://latentcontext.github.io/did-the-word-survive/](https://latentcontext.github.io/did-the-word-survive/)
 
@@ -104,18 +100,10 @@ The **Final Website 2.0** is hosted directly on GitHub Pages:
 
 ---
 
-## ↩️ Reback to Classic v1.0 Demo
-
-For reviewers or users seeking the original lightweight, single-file HTML evaluation utility:
-
-🔗 **Classic v1.0 URL:** [https://latentcontext.github.io/did-the-word-survive/v1_classic.html](https://latentcontext.github.io/did-the-word-survive/v1_classic.html)
-
-Both Website 2.0 and Classic v1.0 feature persistent bidirectional navigation bars allowing instant switching between versions at any time.
-xdg-open demo/index.html   # On Linux
-open demo/index.html       # On macOS
-
-# Option B: Run via Python HTTP server
-python3 -m http.server 8000 --directory demo
+### Local Preview:
+```bash
+# Option A: Run via Python HTTP server from repository root
+python3 -m http.server 8000
 # Then visit: http://localhost:8000
 ```
 

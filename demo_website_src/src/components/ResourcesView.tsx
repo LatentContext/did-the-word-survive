@@ -227,7 +227,7 @@ export const ResourcesView: React.FC = () => {
             </p>
           </div>
           <span className="text-[11px] font-mono px-2 py-0.5 bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-300 rounded font-semibold">
-            Data v1.0.0-verified
+            Verified Dataset
           </span>
         </div>
 

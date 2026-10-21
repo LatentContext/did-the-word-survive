@@ -102,7 +102,7 @@ export const App: React.FC = () => {
       protocol: 'Evaluation Protocol',
       resources: 'Data & Resources',
     };
-    document.title = `Did The Word Survive? 2.0 · ${tabTitles[activeTab] || 'Benchmark'}`;
+    document.title = `Did The Word Survive? · ${tabTitles[activeTab] || 'Benchmark'}`;
   }, [activeTab]);
 
   const handleTabChange = (tab: TabType, utteranceId?: string) => {

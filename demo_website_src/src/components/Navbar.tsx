@@ -63,9 +63,6 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, onTabChange, onLogoCl
               <span className="font-black tracking-tight text-sm sm:text-base text-[#14213D] dark:text-white group-hover:text-[#88DFF2] transition-colors">
                 Did The Word Survive?
               </span>
-              <span className="text-[10px] font-extrabold px-1.5 py-0.5 rounded-full bg-gradient-to-r from-[#F294C8] to-[#88DFF2] text-slate-900 font-mono tracking-tight shadow-2xs">
-                v2.0
-              </span>
             </div>
           </button>
 
@@ -98,34 +95,22 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, onTabChange, onLogoCl
             })}
           </div>
 
-          {/* Action / Reback Link & Mobile Menu Toggle */}
-          <div className="flex items-center gap-2 shrink-0">
-            <a
-              href="./v1_classic.html"
-              className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs font-bold bg-[#F0F8FF] dark:bg-[#1A2332] text-[#14213D] dark:text-[#E6F0F8] hover:text-[#BE185D] dark:hover:text-[#F294C8] border border-[#D6EDF8] dark:border-[#2A3F54] transition-all hover:border-[#F294C8] shadow-2xs cursor-pointer"
-              title="Reback to Classic v1.0 Single-File Demo"
+          {/* Mobile Menu Toggle */}
+          <div className="flex items-center gap-2 shrink-0 lg:hidden">
+            <button
+              onClick={() => setMobileOpen(!mobileOpen)}
+              className="p-2 rounded-xl border border-[#D6EDF8] dark:border-[#2A3F54] text-[#5A7086] hover:bg-[#F0F8FF] dark:hover:bg-[#1A2332] transition-colors cursor-pointer"
+              aria-label="Toggle mobile navigation menu"
             >
-              <span>↩️</span>
-              <span className="hidden sm:inline">Reback to</span> v1.0
-            </a>
-
-            {/* Mobile hamburger toggle */}
-            <div className="flex items-center lg:hidden">
-              <button
-                onClick={() => setMobileOpen(!mobileOpen)}
-                className="p-2 rounded-xl border border-[#D6EDF8] dark:border-[#2A3F54] text-[#5A7086] hover:bg-[#F0F8FF] dark:hover:bg-[#1A2332] transition-colors cursor-pointer"
-                aria-label="Toggle mobile navigation menu"
-              >
-                {mobileOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
-              </button>
-            </div>
+              {mobileOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
+            </button>
           </div>
         </div>
 
         {/* Mobile / Tablet Menu */}
         {mobileOpen && (
           <div className="lg:hidden py-3 border-t border-[#D6EDF8] dark:border-[#2A3F54] anim-fade-up">
-            <div className="grid grid-cols-2 gap-1.5 mb-2">
+            <div className="grid grid-cols-2 gap-1.5">
               {TABS.map((tab) => {
                 const isActive = activeTab === tab.id;
                 const color = TAB_COLORS[tab.id];
@@ -143,16 +128,6 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, onTabChange, onLogoCl
                   </button>
                 );
               })}
-            </div>
-
-            {/* Reback link for mobile */}
-            <div className="pt-2 border-t border-[#D6EDF8] dark:border-[#2A3F54]">
-              <a
-                href="./v1_classic.html"
-                className="w-full text-center px-3 py-2 rounded-lg text-xs font-bold flex items-center justify-center gap-2 bg-[#F0F8FF] dark:bg-[#1A2332] text-[#14213D] dark:text-[#E6F0F8] border border-[#D6EDF8] dark:border-[#2A3F54]"
-              >
-                <span>↩️ Reback to Classic v1.0 Demo</span>
-              </a>
             </div>
           </div>
         )}

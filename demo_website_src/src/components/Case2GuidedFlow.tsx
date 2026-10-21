@@ -745,11 +745,8 @@ export const Case2GuidedFlow: React.FC<Case2GuidedFlowProps> = ({
 
             <div className="relative z-10 max-w-4xl mx-auto flex flex-col items-center text-center space-y-6">
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-white/10 backdrop-blur-md border border-white/15 text-[#88DFF2]">
-                <span className="px-2 py-0.5 rounded-full bg-gradient-to-r from-[#F294C8] to-[#88DFF2] text-slate-900 font-extrabold text-[10px] font-mono tracking-tight mr-1 shadow-2xs">
-                  VERSION 2.0
-                </span>
                 <Sparkles className="w-3.5 h-3.5" />
-                Final Website 2.0 · 120,000 Waveforms Audited
+                Benchmark Evaluation · 120,000 Waveforms Audited
               </div>
 
               <p className="text-base sm:text-xl text-[#D6EDF8] font-normal leading-relaxed max-w-3xl mx-auto">
